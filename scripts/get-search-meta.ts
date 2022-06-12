@@ -50,11 +50,6 @@ async function getMDXMeta(file: string) {
     .replace(`${websiteRoot}`, '');
 
   const result: ResultType[] = [];
-
-  // console.log('filePath', filePath);
-  // console.log('processCWD', processCWD);
-  console.log('slug', slug);
-
   result.push({
     content: frontMatter.title,
     id: uuid(),

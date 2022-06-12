@@ -11,7 +11,7 @@ import {
   POSTS_PER_PAGE,
   allSortedBlogPosts,
   postsCategoriesGroup,
-} from '../index';
+} from './index';
 import { type Blog } from 'contentlayer/generated';
 
 export const getStaticPaths: GetStaticPaths = async () => {

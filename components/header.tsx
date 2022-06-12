@@ -24,10 +24,6 @@ import {
   LinkOverlay,
   chakra,
   HTMLChakraProps,
-  Drawer,
-  DrawerContent,
-  DrawerBody,
-  DrawerOverlay,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useViewportScroll } from 'framer-motion';
@@ -50,22 +46,41 @@ interface INavItem {
   navTaggle?: () => void;
 }
 
-const navbarItems: INavItem[] = [
+const DeskTopNavItems: INavItem[] = [
   {
     label: '文章',
-    href: '/blog',
-    // children: [
-    //   {
-    //     label: '文章列表',
-    //     href: '/blog/all',
-    //     subLabel: '文章汇总 & 查找',
-    //   },
-    //   {
-    //     label: '文章分类',
-    //     subLabel: '分门别类 | 乱七八糟',
-    //     href: '#',
-    //   },
-    // ],
+    href: '/blog/all',
+  },
+  {
+    label: '小作品',
+    href: '#',
+  },
+  {
+    label: '跨境笔记',
+    href: '#',
+  },
+  {
+    label: '资源分享',
+    href: '#',
+  },
+  {
+    label: '留言板',
+    href: '#',
+  },
+  {
+    label: '友链',
+    href: '#',
+  },
+  {
+    label: '关于',
+    href: '#',
+  },
+];
+
+const MobilNavItems: INavItem[] = [
+  {
+    label: '文章',
+    children: mainNavLinks,
   },
   {
     label: '小作品',
@@ -111,11 +126,7 @@ const MobileNavItem = ({ label, children, href, navTaggle }: INavItem) => {
             !children && navTaggle && navTaggle();
           }}
         >
-          <Text
-            fontWeight={600}
-            fontSize="md"
-            // color={useColorModeValue('gray.600', 'gray.200')}
-          >
+          <Text fontWeight={600} fontSize="md">
             {label}
           </Text>
           {children && (
@@ -172,17 +183,7 @@ const MobileNav = ({ navTaggle }: { navTaggle: () => void }) => {
       shadow="sm"
       transition="box-shadow 0.2s"
     >
-      {navbarItems.map(navItem => {
-        if (navItem.href.startsWith('/blog')) {
-          navItem.children = mainNavLinks;
-          return (
-            <MobileNavItem
-              key={navItem.label}
-              {...navItem}
-              navTaggle={navTaggle}
-            />
-          );
-        }
+      {MobilNavItems.map(navItem => {
         return (
           <MobileNavItem
             key={navItem.label}
@@ -240,7 +241,7 @@ const DesktopNav = () => {
 
   return (
     <Stack direction={'row'} spacing={4}>
-      {navbarItems.map(navItem => (
+      {DeskTopNavItems.map(navItem => (
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'} isLazy>
             <PopoverTrigger>
@@ -288,7 +289,7 @@ export default function Header(props: HTMLChakraProps<'header'>) {
   const [y, setY] = useState(0);
   const { height = 0 } = ref.current?.getBoundingClientRect() ?? {};
   const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onToggle, onClose } = useDisclosure();
+  const { isOpen, onToggle } = useDisclosure();
 
   const { scrollY } = useViewportScroll();
   useEffect(() => {
@@ -384,25 +385,18 @@ export default function Header(props: HTMLChakraProps<'header'>) {
           </Flex>
         </Flex>
         {/* 移动端菜单 */}
-        {/* <Collapse in={isOpen} animateOpacity>
-          <MobileNav navTaggle={onToggle} />
-        </Collapse> */}
-
-        <Drawer
-          placement="top"
-          onClose={onClose}
-          isOpen={isOpen}
-          autoFocus={false}
-        >
-          <DrawerOverlay />
-          <DrawerContent>
-            <DrawerBody m="0" p="0" pt="2">
-              <Collapse in={isOpen} animateOpacity>
-                <MobileNav navTaggle={onToggle} />
-              </Collapse>
-            </DrawerBody>
-          </DrawerContent>
-        </Drawer>
+        <Collapse in={isOpen} animateOpacity>
+          <Box
+            bg="blackAlpha.600"
+            _dark={{
+              bg: 'whiteAlpha.10',
+            }}
+            w="full"
+            minH="100vh"
+          >
+            <MobileNav navTaggle={onToggle} />
+          </Box>
+        </Collapse>
       </chakra.div>
     </chakra.header>
   );
