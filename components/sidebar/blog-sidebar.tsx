@@ -27,7 +27,12 @@ type MainNavLinkProps = {
 };
 
 export const isMainNavLinkActive = (href: string, path: string) => {
-  return path.startsWith(href);
+  const [_, blog, category] = path.split('/');
+  const isMain = path.includes('overview')
+    ? path.includes(href)
+    : href.includes(`${blog}/overview/${category}`);
+
+  return isMain;
 };
 
 const MainNavLink = ({ href, icon, children }: MainNavLinkProps) => {
