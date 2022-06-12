@@ -43,9 +43,17 @@ export const Pagination = ({ previous, next, ...rest }) => {
       {previous ? (
         <PaginationLink
           textAlign="left"
-          label="Previous"
-          href={`/blog/detail/${previous.slug}`}
+          label="上一篇"
+          href={`/blog/${previous.slug}`}
           rel="prev"
+          css={{
+            wordBreak: 'break-all',
+            textOverflow: 'ellipsis',
+            display: '-webkit-box',
+            WebkitLineClamp: '3',
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          }}
         >
           <ChevronLeftIcon mr="1" fontSize="1.2em" />
           {previous.title}
@@ -56,9 +64,17 @@ export const Pagination = ({ previous, next, ...rest }) => {
       {next ? (
         <PaginationLink
           textAlign="right"
-          label="Next"
-          href={`/blog/detail/${next.slug}`}
+          label="下一篇"
+          href={`/blog/${next.slug}`}
           rel="next"
+          css={{
+            wordBreak: 'break-all',
+            textOverflow: 'ellipsis',
+            display: '-webkit-box',
+            WebkitLineClamp: '3',
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          }}
         >
           {next.title}
           <ChevronRightIcon ml="1" fontSize="1.2em" />

@@ -26,14 +26,14 @@ function MyApp({ Component, pageProps }: AppProps) {
                GitHub：https://github.com/electerious/Ackee
         */}
         {/* 网站数据分析第三方脚本，下面这是国外的分析脚本 */}
-        {process.env.NODE_ENV === 'production' && (
+        {/* {process.env.NODE_ENV === 'production' && (
           <script
             async
             defer
             data-domain="abcjs123.vip"
             src="https://plausible.io/js/plausible.js"
           />
-        )}
+        )} */}
       </Head>
       {/* 站点数据分析脚本，同上的脚本引入 <Analytics /> */}
       <ChakraProvider theme={theme}>

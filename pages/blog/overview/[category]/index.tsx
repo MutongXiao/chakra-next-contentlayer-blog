@@ -83,7 +83,7 @@ export const PostsListPage: FC<PostsListProps> = ({
 
   const changePageCallback = (currentPage?: number) => {
     const { category } = router.query;
-    router.push(`/blog/${category}/${currentPage}`);
+    router.push(`/blog/overview/${category}/${currentPage}`);
   };
   const PostsPagination = (
     <>
@@ -126,7 +126,7 @@ export const PostsListPage: FC<PostsListProps> = ({
             title={post.title}
             publishDate={post.date}
             tags={post.tags}
-            href={`/blog/detail/${post.slug}`}
+            href={`/blog/${post.slug}`}
           />
         ))}
       </VStack>

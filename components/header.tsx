@@ -49,7 +49,7 @@ interface INavItem {
 const DeskTopNavItems: INavItem[] = [
   {
     label: '文章',
-    href: '/blog/all',
+    href: '/blog/overview/all',
   },
   {
     label: '小作品',

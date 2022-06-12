@@ -2,7 +2,7 @@ async function redirect() {
   return [
     {
       source: '/blog',
-      destination: '/blog/all',
+      destination: '/blog/overview/all',
       permanent: true,
     },
   ];

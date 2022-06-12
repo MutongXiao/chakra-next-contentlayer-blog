@@ -27,7 +27,7 @@ type MainNavLinkProps = {
 };
 
 export const isMainNavLinkActive = (href: string, path: string) => {
-  return path.includes(href);
+  return path.startsWith(href);
 };
 
 const MainNavLink = ({ href, icon, children }: MainNavLinkProps) => {
@@ -59,7 +59,7 @@ const MainNavLink = ({ href, icon, children }: MainNavLinkProps) => {
 export const mainNavLinks = [
   {
     icon: <CalendarIcon color="white" />,
-    href: '/blog/all',
+    href: '/blog/overview/all',
     label: '全部文章',
     postsCount:
       getPostsCategoriesGroup().find(c => '/blog/all'.includes(c.category))
@@ -67,16 +67,16 @@ export const mainNavLinks = [
   },
   {
     icon: <DiJavascript color="white" />,
-    href: '/blog/javascript',
+    href: '/blog/overview/javascript',
     label: 'JavaScript',
     postsCount:
       getPostsCategoriesGroup().find(c =>
-        '/blog/javascript'.includes(c.category),
+        '/blog/overview/javascript'.includes(c.category),
       )?.total || 0,
   },
   {
     icon: <FaCss3Alt color="white" />,
-    href: '/blog/css',
+    href: '/blog/overview/css',
     label: 'CSS',
     postsCount:
       getPostsCategoriesGroup().find(c => '/blog/css'.includes(c.category))
@@ -84,7 +84,7 @@ export const mainNavLinks = [
   },
   {
     icon: <FaReact color="white" />,
-    href: '/blog/react',
+    href: '/blog/overview/react',
     label: 'React',
     postsCount:
       getPostsCategoriesGroup().find(c => '/blog/react'.includes(c.category))
@@ -92,7 +92,7 @@ export const mainNavLinks = [
   },
   {
     icon: <FaVuejs color="white" />,
-    href: '/blog/vue',
+    href: '/blog/overview/vue',
     label: 'Vue',
     postsCount:
       getPostsCategoriesGroup().find(c => '/blog/vue'.includes(c.category))
@@ -100,7 +100,7 @@ export const mainNavLinks = [
   },
   {
     icon: <SiWebpack color="white" />,
-    href: '/blog/module',
+    href: '/blog/overview/module',
     label: '工程&模块化',
     postsCount:
       getPostsCategoriesGroup().find(c => '/blog/module'.includes(c.category))
@@ -108,7 +108,7 @@ export const mainNavLinks = [
   },
   {
     icon: <FiPenTool color="white" />,
-    href: '/blog/other',
+    href: '/blog/overview/other',
     label: '其他',
     postsCount:
       getPostsCategoriesGroup().find(c => '/blog/other'.includes(c.category))
@@ -116,7 +116,7 @@ export const mainNavLinks = [
   },
   {
     icon: <FaNodeJs color="white" />,
-    href: '/blog/node',
+    href: '/blog/overview/node',
     label: 'node后端',
     postsCount:
       getPostsCategoriesGroup().find(c => '/blog/node'.includes(c.category))
