@@ -1,4 +1,3 @@
-import type { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import {
   Box,
@@ -136,13 +135,3 @@ export const postsCategoriesGroup = getPostsCategoriesGroup();
 export default function Blog() {
   return <></>;
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    redirect: {
-      destination: '/blog/all',
-      //permanent: false,
-      statusCode: 301, //permanent and statusCode are not both
-    },
-  };
-};

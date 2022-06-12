@@ -174,11 +174,11 @@ const MobileNav = ({ navTaggle }: { navTaggle: () => void }) => {
     >
       {navbarItems.map(navItem => {
         if (navItem.href.startsWith('/blog')) {
+          navItem.children = mainNavLinks;
           return (
             <MobileNavItem
               key={navItem.label}
-              label={navItem.label}
-              children={mainNavLinks}
+              {...navItem}
               navTaggle={navTaggle}
             />
           );
