@@ -1,0 +1,113 @@
+---
+title: JavaScript 数据结构 —— 堆
+authors: ['mutongxiao']
+tags: ['JavaScript数据结构', '堆']
+categories: ['JavaScript']
+date: '2021-11-09'
+description: 堆是一种特殊的完全二叉树。
+---
+
+如果有一个关键码的集合 k=\{ k0,k1,k2,...,kn-1 \}，把他们的所有元素按完全二叉树的顺序存储方式存储在一个一维数组中，并满足：Ki \< K(2i+1) 且 Ki \<= K(2i+2) (或 Ki \>= K(2i+1) 且 Ki \>= K (2i+2) ) i=1,2,..，则称为小堆（大堆）。将根节点最大的堆叫做对大堆或大根堆，根节点最小的堆叫做小根堆，堆是一种特殊的完全二叉树。
+
+## 1. 性质
+
+它的所有节点都**大于等于**或**小于等于**它的子节点
+
+- 最大堆：所有节点都大于等于它的子节点
+
+  ![](https://wiki.abcjs123.vip/images/20210315205216.png)
+
+- 最小堆：所有节点都小于等于它的子节点
+
+  ![](https://wiki.abcjs123.vip/images/20210315205144.png)
+
+## 2. 实现
+
+JavaScript 中通常用`数组`表示堆，如下图堆，可用数组表示：
+
+![](https://wiki.abcjs123.vip/images/20210316084618.png)
+![](https://wiki.abcjs123.vip/images/20210316084643.png)
+
+即按照**广度优先遍历**的顺序依次填入到**数组**中。
+
+另外，节点位置与数组的下标`index`有如下关系：
+
+- 任意节点的**左侧子节点**（若存在）的位置：`2 × index + 1`
+- 任意节点的**右侧子节点**（若存在）的位置：`2 × index + 2`
+- 任意节点的**父节点**的位置：`( index - 1 ) / 2`（商）
+
+## 3. 最小堆类
+
+1. 在类里，声明一个数组，用来装元素
+2. 主要方法：插入、删除堆顶、获取堆顶、获取堆大小
+
+```javascript
+// 最小堆类
+class MinHeap {
+  constructor() {
+    this.heap = [];
+  }
+  // 交换节点位置
+  swap(i1, i2) {
+    const temp = this.heap[i1];
+    this.heap[i1] = this.heap[i2];
+    this.heap[i2] = temp;
+  }
+  // 获得父节点
+  getParentIndex(i) {
+    return Math.floor((i - 1) / 2);
+  }
+  // 获得左节点
+  getleftIndex(i) {
+    return 2 * i + 1;
+  }
+  // 获得右节点
+  getrightIndex(i) {
+    return 2 * i + 2;
+  }
+  // 上移
+  shiftUp(index) {
+    if (index === 0) {
+      return;
+    }
+    const parentIndex = this.getParentIndex(index);
+    if (this.heap[parentIndex] > this.heap[index]) {
+      this.swap(parentIndex, index);
+      this.shiftUp(parentIndex);
+    }
+  }
+  // 下移
+  shiftDown(index) {
+    const leftIndex = this.getleftIndex(index);
+    const rightIndex = this.getrightIndex(index);
+    if (this.heap[leftIndex] < this.heap[index]) {
+      this.swap(leftIndex, index);
+      this.shiftDown(leftIndex);
+    }
+    if (this.heap[rightIndex] < this.heap[index]) {
+      this.swap(rightIndex, index);
+      this.shiftDown(rightIndex);
+    }
+  }
+  // 插入 时间复杂度O(logk)，k为堆大小
+  insert(value) {
+    this.heap.push(value);
+    this.shiftUp(this.heap.length - 1);
+  }
+  // 删除堆顶
+  pop() {
+    // pop()方法删除数组最后一个元素并返回，赋值给堆顶
+    this.heap[0] = this.heap.pop();
+    // 对堆顶重新排序
+    this.shiftDown(0);
+  }
+  // 获取堆顶
+  peek() {
+    return this.heap[0];
+  }
+  // 获取堆的大小
+  size() {
+    return this.heap.length;
+  }
+}
+```

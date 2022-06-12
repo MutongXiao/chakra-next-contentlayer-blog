@@ -1,0 +1,140 @@
+---
+title: React 关于setState同步或异步问题的理解
+authors: ['mutongxiao']
+tags: ['React']
+categories: ['React']
+date: '2021-11-08'
+description: 在 React 的类式组件中，我们可以使用setState方法更新state状态, 那么setState是同步的异步的？
+---
+
+在 React 的类式组件中，我们可以使用`setState`方法更新`state`状态。但**有些时候**使用`setState`之后，得不到最新的数据。
+
+## 1. setState 同步 or 异步？
+
+其实 React 中`setState`本身执行的过程和代码是同步的，只是因为 React 框架本身的性能优化机制而导致的。React 中**合成事件**和**生命周期函数**的调用顺序在更新之前，导致在**合成事件**和**生命周期函数**中无法立刻得到更新后的值，形成了**异步**的形式。
+
+假如在一个**合成事件**中，循环调用了`setState`方法`n`次，如果 React 没有优化，当前组件就要被渲染`n`次，这对性能来说是很大的浪费。所以，React 为了性能原因，对调用多次`setState`方法合并为一个来执行。当执行`setState`的时候，`state`中的数据并不会马上更新。
+
+前面已经说到，在 React 的**合成事件**和**生命周期函数**中直接调用`setState`，会表现出**异步**的形式。
+
+除此之外，如果越过 React 的性能优化机制，在原生事件、`setTimeout`中使用`setState`，就会表现出**同步**的形式。
+
+## 2. 表现为异步的情况
+
+### 1. React 合成事件
+
+在 React 中直接使用的事件，如`onChange`、`onClick`等，都是由 React 封装后的事件，是合成事件，由 React 管理。那么由于性能优化的机制，在合成事件中直接调用`setState`，将表现出**异步**的形式。
+
+如下代码，在合成事件`onClick`中，直接将`state`中的`count`加`1`，并在此之后打印`count`的值，结果**第一次**点击按钮时，会打印出`0`，而不是最新的`1`。
+
+```javascript
+state = { count: 0 };
+add = () => {
+  this.setState({ count: this.state.count + 1 });
+  console.log(this.state.count); // 0
+};
+render() {
+  return (
+    <>
+      <div>当前计数：{this.state.count}</div>
+      <button onClick={this.add}>add</button>
+    </>
+  );
+}
+```
+
+### 2. 生命周期函数
+
+生命周期函数也是由 React 所管理，在生命周期函数中直接调用`setState`，也会表现出**异步**的形式。
+
+如下代码，在生命周期`componentDidMount`函数中，将`state`中的`count`加`1`，并在此之后打印`count`的值，结果打印出`0`，而不是最新的`1`。
+
+```javascript
+state = { count: 0 };
+componentDidMount() {
+  this.setState({ count: this.state.count + 1 });
+  console.log(this.state.count); // 0
+}
+render() {
+  return (
+    <>
+      <div>当前计数：{this.state.count}</div>
+      <button>add</button>
+    </>
+  );
+}
+```
+
+## 3. 表现为同步
+
+### 1. 原生事件
+
+setState`本身执行的过程是同步的，使用原生事件，绕过 React 的管理，将表现出**同步**的形式。
+
+如下代码，通过`id`获取到 DOM 元素，用原生方法绑定点击事件。在点击事件中，将`state`中的`count`加`1`，并在此之后打印`count`的值，结果会打印最新的`count`值`1`。
+
+```javascript
+state = { count: 0 };
+componentDidMount() {
+  const btn = document.getElementById('btn');
+  btn.onclick = () => {
+    this.setState({ count: this.state.count + 1 });
+    console.log(this.state.count); // 1
+  };
+}
+render() {
+  return (
+    <>
+      <div>当前计数：{this.state.count}</div>
+      <button id="btn">add</button>
+    </>
+  );
+}
+```
+
+### 2. setTimeout
+
+如下代码，在生命周期`componentDidMount`函数中写了一个定时器`setTimeout`，在`setTimeout`内部将`state`中的`count`加`1`，并在此之后打印`count`的值，结果会打印最新的`count`值`1`。
+
+`setState`虽然也是写在生命周期`componentDidMount`函数中的，但并不是直接写在`componentDidMount`里，而是套了一层`setTimeout`。这样，`setState`就表现出**同步**的形式。
+
+```javascript
+state = { count: 0 };
+componentDidMount() {
+  setTimeout(() => {
+    this.setState({ count: this.state.count + 1 });
+    console.log(this.state.count); // 1
+  }, 0);
+}
+render() {
+  return (
+    <>
+      <div>当前计数：{this.state.count}</div>
+      <button>add</button>
+    </>
+  );
+}
+```
+
+## 4. setState 的第二个参数
+
+无论`setState`的**对象式**写法，还是**函数式**写法，都有**第二个参数**，为可选的**回调函数**，这个回调函数在**状态更新完毕**、**界面也更新后**（`render`调用后）才被调用。
+
+如下代码所示，`setState`虽然直接在`componentDidMount`中调用，但在`setState`的回调函数中打印`count`的值，得到了最新的值`1`，因为回调函数在状态更新完毕后才被调用，当然能得到最新的`count`了。
+
+```javascript
+state = { count: 0 };
+componentDidMount() {
+  this.setState({ count: this.state.count + 1 }, () => {
+    console.log(this.state.count); // 1
+  });
+}
+render() {
+  return (
+    <>
+      <div>当前计数：{this.state.count}</div>
+      <button>add</button>
+    </>
+  );
+}
+```

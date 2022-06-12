@@ -1,0 +1,30 @@
+---
+title: 'useTheme'
+authors: ['mutongxiao']
+tags: ['chakra']
+categories: ['other']
+date: '2022-3-02'
+description: 'React hook to get access to theme by reading from theme context'
+---
+
+`useTheme` is a custom hook used to get the theme object from context.
+
+## Import
+
+```js
+import { useTheme } from '@chakra-ui/react';
+```
+
+## Return value
+
+The `useTheme` hook returns the theme object.
+
+## Usage
+
+```jsx live=false
+function Example() {
+  const theme = useTheme();
+
+  return <div>{/* Do something with the theme */}</div>;
+}
+```
