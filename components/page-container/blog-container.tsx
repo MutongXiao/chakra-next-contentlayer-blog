@@ -11,7 +11,6 @@ import {
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import PageTransition from './page-transition';
-import Footer from 'components/footer';
 import SEO from 'components/seo';
 import TableOfContent from 'components/table-of-content';
 import BlogTags from '@/components/post-tags';
@@ -143,7 +142,6 @@ function BlogPageContainer(props: BlogContainerProps) {
           </Box>
         </Box>
       </Box>
-      <Footer />
     </>
   );
 }

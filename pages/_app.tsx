@@ -3,6 +3,7 @@ import { Box, ChakraProvider } from '@chakra-ui/react';
 import FontFace from '@/components/font-face';
 import ToTop from '@/components/ToTop';
 import Header from '@/components/header';
+import Footer from '@/components/footer';
 // import Analytics from '@/components/site-analytics'
 
 import theme from 'theme';
@@ -43,6 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
           <ToTop />
         </Box>
+        <Footer />
       </ChakraProvider>
       <FontFace />
     </>
