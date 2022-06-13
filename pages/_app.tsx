@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app';
 import { Box, ChakraProvider } from '@chakra-ui/react';
 import FontFace from '@/components/font-face';
 import ToTop from '@/components/ToTop';
+import Header from '@/components/header';
 // import Analytics from '@/components/site-analytics'
 
 import theme from 'theme';
@@ -37,6 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       {/* 站点数据分析脚本，同上的脚本引入 <Analytics /> */}
       <ChakraProvider theme={theme}>
+        <Header />
         <Box w="100vw" overflow="hidden">
           <Component {...pageProps} />
           <ToTop />

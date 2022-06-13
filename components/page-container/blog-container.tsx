@@ -12,7 +12,6 @@ import { useRouter } from 'next/router';
 import * as React from 'react';
 import PageTransition from './page-transition';
 import Footer from 'components/footer';
-import Header from 'components/header';
 import SEO from 'components/seo';
 import TableOfContent from 'components/table-of-content';
 import BlogTags from '@/components/post-tags';
@@ -73,7 +72,6 @@ function BlogPageContainer(props: BlogContainerProps) {
   return (
     <>
       <SEO title={title} description={description} />
-      <Header />
       <Box as="main" className="main-content" w="full" maxW="8xl" mx="auto">
         <Box display={{ md: 'flex' }}>
           {sidebar || null}
