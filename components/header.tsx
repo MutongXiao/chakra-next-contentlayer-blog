@@ -157,6 +157,7 @@ const MobileNavItem = ({ label, children, href, navTaggle }: INavItem) => {
                   py={2}
                   fontWeight={500}
                   fontSize="md"
+                  w="full"
                   onClick={() => {
                     navTaggle && navTaggle();
                   }}
