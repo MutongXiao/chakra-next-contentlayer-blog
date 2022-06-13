@@ -11,9 +11,10 @@ import {
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import PageTransition from './page-transition';
-import SEO from 'components/seo';
-import TableOfContent from 'components/table-of-content';
+import SEO from '@/components/seo';
+import TableOfContent from '@/components/table-of-content';
 import BlogTags from '@/components/post-tags';
+import Sidebar from '@/components/sidebar/blog-sidebar';
 import { convertBackticksToInlineCode } from 'utils/convert-backticks-to-inline-code';
 
 function useHeadingFocusOnRouteChange() {
@@ -49,12 +50,11 @@ export interface BlogContainerProps {
     headings?: Heading[];
   };
   children?: React.ReactNode;
-  sidebar?: React.ReactElement;
   pagination?: React.ReactElement;
 }
 
 function BlogPageContainer(props: BlogContainerProps) {
-  const { frontmatter, children, sidebar, pagination } = props;
+  const { frontmatter, children, pagination } = props;
   useHeadingFocusOnRouteChange();
 
   if (!frontmatter) return <></>;
@@ -73,7 +73,7 @@ function BlogPageContainer(props: BlogContainerProps) {
       <SEO title={title} description={description} />
       <Box w="full" maxW="8xl" mx="auto">
         <Box display={{ md: 'flex' }}>
-          {sidebar || null}
+          <Sidebar />
           <Box flex="1" minW="0" mb={{ base: '8', md: '12' }}>
             <Box id="content" mx="auto" minH="76vh">
               <Flex>

@@ -301,11 +301,11 @@ export default function Header(props: HTMLChakraProps<'header'>) {
       ref={ref}
       shadow={y > height ? 'sm' : undefined}
       transition="box-shadow 0.2s, background-color 0.2s"
-      pos="sticky"
-      top="0"
-      zIndex="3"
       bg="white"
       _dark={{ bg: 'gray.800' }}
+      pos="fixed"
+      top="0"
+      zIndex="9"
       left="0"
       right="0"
       width="full"

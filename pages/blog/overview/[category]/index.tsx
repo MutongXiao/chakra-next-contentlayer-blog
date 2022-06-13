@@ -18,7 +18,7 @@ import { FC, ComponentProps } from 'react';
 import NextLink from 'next/link';
 import Search from '@/components/search/omni-search';
 
-import BlogLayout from 'layout/blog-layout';
+import BlogContainer from '@/components/page-container/blog-container';
 import PostItem from '@/components/post-item';
 import Pagination from '@choc-ui/paginator';
 import {
@@ -107,7 +107,7 @@ export const PostsListPage: FC<PostsListProps> = ({
     </>
   );
   return (
-    <BlogLayout
+    <BlogContainer
       frontmatter={{ title: pageContainerTitle }}
       pagination={PostsPagination}
     >
@@ -130,7 +130,7 @@ export const PostsListPage: FC<PostsListProps> = ({
           />
         ))}
       </VStack>
-    </BlogLayout>
+    </BlogContainer>
   );
 };
 

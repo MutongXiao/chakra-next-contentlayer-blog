@@ -3,7 +3,7 @@ import type { GetStaticPaths, InferGetStaticPropsType } from 'next';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { useRouter } from 'next/router';
 
-import BlogLayout from 'layout/blog-layout';
+import BlogContainer from '@/components/page-container/blog-container';
 import Pagination from '@/components/pagination';
 import { MDXComponents } from '@/components/mdx-components';
 import { allBlogs } from 'contentlayer/generated';
@@ -35,7 +35,7 @@ export default function PostDetail({
 
   useHeadingFocusOnRouteChange();
   return (
-    <BlogLayout
+    <BlogContainer
       frontmatter={post.frontMatter}
       pagination={
         <Pagination
@@ -45,7 +45,7 @@ export default function PostDetail({
       }
     >
       <Component content={mainContent} components={MDXComponents} />
-    </BlogLayout>
+    </BlogContainer>
   );
 }
 
