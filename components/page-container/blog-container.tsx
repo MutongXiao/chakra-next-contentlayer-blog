@@ -71,7 +71,7 @@ function BlogPageContainer(props: BlogContainerProps) {
   return (
     <>
       <SEO title={title} description={description} />
-      <Box as="main" className="main-content" w="full" maxW="8xl" mx="auto">
+      <Box w="full" maxW="8xl" mx="auto">
         <Box display={{ md: 'flex' }}>
           {sidebar || null}
           <Box flex="1" minW="0" mb={{ base: '8', md: '12' }}>
