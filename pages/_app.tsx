@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       {/* 站点数据分析脚本，同上的脚本引入 <Analytics /> */}
       <ChakraProvider theme={theme}>
-        <Box w="full">
+        <Box w="100vw" overflow="hidden">
           <Component {...pageProps} />
           <ToTop />
         </Box>
