@@ -10,6 +10,8 @@ const customTheme = extendTheme({
   styles: {
     global: (props: any) => ({
       body: {
+        width: '100vw',
+        minH: '100vh',
         scrollBehavior: 'smooth',
         overflowX: 'hidden',
         overflowY: 'overlay',
