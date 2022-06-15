@@ -60,8 +60,8 @@ const DeskTopNavItems: INavItem[] = [
     href: '#',
   },
   {
-    label: '资源分享',
-    href: '#',
+    label: '站点导航',
+    href: '/utils-site',
   },
   {
     label: '留言板',
@@ -91,8 +91,8 @@ const MobilNavItems: INavItem[] = [
     href: '#',
   },
   {
-    label: '资源分享',
-    href: '#',
+    label: '站点导航',
+    href: '/utils-site',
   },
   {
     label: '留言板',
