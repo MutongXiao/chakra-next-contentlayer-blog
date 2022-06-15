@@ -5,8 +5,9 @@
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
-    "skipLibCheck": true,
+    "skipLibCheck": true, // 跳过编译中的所有 .d.ts 文件
     "strict": false,
+    "strictFunctionTypes": true, // 使用更快的类型差异检查
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -15,7 +16,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true,
+    "incremental": true, // 增量项目输出, 允许TypeScript将上次编译的状态保存到一个 .tsbuildinfo 文件中。这个文件用来计算上次运行后可能被重新检查/重新输出的最小文件集，就像TypeScript的 --watch模式一样。
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],

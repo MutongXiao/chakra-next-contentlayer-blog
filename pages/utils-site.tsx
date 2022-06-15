@@ -43,7 +43,8 @@ const Card: React.FC<CardProps> = props => {
         }}
       >
         <chakra.h1
-          fontSize="2xl"
+          fontSize={{ base: 'lg', md: '2xl' }}
+          noOfLines={1}
           fontWeight="bold"
           color="gray.800"
           _dark={{
@@ -216,7 +217,6 @@ export default function UtilsRescoursPage() {
             spacing="4"
           >
             <Heading
-              noOfLines={1}
               size={{ base: 'md', md: 'lg' }}
               w="full"
               overflow="hidden"
