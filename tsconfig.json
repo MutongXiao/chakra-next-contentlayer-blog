@@ -7,7 +7,6 @@
     "allowJs": true,
     "skipLibCheck": true, // 跳过编译中的所有 .d.ts 文件
     "strict": false,
-    "strictFunctionTypes": true, // 使用更快的类型差异检查
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
