@@ -40,7 +40,7 @@
     "title": "404: Not found",
     "description": "Page not found",
     "heading": "404 | Page Not Found",
-    "message": "You just hit a route that doesn't exist... the sadness.😢",
+    "message": "你访问的页面不存在... the sadness.😢",
     "back-to-home": "Back to Home"
   },
   "tutorialError": {
