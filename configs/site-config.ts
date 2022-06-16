@@ -29,17 +29,17 @@ const siteConfig = {
     title: '阿蛮陋室',
     titleTemplate: '%s - 阿蛮陋室',
     description:
-      '阿蛮的个人空间博客，我的前端学习笔记&跨境笔记，记录学习的点点滴滴，分享我所知.',
-    siteUrl: 'https://abcjs123.vip',
+      '阿蛮的个人空间Blog，记录我的前端学习笔记&跨境笔记，学习中的点点滴滴，分享我所知.',
+    siteUrl: 'https://chakra-next-contentlayer-blog.vercel.app/',
     openGraph: {
       type: 'website',
-      locale: 'en_US',
-      url: 'https://chakra-ui.com',
-      title: 'Chakra UI',
+      locale: 'cn_ZH',
+      url: 'https://chakra-next-contentlayer-blog.vercel.app/',
+      title: '阿蛮的博客网站',
       description:
-        'Simple, Modular and Accessible UI Components for your React Applications.',
+        '使用React,Next,chakra ui,contentlayer,开发的支持mdx文档的博客项目',
       site_name:
-        'Chakra UI: Simple, Modular and Accessible UI Components for your React Applications.',
+        '阿蛮的博客: react next blog 个人博客，欢迎GitHub（https://github.com/MutongXiao/chakra-next-contentlayer-blog）上借鉴练手',
       images: [
         {
           url: 'https://chakra-ui.com/og-image.png',

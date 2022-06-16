@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org/) blog project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). site designed with chakra ui.Generate static pages via a [contentlayer](https://www.contentlayer.dev/) that supports mdx.
 
+[线上预览](https://chakra-next-contentlayer-blog.vercel.app/)
+
 ## Usage
 
 yarn install

@@ -61,7 +61,7 @@ const DeskTopNavItems: INavItem[] = [
   },
   {
     label: '站点导航',
-    href: '/utils-site',
+    href: '/site-map',
   },
   {
     label: '留言板',
@@ -92,7 +92,7 @@ const MobilNavItems: INavItem[] = [
   },
   {
     label: '站点导航',
-    href: '/utils-site',
+    href: '/site-map',
   },
   {
     label: '留言板',

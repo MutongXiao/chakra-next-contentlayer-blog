@@ -213,7 +213,7 @@ export default function UtilsRescoursPage() {
             maxW="8xl"
             mx="auto"
             px={{ base: '5', md: '10' }}
-            my={{ base: '0', md: '10' }}
+            my={{ base: '5', md: '10' }}
             spacing="4"
           >
             <Heading
