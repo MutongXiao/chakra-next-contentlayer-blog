@@ -73,7 +73,7 @@ const DeskTopNavItems: INavItem[] = [
   },
   {
     label: '关于',
-    href: '#',
+    href: '/',
   },
 ];
 
@@ -104,7 +104,7 @@ const MobilNavItems: INavItem[] = [
   },
   {
     label: '关于',
-    href: '#',
+    href: '/',
   },
 ];
 
