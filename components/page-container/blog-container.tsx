@@ -15,6 +15,7 @@ import SEO from '@/components/seo';
 import TableOfContent from '@/components/table-of-content';
 import BlogTags from '@/components/post-tags';
 import Sidebar from '@/components/sidebar/blog-sidebar';
+import Comments from '@/components/comments';
 import { convertBackticksToInlineCode } from 'utils/convert-backticks-to-inline-code';
 
 function useHeadingFocusOnRouteChange() {
@@ -130,6 +131,7 @@ function BlogPageContainer(props: BlogContainerProps) {
                     >
                       {children}
                       <Box mt="40px">{pagination || null}</Box>
+                      {isPostDetail && <Comments />}
                     </Box>
                   </PageTransition>
                 </Box>
