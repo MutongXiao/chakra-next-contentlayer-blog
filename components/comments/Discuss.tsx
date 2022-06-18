@@ -11,17 +11,29 @@ const Discuss = () => {
   const loadComments = () => {
     setPathname(location.pathname);
     const comments = document.getElementById(COMMENTS_ID);
-    if (comments) {
+    // @ts-ignore
+    if (!window.Discuss) {
+      // 兼容 国产手机 浏览器 不加载脚本
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/discuss@1.0.1/dist/Discuss.js';
+      script.setAttribute('crossorigin', 'anonymous');
+      script.async = true;
+      document.body.appendChild(script);
+      script.onload = () => {
+        !!comments &&
+          // @ts-ignore
+          window.Discuss.init({
+            el: `#${COMMENTS_ID}`,
+            serverURLs: '/service/discuss',
+          });
+      };
+      alert('Not Discuss');
+    } else {
       // @ts-ignore
-      if (window.Discuss) {
-        alert('hello Discuss');
-      }
-      // @ts-ignore
-      window.Discuss &&
+      !!comments &&
         // @ts-ignore
         window.Discuss.init({
-          // el: `#${COMMENTS_ID}`,
-          el: '#Discuss-Comments-Container',
+          el: `#${COMMENTS_ID}`,
           serverURLs: '/service/discuss',
         });
     }
