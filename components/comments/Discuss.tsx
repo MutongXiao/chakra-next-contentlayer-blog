@@ -12,7 +12,10 @@ const Discuss = () => {
     setPathname(location.pathname);
     const comments = document.getElementById(COMMENTS_ID);
     if (comments) {
-      alert('hello');
+      // @ts-ignore
+      if (window.Discuss) {
+        alert('hello');
+      }
       // @ts-ignore
       window.Discuss &&
         // @ts-ignore
