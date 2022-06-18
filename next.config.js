@@ -67,6 +67,16 @@ module.exports = withContentlayer(
     },
     redirects: require('./next-redirect'),
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+    async rewrites() {
+      return {
+        fallback: [
+          {
+            source: '/:path*',
+            destination: `https://abcjs123.vip/:path*`,
+          },
+        ],
+      };
+    },
     async headers() {
       return [
         {

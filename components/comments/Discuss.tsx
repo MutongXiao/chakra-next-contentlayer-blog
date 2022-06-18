@@ -17,7 +17,7 @@ const Discuss = () => {
         // @ts-ignore
         window.Discuss.init({
           el: `#${COMMENTS_ID}`,
-          serverURLs: 'http://abcjs123.vip:6870',
+          serverURLs: '/service/discuss',
         });
     }
   };
