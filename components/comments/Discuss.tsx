@@ -26,8 +26,9 @@ const Discuss = () => {
             el: `#${COMMENTS_ID}`,
             serverURLs: '/service/discuss',
           });
+        // @ts-ignore
+        window.Discuss && alert('Not Discuss, but reloaded');
       };
-      alert('Not Discuss');
     } else {
       // @ts-ignore
       !!comments &&
