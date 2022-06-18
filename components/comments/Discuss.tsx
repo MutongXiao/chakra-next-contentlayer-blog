@@ -14,13 +14,14 @@ const Discuss = () => {
     if (comments) {
       // @ts-ignore
       if (window.Discuss) {
-        alert('hello');
+        alert('hello Discuss');
       }
       // @ts-ignore
       window.Discuss &&
         // @ts-ignore
         window.Discuss.init({
-          el: `#${COMMENTS_ID}`,
+          // el: `#${COMMENTS_ID}`,
+          el: '#Discuss-Comments-Container',
           serverURLs: '/service/discuss',
         });
     }
