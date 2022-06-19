@@ -22,7 +22,7 @@ const DiscussComments = () => {
 
   return (
     <>
-      <Script id="loadDiscuss" strategy="lazyOnload" src="/js/discuss.js" />
+      <Script id="loadDiscuss" strategy="lazyOnload" src="/js/Discuss.js" />
 
       {enableLoadComments && (
         <Button
