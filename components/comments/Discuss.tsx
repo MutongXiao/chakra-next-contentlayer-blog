@@ -13,6 +13,8 @@ const Discuss = () => {
     const comments = document.getElementById(COMMENTS_ID);
     // @ts-ignore
     if (!window.Discuss) {
+      // @ts-ignore
+      alert('Not Discuss', !!window.Discuss);
       // 兼容 国产手机 浏览器 不加载脚本
       const script = document.createElement('script');
       script.src = 'https://cdn.jsdelivr.net/npm/discuss@1.0.1/dist/Discuss.js';
@@ -27,7 +29,7 @@ const Discuss = () => {
             serverURLs: '/service/discuss',
           });
         // @ts-ignore
-        alert('Not Discuss, but reloaded', window.Discuss);
+        alert('Not Discuss, but reloaded', !!window.Discuss);
       };
       script.onerror = () => {
         alert('Error loading Discuss');
