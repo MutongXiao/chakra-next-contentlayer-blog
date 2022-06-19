@@ -42,12 +42,16 @@ const Discuss = () => {
 
   return (
     <>
-      <Script
+      {/* <Script
         id="loadDiscuss"
         async={true}
         strategy="lazyOnload"
         src="https://cdn.jsdelivr.net/npm/discuss@1.0.1/dist/Discuss.js"
         //src="https://cdn.jsdelivr.net/npm/discuss@1.0.1/dist/Discuss.admin.js"
+      /> */}
+      <script
+        async={true}
+        src="https://cdn.jsdelivr.net/npm/discuss@1.0.1/dist/Discuss.js"
       />
       {/* <Script
         id="loadDiscussEmot"
