@@ -16,15 +16,21 @@ const DiscussComments = () => {
     if (!window.Discuss) {
       const script = document.createElement('script');
       script.src = '/js/Discuss.js';
-      script.onload = () => {
-        !!comments &&
-          // @ts-ignore
-          window.Discuss.init({
-            el: `#${COMMENTS_ID}`,
-            serverURLs: '/service/discuss',
-          });
-      };
+      // script.onload = () => {
+      //   !!comments &&
+      //     // @ts-ignore
+      //     window.Discuss.init({
+      //       el: `#${COMMENTS_ID}`,
+      //       serverURLs: '/service/discuss',
+      //     });
+      // };
       comments && comments.appendChild(script);
+      !!comments &&
+        // @ts-ignore
+        window.Discuss.init({
+          el: `#${COMMENTS_ID}`,
+          serverURLs: '/service/discuss',
+        });
       return;
     }
     !!comments &&
