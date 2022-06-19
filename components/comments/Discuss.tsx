@@ -27,7 +27,10 @@ const Discuss = () => {
             serverURLs: '/service/discuss',
           });
         // @ts-ignore
-        window.Discuss && alert('Not Discuss, but reloaded');
+        alert('Not Discuss, but reloaded', window.Discuss);
+      };
+      script.onerror = () => {
+        alert('Error loading Discuss');
       };
     } else {
       // @ts-ignore
@@ -42,17 +45,17 @@ const Discuss = () => {
 
   return (
     <>
-      {/* <Script
+      <Script
         id="loadDiscuss"
         async={true}
         strategy="lazyOnload"
         src="https://cdn.jsdelivr.net/npm/discuss@1.0.1/dist/Discuss.js"
         //src="https://cdn.jsdelivr.net/npm/discuss@1.0.1/dist/Discuss.admin.js"
-      /> */}
-      <script
+      />
+      {/* <script
         async={true}
         src="https://cdn.jsdelivr.net/npm/discuss@1.0.1/dist/Discuss.js"
-      />
+      /> */}
       {/* <Script
         id="loadDiscussEmot"
         async={true}
