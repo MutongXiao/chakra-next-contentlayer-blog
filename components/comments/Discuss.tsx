@@ -12,27 +12,6 @@ const DiscussComments = () => {
     setPathname(location.pathname);
     // @ts-ignore
     const comments = document.getElementById(COMMENTS_ID);
-    // @ts-ignore
-    if (!window.Discuss) {
-      const script = document.createElement('script');
-      script.src = '/js/Discuss.js';
-      // script.onload = () => {
-      //   !!comments &&
-      //     // @ts-ignore
-      //     window.Discuss.init({
-      //       el: `#${COMMENTS_ID}`,
-      //       serverURLs: '/service/discuss',
-      //     });
-      // };
-      comments && comments.appendChild(script);
-      !!comments &&
-        // @ts-ignore
-        window.Discuss.init({
-          el: `#${COMMENTS_ID}`,
-          serverURLs: '/service/discuss',
-        });
-      return;
-    }
     !!comments &&
       // @ts-ignore
       window.Discuss.init({
@@ -43,23 +22,8 @@ const DiscussComments = () => {
 
   return (
     <>
-      <Script
-        id="loadDiscuss"
-        strategy="lazyOnload"
-        src="/js/Discuss.js"
-        //src="https://cdn.jsdelivr.net/npm/discuss@1.0.1/dist/Discuss.js"
-        //src="https://cdn.jsdelivr.net/npm/discuss@1.0.1/dist/Discuss.admin.js"
-      />
-      {/* <script
-        async={true}
-        src="https://cdn.jsdelivr.net/npm/discuss@1.0.1/dist/Discuss.js"
-      /> */}
-      {/* <Script
-        id="loadDiscussEmot"
-        async={true}
-        crossOrigin="anonymous"
-        src="https://cdn.jsdelivr.net/npm/discuss@1.0.1/dist/emot.js"
-      /> */}
+      <Script id="loadDiscuss" strategy="lazyOnload" src="/js/discuss.js" />
+
       {enableLoadComments && (
         <Button
           rounded="full"
