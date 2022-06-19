@@ -29,7 +29,7 @@ const DiscussComments = () => {
       // @ts-ignore
       if (!window.Discuss) {
         // @ts-ignore
-        comments.innerHTML = `你的浏览器无法加载评论：${window.Discuss}`;
+        comments.innerHTML = `抱歉，你的浏览器暂时无法加载评论：${window.Discuss}`;
       }
     }
   };
