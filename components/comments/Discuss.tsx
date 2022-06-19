@@ -3,53 +3,27 @@ import Script from 'next/script';
 import { Box, Button, Text, Divider, Stack } from '@chakra-ui/react';
 import { ChatIcon } from '@chakra-ui/icons';
 
-const Discuss = () => {
+const DiscussComments = () => {
   const [pathname, setPathname] = useState(null);
   const COMMENTS_ID = 'Discuss-Comments-Container';
   const enableLoadComments = pathname !== location.pathname;
 
   const loadComments = () => {
     setPathname(location.pathname);
-    const comments = document.getElementById(COMMENTS_ID);
     // @ts-ignore
-    if (!window.Discuss) {
+    const comments = document.getElementById(COMMENTS_ID);
+    !!comments &&
       // @ts-ignore
-      alert('Not Discuss', !!window.Discuss);
-      // 兼容 国产手机 浏览器 不加载脚本
-      const script = document.createElement('script');
-      script.src = '/js/Discuss.js';
-      script.setAttribute('crossorigin', 'anonymous');
-      script.async = true;
-      document.body.appendChild(script);
-      script.onload = () => {
-        !!comments &&
-          // @ts-ignore
-          window.Discuss.init({
-            el: `#${COMMENTS_ID}`,
-            serverURLs: '/service/discuss',
-          });
-        // @ts-ignore
-        alert('Not Discuss, but reloaded', !!window.Discuss);
-      };
-      script.onerror = () => {
-        alert('Error loading Discuss');
-      };
-    } else {
-      // @ts-ignore
-      !!comments &&
-        // @ts-ignore
-        window.Discuss.init({
-          el: `#${COMMENTS_ID}`,
-          serverURLs: '/service/discuss',
-        });
-    }
+      window.Discuss.init({
+        el: `#${COMMENTS_ID}`,
+        serverURLs: '/service/discuss',
+      });
   };
 
   return (
     <>
       <Script
         id="loadDiscuss"
-        async={true}
         strategy="lazyOnload"
         src="/js/Discuss.js"
         //src="https://cdn.jsdelivr.net/npm/discuss@1.0.1/dist/Discuss.js"
@@ -100,4 +74,4 @@ const Discuss = () => {
   );
 };
 
-export default Discuss;
+export default DiscussComments;
