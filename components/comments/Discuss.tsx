@@ -17,7 +17,7 @@ const Discuss = () => {
       alert('Not Discuss', !!window.Discuss);
       // 兼容 国产手机 浏览器 不加载脚本
       const script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/discuss@1.0.1/dist/Discuss.js';
+      script.src = '/js/Discuss.js';
       script.setAttribute('crossorigin', 'anonymous');
       script.async = true;
       document.body.appendChild(script);
@@ -51,7 +51,8 @@ const Discuss = () => {
         id="loadDiscuss"
         async={true}
         strategy="lazyOnload"
-        src="https://cdn.jsdelivr.net/npm/discuss@1.0.1/dist/Discuss.js"
+        src="/js/Discuss.js"
+        //src="https://cdn.jsdelivr.net/npm/discuss@1.0.1/dist/Discuss.js"
         //src="https://cdn.jsdelivr.net/npm/discuss@1.0.1/dist/Discuss.admin.js"
       />
       {/* <script
