@@ -12,6 +12,21 @@ const DiscussComments = () => {
     setPathname(location.pathname);
     // @ts-ignore
     const comments = document.getElementById(COMMENTS_ID);
+    // @ts-ignore
+    if (!window.Discuss) {
+      const script = document.createElement('script');
+      script.src = '/js/Discuss.js';
+      script.onload = () => {
+        !!comments &&
+          // @ts-ignore
+          window.Discuss.init({
+            el: `#${COMMENTS_ID}`,
+            serverURLs: '/service/discuss',
+          });
+      };
+      comments && comments.appendChild(script);
+      return;
+    }
     !!comments &&
       // @ts-ignore
       window.Discuss.init({
