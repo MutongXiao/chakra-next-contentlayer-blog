@@ -71,8 +71,8 @@ module.exports = withContentlayer(
       return {
         fallback: [
           {
-            source: '/:path*',
-            destination: `https://abcjs123.vip/:path*`,
+            source: '/service/discuss',
+            destination: `https://abcjs123.vip/service/discuss`,
           },
         ],
       };
