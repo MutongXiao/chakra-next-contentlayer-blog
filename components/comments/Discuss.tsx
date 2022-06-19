@@ -18,20 +18,6 @@ const DiscussComments = () => {
         el: `#${COMMENTS_ID}`,
         serverURLs: '/service/discuss',
       });
-    // @ts-ignore
-    if (!window.Discuss) {
-      <script src="/js/Discuss.js"></script>;
-      // @ts-ignore
-      window.Discuss?.init({
-        el: `#${COMMENTS_ID}`,
-        serverURLs: '/service/discuss',
-      });
-      // @ts-ignore
-      if (!window.Discuss) {
-        // @ts-ignore
-        comments.innerHTML = `抱歉，你的浏览器暂时无法加载评论：${window.Discuss}`;
-      }
-    }
   };
 
   return (
