@@ -7,7 +7,6 @@ import NextDocument, {
 } from 'next/document';
 import { ColorModeScript } from '@chakra-ui/react';
 import React from 'react';
-
 class Document extends NextDocument {
   static async getInitialProps(ctx: DocumentContext) {
     return NextDocument.getInitialProps(ctx);
@@ -16,13 +15,7 @@ class Document extends NextDocument {
     return (
       <Html lang="zh">
         <Head>
-          {/* <link
-            rel="preload"
-            href="/fonts/FiraCode-Regular.ttf"
-            as="font"
-            type="font/ttf"
-            crossOrigin="anonymous"
-          /> */}
+          <link rel="stylesheet" href="/css/pace-theme-default.min.css"></link>
         </Head>
         <body>
           {/* 👇 Here's the script */}

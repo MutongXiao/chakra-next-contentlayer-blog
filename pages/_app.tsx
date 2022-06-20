@@ -38,7 +38,6 @@ function MyApp({ Component, pageProps }: AppProps) {
             src="https://plausible.io/js/plausible.js"
           />
         )} */}
-        <link rel="stylesheet" href="/css/pace-theme-default.min.css"></link>
       </Head>
       <Script src="/js/pace.min.js" strategy="beforeInteractive" />
       {/* 站点数据分析脚本，同上的脚本引入 <Analytics /> */}
