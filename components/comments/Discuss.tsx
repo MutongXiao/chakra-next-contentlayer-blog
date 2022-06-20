@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Box, Button, Text, Divider, Stack } from '@chakra-ui/react';
 import { ChatIcon } from '@chakra-ui/icons';
-import Discuss from 'scripts/discuss';
+import Discuss from 'scripts/discuss-comments';
 
 const DiscussComments = () => {
   const [pathname, setPathname] = useState(null);
