@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import Script from 'next/script';
 import { Box, Button, Text, Divider, Stack } from '@chakra-ui/react';
 import { ChatIcon } from '@chakra-ui/icons';
 import Discuss from 'scripts/Discuss';
@@ -11,24 +10,16 @@ const DiscussComments = () => {
 
   const loadComments = () => {
     setPathname(location.pathname);
-    // @ts-ignore
     const comments = document.getElementById(COMMENTS_ID);
     !!comments &&
       Discuss.init({
         el: `#${COMMENTS_ID}`,
         serverURLs: '/service/discuss',
       });
-    // // @ts-ignore
-    // window.Discuss?.init({
-    //   el: `#${COMMENTS_ID}`,
-    //   serverURLs: '/service/discuss',
-    // });
   };
 
   return (
     <>
-      {/* <Script id="loadDiscuss" strategy="lazyOnload" src="/js/Discuss.js" /> */}
-
       {enableLoadComments && (
         <Button
           rounded="full"
