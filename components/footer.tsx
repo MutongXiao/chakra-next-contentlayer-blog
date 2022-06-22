@@ -75,8 +75,8 @@ export default function SmallWithLogoLeft() {
       >
         <Logo />
         <Text textAlign="center">
-          © 2022 Designed with chakra UI. Powered by React / NextJS. All rights
-          reserved
+          © 2022 Designed with chakra ui. Powered by contentlayerjs and nextjs
+          etc. All rights reserved
         </Text>
         <Stack direction={'row'} spacing={6}>
           <SocialButton label={'Twitter'} href={'#'}>
@@ -85,7 +85,7 @@ export default function SmallWithLogoLeft() {
           <SocialButton label={'YouTube'} href={'#'}>
             <FaYoutube />
           </SocialButton>
-          <SocialButton label={'Github'} href={'#'}>
+          <SocialButton label={'Github'} href="https://github.com/MutongXiao">
             <FaGithub />
           </SocialButton>
         </Stack>

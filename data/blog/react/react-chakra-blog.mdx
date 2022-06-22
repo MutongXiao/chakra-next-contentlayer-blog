@@ -1,53 +1,64 @@
 ---
-title: 构建可访问网络的初学者指南
-description:
-  Web accessibility is the method of making websites and web applications usable
-  by everyone.
+title: 构建无障碍可访问性的Web站点向导指南
+description: 网络可访问无障碍性是指使网站和网络应用程序能够被所有人使用的方法。
 authors: ['mutongxiao']
 tags: ['chakra', 'blog']
 categories: ['other']
-date: '2022-6-09'
+date: '2022-5-11'
 ---
 
-Accessibility
-([a11y](https://developer.mozilla.org/en-US/docs/Web/Accessibility)) is an
-essential part of web development because it provides unrestricted access to
-millions of users. Unfortunately, many developers fail to take the necessary
-steps to ensure web accessibility and often overlook it. A recent report
-revealed that
-[98% of the top websites do not offer fully accessible experiences](https://webaim.org/projects/million/).
+可访问性
+([a11y](https://developer.mozilla.org/en-US/docs/Web/Accessibility))是网络开发的一个重要部分，
+因为它为数百万用户提供了无限制的访问。不幸的是，许多开发者没有采取必要的措施来确保网络的无障碍性，
+而且常常忽略了这一点。最近的一份报告显示，
+[98%的顶级网站没有提供完全无障碍访问的体验](https://webaim.org/projects/million/).
 
 If you're building a web app or website, you'd want it to be usable by everyone
 irrespective of their disabilities, age, and physical circumstances.
 Accessibility shouldn't be an afterthought carried out close to production;
 instead developers should include it from the start of the development process.
 
+如果你正在建立一个网络应用程序或网站，你希望它能被每个人使用，无论他们的残疾、年龄和身体状况如何。
+无障碍性不应该是生产之后的事后考虑，相反，开发人员应该从开发过程的一开始就包括它。
+
 Luckily, accessibility isn’t so difficult to implement. Once you understand the
 issues that make a site nearly impossible to use by certain people, you can take
 the measures to prevent those issues and ensure your site is welcoming to all.
 
-## What is Web Accessibility?
+幸运的是，无障碍性并不难实现。 一旦你了解了导致某些人无法使用网站的问题所在，你就可以采取措施来防止这些问题，
+并确保你的网站对所有人都是受欢迎的。
+
+## 什么是 Web 无障碍访问？
 
 Web accessibility is the method of making websites and web applications usable
 by everyone, including those with a form of disability, impairments, or
 limitations.
+
+Web 无障碍可访问性是使每个人都可以使用网站和 Web 应用程序的方法，包括那些有某种形式的残疾、障碍或限制的人。
 
 [Nearly 15% of the world's population](https://www.who.int/en/news-room/fact-sheets/detail/disability-and-health)
 lives with some form of disability. Safe to say, if you don't develop your site
 to work with Assistive Technology (AT) like a screen reader, you prevent almost
 1 billion people from engaging with your content.
 
+[世界上近 15% 的人口](https://www.who.int/en/news-room/fact-sheets/detail/disability-and-health)患有某种形式的残疾。可以说，如果你不配合使用屏幕阅读器之类的辅助技术 (AT)来开发你的 web 网站，你将阻止近 10 亿人与你的 wen 内容进行交互。
+
 When you build an accessible website, you're breaking down the walls of web
 exclusion and granting all users equal access to the web.
 
-### Reasons for Web Accessibility
+当你在构建一个无障碍可访问的网站时，你就打破了网络排斥的围墙，给予所有用户平等的 web 访问权。
+
+### 实现网络无障碍的原因(理由)
 
 Building an accessible web is important for the following reasons:
+建立一个无障碍网络是很重要的，原因如下：
 
 **1. Improves usability:** Usability involves creating an effective, efficient,
 and satisfying product. When you make the web accessible, you automatically
 remove restrictions and make it available for everyone with or without a
 disability.
+
+**1. 提高可用性：** 可用性涉及创建有效、高效和令人满意的产品。 当你使 Web 具有无障碍可访问性时，意味着你自动消除了限制，并使其可供任何有或没有残疾的人使用。
 
 **2. It is the law:** Some government policies and laws mandate web
 accessibility compliance. Failure to comply with these laws could cause legal
@@ -56,17 +67,23 @@ actions to be taken against your company, as in the case of
 Hence, to prevent risks of lawsuits and complaints, it is best to ensure your
 website or app is accessible.
 
+**2. 这是法律要求：** 一些政府政策和法律要求遵守 Web 无障碍可访问性。 不遵守这些法律可能会导致对你的公司被采取法律行动，例如 [Domino's Pizza](https://arstechnica.com/tech-policy/2019/10/accessibility-the-future-and-why-dominos-matters/)。 因此，为了防止诉讼和投诉的风险，最好确保你的网站或应用程序可以具有无障碍访问性。
+
 **3. It is the right thing to do:** At the end of the day, accessibility is the
 right thing to do. You’d want to promote inclusion and diversity to everyone who
 wishes to use the web. Building an accessible web implies that you're opening
 the door to anyone who wants to use your site regardless of their physical or
 cognitive ability.
 
-### Web Accessibility Standards
+**3. 这是正确的做法：** 在任何时候，无障碍环境是正确的值得去做的事情。如果你想向每个希望使用 web 的人促进包容性和多样性。那么建立一个无障碍的网络意味着你在向任何想使用你的网站的人敞开大门，无论他们的身体或认知能力如何。
+
+### Web 无障碍标准
 
 The two main guidelines that set web accessibility standards are:
 
-#### 1. The [Web Content Accessibility Guidelines](https://www.w3.org/WAI/standards-guidelines/wcag/) (WCAG 2.1)
+设置 Web 无障碍可访问性标准的两个主要准则是：
+
+#### 1. [Web 内容无障碍可访问性指南](https://www.w3.org/WAI/standards-guidelines/wcag/) (WCAG 2.1)
 
 The Web Accessibility Initiative (WAI), managed by the World Wide Web Consortium
 (W3C), published these guidelines. They are basic rules that explain how
@@ -86,7 +103,7 @@ must be understandable by users
 **4. Robust**: Content must be robust enough to be interpreted by many users and
 assistive technologies.
 
-#### 2. The [Web Accessibility Initiative — Accessible Rich Internet Applications](https://www.w3.org/WAI/intro/aria) (WAI-ARIA)
+#### 2. [网络无障碍倡议--无障碍的富互联网应用](https://www.w3.org/WAI/intro/aria) (WAI-ARIA)
 
 The Accessible Rich Internet Applications Working Group
 ([ARIA WG](https://www.w3.org/WAI/ARIA/)), also run by the W3C WAI, came up with
@@ -103,13 +120,13 @@ for building accessible web components and offers the following:
 - Properties that describe the live regions of a page that usually get frequent
   updates
 
-## 10 best practices for building an accessible web
+## 构建无障碍可访问 web 应用的 10 个最佳实践
 
 To build accessible websites and web apps following the principles and
 guidelines above, let's examine some action items and best practices you can
 implement:
 
-### 1. Write Semantic HTML
+### 1. 编写语义化 HTML
 
 HTML comprises both **semantic and non-semantic elements**.
 [Semantic HTML](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#semantics_in_html)
@@ -130,7 +147,7 @@ interpret each element to a user.
 _Source:
 [SoftTeco](https://www.google.com/url?sa=i&url=https%3A%2F%2Fsoftteco.com%2Fblog%2Fsemantic-html&psig=AOvVaw3yLm1-dzYTxA2OJq8NvkKQ&ust=1648058946760000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLiJxZSo2vYCFQAAAAAdAAAAABAD)_
 
-### 2. Use ALT texts for images
+### 2. 对图片使用 ALT 文本
 
 Images make content more appealing and easy to understand. For visually impaired
 web users who cannot see these images on the web, the ALT text helps them
@@ -150,7 +167,7 @@ Here's an example ALT text for the image below:
 
 _Source: [Flickr](https://www.flickr.com/photos/duncanh1/25316870168)_
 
-### 3. Avoid using div for button
+### 3. 避免使用 div 按钮
 
 As a developer, the chances are that you can style a `<div>` to look exactly
 like a `<button>`.
@@ -173,7 +190,7 @@ By all means, avoid using `<div>s` to build `<button>s` and other interactive
 elements. Rather, use `<div>s` and `<span>s` as generic boxes for grouping
 elements at the block or inline levels.
 
-### 4. Use headings properly
+### 4. 正确使用 headings 标题
 
 Headings do more than give your text a fancy big, and bold look. They provide a
 solid structure to your web page. Think of them as guides that help readers
@@ -197,7 +214,7 @@ styling.** For instance, using a `<h2>` tag because you need a large font size.
 Doing this will result in a poor HTML structure and overall a bad user
 experience for assistive technology users. In short, use CSS for styling.
 
-### 5. Support keyboard navigation
+### 5. 支持键盘导航
 
 Not all users navigate a site page using a trackpad or mouse; many users (with
 or without motor disabilities) rely on the keyboard to navigate.
@@ -224,7 +241,7 @@ To check the accessibility of your site:
 2. Start to press the tab.
 3. Confirm if you're able to navigate through every link or button.
 
-### 6. Provide sufficient color contrast
+### 6. 提供足够的颜色对比
 
 Color contrast describes the differences between the darkest and lightest color
 brightness. If the color contrast between the background and text is low, users
@@ -248,7 +265,7 @@ every user to read text elements on your site easily.
 
 _Example of poor and good color contrast_
 
-### 7. Underline links within a block of text
+### 7. 在一个文本块中加下划线链接
 
 Link accessibility, although easily ignored is an essential aspect of
 accessibility. On many sites, links are only differentiated from text by color
@@ -263,7 +280,7 @@ should also be underlined.
 
 _Comparison between links_
 
-### 8. Use ARIA landmarks
+### 8. 使用 ARIA 标记(Use ARIA landmarks)
 
 The previous versions of HTML lacked some tags that semantically described some
 UI widgets like menus. To bridge this gap, developers had to use `<div>` tags to
@@ -298,7 +315,7 @@ and **aria-describedby**.
 
 **Note that ARIA doesn't replace HTML; instead, it complements it.**
 
-### 9. Add caption to tables
+### 9. 为表格添加标题
 
 The same reason you would label a table for sighted users to get a quick idea of
 its content is why you'd need to add a caption to your table for visually
@@ -319,7 +336,7 @@ Example:
 With the caption, a screen reader can now understand the information in a table
 and convey it to users.
 
-### 10. Add `<label>` tags to forms
+### 10. 在表单中添加`<label>`标签
 
 Without a `<label>` tag, assistive technologies won't be able to understand and
 differentiate the input fields on your form. When a screen reader gets to a
@@ -328,14 +345,14 @@ of input form.
 
 There are two ways to attach `<label>` to `<input>` fields:
 
-#### 1. Match the `for` attribute from the label with the id attribute from the input.
+#### 1. 将 label 元素中的`for`属性与 input 元素中的 id 属性相匹配。
 
 ```jsx live=false
   <label for="first-name">First Name</label>
   <input type="text" name="name" id="first-name">
 ```
 
-#### 2.Place `<input>` within the `<label>` tags.
+#### 2. 将`<input>`放在`<label>`标签内。
 
 ```jsx live=false
  <label>
@@ -344,7 +361,7 @@ There are two ways to attach `<label>` to `<input>` fields:
  </label>
 ```
 
-## Build a web that's inclusive of everyone
+## 建立一个包容所有人的 wen 应用
 
 While there are many aspects to consider when weaving accessibility into your
 site, the above information are a good foundation for building an accessible

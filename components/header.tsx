@@ -34,6 +34,8 @@ import {
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
+  EditIcon,
+  RepeatIcon,
 } from '@chakra-ui/icons';
 import { useEffect, useRef, useState } from 'react';
 import { mainNavLinks } from '@/components/sidebar/blog-sidebar';
@@ -367,8 +369,12 @@ export default function Header(props: HTMLChakraProps<'header'>) {
                   variant={'link'}
                   cursor={'pointer'}
                   minW={0}
+                  _focus={{
+                    outline: 'none',
+                  }}
                 >
                   <Avatar
+                    name="molin"
                     size={'sm'}
                     src={
                       'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
@@ -376,10 +382,23 @@ export default function Header(props: HTMLChakraProps<'header'>) {
                   />
                 </MenuButton>
                 <MenuList>
-                  <MenuItem>Link 1</MenuItem>
-                  <MenuItem>Link 2</MenuItem>
+                  <MenuItem
+                    icon={<RepeatIcon />}
+                    onClick={() => {
+                      location.href = 'https://abcjs123.vip/service/discuss';
+                    }}
+                  >
+                    评论管理
+                  </MenuItem>
                   <MenuDivider />
-                  <MenuItem>Link 3</MenuItem>
+                  <MenuItem
+                    icon={<EditIcon />}
+                    onClick={() => {
+                      location.href = 'https://wiki.abcjs123.vip';
+                    }}
+                  >
+                    My WiKi
+                  </MenuItem>
                 </MenuList>
               </Menu>
             </Stack>

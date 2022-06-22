@@ -45,14 +45,23 @@ const MainNavLink = ({ href, icon, children }: MainNavLinkProps) => {
       <Flex
         as="a"
         align="center"
-        fontSize="sm"
-        fontWeight="semibold"
+        fontSize="md"
         transitionProperty="colors"
         transitionDuration="200ms"
-        color={active ? linkColor : 'gray.500'}
-        _hover={{ color: linkColor }}
+        fontWeight={active ? 'extrabold' : 'normal'}
+        color={active ? 'teal.500' : linkColor}
+        _hover={{ color: active ? undefined : 'teal.500' }}
       >
-        <Center w="6" h="6" bg="teal.400" rounded="base" mr="3">
+        <Center
+          w="6"
+          h="6"
+          borderWidth="1px"
+          bg={active ? 'teal.500' : 'transparent'}
+          borderColor={active ? 'teal.500' : undefined}
+          rounded="base"
+          color={active ? 'white' : 'teal.500'}
+          mr="3"
+        >
           {icon}
         </Center>
         {children}
@@ -63,7 +72,7 @@ const MainNavLink = ({ href, icon, children }: MainNavLinkProps) => {
 
 export const mainNavLinks = [
   {
-    icon: <CalendarIcon color="white" />,
+    icon: <CalendarIcon />,
     href: '/blog/overview/all',
     label: '全部文章',
     postsCount:
@@ -71,7 +80,7 @@ export const mainNavLinks = [
         ?.total || 0,
   },
   {
-    icon: <DiJavascript color="white" />,
+    icon: <DiJavascript />,
     href: '/blog/overview/javascript',
     label: 'JavaScript',
     postsCount:
@@ -80,7 +89,7 @@ export const mainNavLinks = [
       )?.total || 0,
   },
   {
-    icon: <FaCss3Alt color="white" />,
+    icon: <FaCss3Alt />,
     href: '/blog/overview/css',
     label: 'CSS',
     postsCount:
@@ -88,7 +97,7 @@ export const mainNavLinks = [
         ?.total || 0,
   },
   {
-    icon: <FaReact color="white" />,
+    icon: <FaReact />,
     href: '/blog/overview/react',
     label: 'React',
     postsCount:
@@ -96,7 +105,7 @@ export const mainNavLinks = [
         ?.total || 0,
   },
   {
-    icon: <FaVuejs color="white" />,
+    icon: <FaVuejs />,
     href: '/blog/overview/vue',
     label: 'Vue',
     postsCount:
@@ -104,27 +113,27 @@ export const mainNavLinks = [
         ?.total || 0,
   },
   {
-    icon: <SiWebpack color="white" />,
+    icon: <SiWebpack />,
     href: '/blog/overview/module',
-    label: '工程&模块化',
+    label: '工程 & 模块化',
     postsCount:
       getPostsCategoriesGroup().find(c => '/blog/module'.includes(c.category))
         ?.total || 0,
   },
   {
-    icon: <FiPenTool color="white" />,
-    href: '/blog/overview/other',
-    label: '其他',
-    postsCount:
-      getPostsCategoriesGroup().find(c => '/blog/other'.includes(c.category))
-        ?.total || 0,
-  },
-  {
-    icon: <FaNodeJs color="white" />,
+    icon: <FaNodeJs />,
     href: '/blog/overview/node',
     label: 'node后端',
     postsCount:
       getPostsCategoriesGroup().find(c => '/blog/node'.includes(c.category))
+        ?.total || 0,
+  },
+  {
+    icon: <FiPenTool />,
+    href: '/blog/overview/other',
+    label: '其他',
+    postsCount:
+      getPostsCategoriesGroup().find(c => '/blog/other'.includes(c.category))
         ?.total || 0,
   },
 ];
