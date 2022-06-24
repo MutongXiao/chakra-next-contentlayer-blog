@@ -54,8 +54,8 @@ export default function CbecNotesContainer({
           {initialDisplayPosts.map(post => {
             const { slug, date, title, tags, description } = post;
             return (
-              <Flex alignItems="start" key={slug}>
-                <Text mr="28" display={{ base: 'none', md: 'block' }}>
+              <Flex alignItems="start" key={slug} w="full">
+                <Text display={{ base: 'none', md: 'block' }} w="246px">
                   <time dateTime={date}>{formatDate(date)}</time>
                 </Text>
                 <LinkBox as="article" flex="1">
