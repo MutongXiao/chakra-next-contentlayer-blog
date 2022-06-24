@@ -4,7 +4,7 @@ import { useMDXComponent } from 'next-contentlayer/hooks';
 import { useRouter } from 'next/router';
 
 import BlogContainer from '@/components/page-container/blog-container';
-import Pagination from '@/components/pagination';
+import BlogPagination from '@/components/pagination/blog-pagination';
 import { MDXComponents } from '@/components/mdx-components';
 import { allBlogs } from 'contentlayer/generated';
 import { sortedBlogPost, coreContent } from 'utils/contentlayer';
@@ -38,7 +38,7 @@ export default function PostDetail({
     <BlogContainer
       frontmatter={post.frontMatter}
       pagination={
-        <Pagination
+        <BlogPagination
           next={nextPost?.frontMatter}
           previous={prevPost?.frontMatter}
         />

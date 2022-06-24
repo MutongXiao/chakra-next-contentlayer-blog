@@ -30,7 +30,7 @@ export const PaginationLink = props => {
   );
 };
 
-export const Pagination = ({ previous, next, ...rest }) => {
+const BlogPagination = ({ previous, next, ...rest }) => {
   return (
     <SimpleGrid
       as="nav"
@@ -86,4 +86,4 @@ export const Pagination = ({ previous, next, ...rest }) => {
   );
 };
 
-export default Pagination;
+export default BlogPagination;

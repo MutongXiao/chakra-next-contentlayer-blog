@@ -59,7 +59,7 @@ const DeskTopNavItems: INavItem[] = [
   },
   {
     label: '跨境笔记',
-    href: '#',
+    href: '/cbec-note',
   },
   {
     label: '站点导航',
@@ -90,7 +90,7 @@ const MobilNavItems: INavItem[] = [
   },
   {
     label: '跨境笔记',
-    href: '#',
+    href: '/cbec-note',
   },
   {
     label: '站点导航',
