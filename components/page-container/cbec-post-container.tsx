@@ -48,6 +48,7 @@ export default function CbecPostContainer({
         maxW="5xl"
         w="100vw"
         mx="auto"
+        px="1rem"
         my={{ base: '7', md: '14' }}
       >
         <PageTransition>
@@ -148,8 +149,7 @@ export default function CbecPostContainer({
             <Box
               flex="1"
               overflowWrap="break-word"
-              px="1rem"
-              maxW="100vw"
+              maxW="full"
               boxSizing="border-box"
             >
               {children}
