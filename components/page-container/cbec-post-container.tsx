@@ -146,7 +146,9 @@ export default function CbecPostContainer({
                 &larr; Back to the list page
               </Button>
             </VStack>
-            <Box flex="1">{children}</Box>
+            <Box flex="1" overflowWrap="break-word">
+              {children}
+            </Box>
           </Flex>
         </PageTransition>
       </Container>
