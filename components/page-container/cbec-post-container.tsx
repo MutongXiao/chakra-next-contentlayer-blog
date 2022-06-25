@@ -46,6 +46,7 @@ export default function CbecPostContainer({
       <Container
         as="article"
         maxW="5xl"
+        w="100vw"
         mx="auto"
         px="1.5rem"
         my={{ base: '7', md: '14' }}
