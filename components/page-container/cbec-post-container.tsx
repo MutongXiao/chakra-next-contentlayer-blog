@@ -48,6 +48,7 @@ export default function CbecPostContainer({
         maxW="5xl"
         w="100vw"
         mx="auto"
+        px="1rem"
         my={{ base: '7', md: '14' }}
       >
         <PageTransition>
@@ -55,12 +56,13 @@ export default function CbecPostContainer({
             as="header"
             mb={{ base: '7', md: '14' }}
             w="full"
+            boxSizing="border-box"
             textAlign="center"
             fontSize={{ base: '2xl', md: '4xl' }}
           >
             {title}
           </Heading>
-          <Flex px="1rem" w="full" boxSizing="border-box">
+          <Flex w="full">
             <VStack
               spacing="14"
               alignItems="start"
