@@ -50,6 +50,7 @@ export default function CbecPostContainer({
         mx="auto"
         px="1.5rem"
         my={{ base: '7', md: '14' }}
+        boxSizing="border-box"
       >
         <PageTransition>
           <Heading
