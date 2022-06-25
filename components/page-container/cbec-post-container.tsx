@@ -49,7 +49,6 @@ export default function CbecPostContainer({
         w="100vw"
         mx="auto"
         my={{ base: '7', md: '14' }}
-        boxSizing="border-box"
       >
         <PageTransition>
           <Heading
@@ -61,7 +60,7 @@ export default function CbecPostContainer({
           >
             {title}
           </Heading>
-          <Flex px="1rem" w="full">
+          <Flex px="1rem" w="full" boxSizing="border-box">
             <VStack
               spacing="14"
               alignItems="start"
