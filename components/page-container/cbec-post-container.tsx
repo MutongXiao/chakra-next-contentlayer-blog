@@ -48,7 +48,6 @@ export default function CbecPostContainer({
         maxW="5xl"
         w="100vw"
         mx="auto"
-        px="1rem"
         my={{ base: '7', md: '14' }}
       >
         <PageTransition>
@@ -146,7 +145,13 @@ export default function CbecPostContainer({
                 &larr; Back to the list page
               </Button>
             </VStack>
-            <Box flex="1" overflowWrap="break-word" boxSizing="border-box">
+            <Box
+              flex="1"
+              overflowWrap="break-word"
+              px="1rem"
+              maxW="100vw"
+              boxSizing="border-box"
+            >
               {children}
             </Box>
           </Flex>
