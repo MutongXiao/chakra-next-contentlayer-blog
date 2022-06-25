@@ -67,7 +67,7 @@ const DeskTopNavItems: INavItem[] = [
   },
   {
     label: '留言板',
-    href: '#',
+    href: '/message-board',
   },
   {
     label: '友链',
@@ -98,7 +98,7 @@ const MobilNavItems: INavItem[] = [
   },
   {
     label: '留言板',
-    href: '#',
+    href: '/message-board',
   },
   {
     label: '友链',
