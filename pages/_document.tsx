@@ -7,6 +7,7 @@ import NextDocument, {
 } from 'next/document';
 import { ColorModeScript } from '@chakra-ui/react';
 import React from 'react';
+
 class Document extends NextDocument {
   static async getInitialProps(ctx: DocumentContext) {
     return NextDocument.getInitialProps(ctx);
@@ -15,6 +16,7 @@ class Document extends NextDocument {
     return (
       <Html lang="zh">
         <Head>
+          {/* 页面加载进度条样式 */}
           <link rel="stylesheet" href="/css/pace-theme-default.min.css"></link>
         </Head>
         <body>

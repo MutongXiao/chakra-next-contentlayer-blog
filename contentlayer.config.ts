@@ -8,6 +8,7 @@ import remarkGfm from 'remark-gfm';
 import remarkSlug from 'remark-slug';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import rehypePresetMinify from 'rehype-preset-minify';
 import siteConfig from './configs/site-config';
 import { getTableOfContents } from './utils/mdx-utils';
 import { rehypeMdxCodeMeta } from './utils/rehype-code-meta';
@@ -103,7 +104,7 @@ const contentLayerConfig = makeSource({
   documentTypes: [Blog, CbecNote],
   mdx: {
     cwd: process.cwd(),
-    rehypePlugins: [rehypeMdxCodeMeta, rehypeKatex],
+    rehypePlugins: [rehypeMdxCodeMeta, rehypeKatex, rehypePresetMinify],
     remarkPlugins: [remarkSlug, remarkGfm, remarkEmoji, remarkMath],
   },
 });

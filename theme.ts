@@ -135,7 +135,7 @@ const customTheme = extendTheme({
       },
     },
     p: {
-      mt: '0.5rem',
+      mt: '0.6rem',
       lineHeight: 1.7,
       'blockquote &': {
         mt: 0,

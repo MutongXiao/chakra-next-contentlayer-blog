@@ -56,9 +56,10 @@ const Home: NextPage = () => {
           </Heading>
           <Text color={'gray.500'} maxW={'3xl'}>
             此博客网站借鉴了chakra文档，采用chakra
-            ui进行设计，使用服务端渲染（SSR）Next框架开发，相比客户端渲染，更利于SEO。
-            通过contentlayer生成静态文档内容，支持MDX文档格式，
-            相比md格式功能更加强大。项目部署在vercel，简单快捷，一键部署，个人完全免费使用。
+            ui进行设计，使用服务端渲染（SSR）Next框架开发，
+            相比客户端渲染，更利于SEO优化。通过contentlayer生成静态文档内容，支持MDX文档格式，
+            相比md格式扩展了更多文档功能，这点在组件文档应用上体现最为明显。此项目部署在vercel平台上，
+            一键部署，简单快捷，个人完全免费使用。
           </Text>
           <Stack spacing={6} direction={'row'}>
             <Button

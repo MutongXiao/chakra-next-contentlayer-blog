@@ -26,7 +26,6 @@ import {
   HTMLChakraProps,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import { useViewportScroll } from 'framer-motion';
 import { BsFillMoonStarsFill, BsSunFill } from 'react-icons/bs';
 import { AiOutlineHome } from 'react-icons/ai';
 import {
@@ -37,7 +36,6 @@ import {
   EditIcon,
   RepeatIcon,
 } from '@chakra-ui/icons';
-import { useEffect, useRef, useState } from 'react';
 import { mainNavLinks } from '@/components/sidebar/blog-sidebar';
 
 interface INavItem {
@@ -239,7 +237,7 @@ const DesktopSubNav = ({ label, href, subLabel }: INavItem) => {
 
 const DesktopNav = () => {
   const linkColor = useColorModeValue('gray.600', 'gray.200');
-  const linkHoverColor = useColorModeValue('gray.800', 'white');
+  // const linkHoverColor = useColorModeValue('gray.800', 'white');
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
   return (
@@ -251,12 +249,13 @@ const DesktopNav = () => {
               <Link
                 href={navItem.href ?? '#'}
                 p={2}
-                fontSize={'lg'}
+                fontSize="larger"
                 fontWeight={600}
                 color={linkColor}
                 _hover={{
                   textDecoration: 'none',
-                  color: linkHoverColor,
+                  //color: linkHoverColor,
+                  color: 'teal.400',
                 }}
               >
                 {navItem.label}
@@ -288,26 +287,13 @@ const DesktopNav = () => {
 
 export default function Header(props: HTMLChakraProps<'header'>) {
   const { maxW = '8xl', maxWidth = '8xl' } = props;
-  const ref = useRef<HTMLHeadingElement>();
-  const [y, setY] = useState(0);
-  const { height = 0 } = ref.current?.getBoundingClientRect() ?? {};
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onToggle } = useDisclosure();
 
-  const { scrollY } = useViewportScroll();
-  useEffect(() => {
-    return scrollY.onChange(() => setY(scrollY.get()));
-  }, [scrollY]);
   return (
     <chakra.header
-      ref={ref}
-      shadow={y > height ? 'sm' : undefined}
-      transition="box-shadow 0.2s, background-color 0.2s"
       bg="white"
       _dark={{ bg: 'gray.800' }}
-      pos="fixed"
-      top="0"
-      zIndex="9"
       left="0"
       right="0"
       width="full"

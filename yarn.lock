@@ -3811,14 +3811,6 @@ axe-core@^4.3.5:
   resolved "https://registry.npmmirror.com/axe-core/-/axe-core-4.4.2.tgz"
   integrity sha512-LVAaGp/wkkgYJcjmHsoKx4juT1aQvJyPcW09MLCjVTh3V2cc6PnyempiLMNH5iMdfIX/zdbjUx2KDjMLCTdPeA==
 
-axios@^0.27.2:
-  version "0.27.2"
-  resolved "https://registry.npmjs.org/axios/-/axios-0.27.2.tgz"
-  integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
-  dependencies:
-    follow-redirects "^1.14.9"
-    form-data "^4.0.0"
-
 axobject-query@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npmmirror.com/axobject-query/-/axobject-query-2.2.0.tgz"
@@ -3887,6 +3879,28 @@ base64-js@^1.0.2, base64-js@^1.3.1:
   version "1.5.1"
   resolved "https://registry.npmmirror.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
+
+bcp-47-match@^2.0.0:
+  version "2.0.2"
+  resolved "https://registry.npmmirror.com/bcp-47-match/-/bcp-47-match-2.0.2.tgz#3323e221eb5b40ddc3b91ed29d847ab459d549c4"
+  integrity sha512-zy5swVXwQ25ttElhoN9Dgnqm6VFlMkeDNljvHSGqGNr4zClUosdFzxD+fQHJVmx3g3KY+r//wV/fmBHsa1ErnA==
+
+bcp-47-normalize@^2.0.0:
+  version "2.1.0"
+  resolved "https://registry.npmmirror.com/bcp-47-normalize/-/bcp-47-normalize-2.1.0.tgz#56541b36e1ea55380ec8db35129fcce51b81c806"
+  integrity sha512-wa7PmQUfSSkbH9xRnnv4l77SlR8pbTdGnXeEiUsJ4cUNnxVpvGPwY0UKTg7NVOBrnHa/zQXJhCdEKsC5b3B3oA==
+  dependencies:
+    bcp-47 "^2.0.0"
+    bcp-47-match "^2.0.0"
+
+bcp-47@^2.0.0:
+  version "2.1.0"
+  resolved "https://registry.npmmirror.com/bcp-47/-/bcp-47-2.1.0.tgz#7e80734c3338fe8320894981dccf4968c3092df6"
+  integrity sha512-9IIS3UPrvIa1Ej+lVDdDwO7zLehjqsaByECw0bu2RRGP73jALm6FYbzI5gWbgHLvNdkvfXB5YrSbocZdOS0c0w==
+  dependencies:
+    is-alphabetical "^2.0.0"
+    is-alphanumerical "^2.0.0"
+    is-decimal "^2.0.0"
 
 bcrypt-pbkdf@^1.0.0:
   version "1.0.2"
@@ -4147,6 +4161,13 @@ ci-info@^2.0.0:
   resolved "https://registry.npmmirror.com/ci-info/-/ci-info-2.0.0.tgz#67a9e964be31a51e15e5010d58e6f12834002f46"
   integrity sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==
 
+clean-css@^5.0.0:
+  version "5.3.0"
+  resolved "https://registry.npmmirror.com/clean-css/-/clean-css-5.3.0.tgz#ad3d8238d5f3549e83d5f87205189494bc7cbb59"
+  integrity sha512-YYuuxv4H/iNb1Z/5IbMRoxgrzjWGhOEFfd+groZ5dMCVkpENiMZmwspdrzBo9286JjM1gZJPAyL7ZIdzuvu2AQ==
+  dependencies:
+    source-map "~0.6.0"
+
 clean-stack@^2.0.0:
   version "2.2.0"
   resolved "https://registry.npmmirror.com/clean-stack/-/clean-stack-2.2.0.tgz#ee8472dbb129e727b31e8a10a427dee9dfe4008b"
@@ -4282,7 +4303,7 @@ color-name@~1.1.4:
   resolved "https://registry.npmmirror.com/color-name/-/color-name-1.1.4.tgz"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
-combined-stream@^1.0.6, combined-stream@^1.0.8, combined-stream@~1.0.6:
+combined-stream@^1.0.6, combined-stream@~1.0.6:
   version "1.0.8"
   resolved "https://registry.npmjs.org/combined-stream/-/combined-stream-1.0.8.tgz"
   integrity sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==
@@ -4523,6 +4544,11 @@ css-select@^4.1.3:
     domutils "^2.8.0"
     nth-check "^2.0.1"
 
+css-selector-parser@^1.0.0:
+  version "1.4.1"
+  resolved "https://registry.npmmirror.com/css-selector-parser/-/css-selector-parser-1.4.1.tgz#03f9cb8a81c3e5ab2c51684557d5aaf6d2569759"
+  integrity sha512-HYPSb7y/Z7BNDCOrakL4raGO2zltZkbeXyAd6Tg9obzix6QhzxCotdBl6VT0Dv4vZfJGVz3WL/xaEI9Ly3ul0g==
+
 css-tree@^1.1.2, css-tree@^1.1.3:
   version "1.1.3"
   resolved "https://registry.npmmirror.com/css-tree/-/css-tree-1.1.3.tgz#eb4870fb6fd7707327ec95c2ff2ab09b5e8db91d"
@@ -4711,6 +4737,11 @@ dir-glob@^3.0.1:
   integrity sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==
   dependencies:
     path-type "^4.0.0"
+
+direction@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.npmmirror.com/direction/-/direction-2.0.1.tgz#71800dd3c4fa102406502905d3866e65bdebb985"
+  integrity sha512-9S6m9Sukh1cZNknO1CWAr2QAWsbKLafQiyM5gZ7VgXHeuaoUwffKN4q6NC4A/Mf9iiPlOXQEKW/Mv/mh9/3YFA==
 
 docsearch.js@^2.6.3:
   version "2.6.3"
@@ -5547,11 +5578,6 @@ focus-visible@5.2.0:
   resolved "https://registry.npmmirror.com/focus-visible/-/focus-visible-5.2.0.tgz#3a9e41fccf587bd25dcc2ef045508284f0a4d6b3"
   integrity sha512-Rwix9pBtC1Nuy5wysTmKy+UjbDJpIfg8eHjw0rjZ1mX4GNLz1Bmd16uDpI3Gk1i70Fgcs8Csg2lPm8HULFg9DQ==
 
-follow-redirects@^1.14.9:
-  version "1.15.1"
-  resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.1.tgz"
-  integrity sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==
-
 for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmmirror.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -5566,15 +5592,6 @@ forever-agent@~0.6.1:
   version "0.6.1"
   resolved "https://registry.npmmirror.com/forever-agent/-/forever-agent-0.6.1.tgz#fbc71f0c41adeb37f96c577ad1ed42d8fdacca91"
   integrity sha512-j0KLYPhm6zeac4lz3oJ3o65qvgQCcPubiyotZrXqEaG4hNagNYO8qdlUrX5vwqv9ohqeT/Z3j6+yW067yWWdUw==
-
-form-data@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/form-data/-/form-data-4.0.0.tgz"
-  integrity sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==
-  dependencies:
-    asynckit "^0.4.0"
-    combined-stream "^1.0.8"
-    mime-types "^2.1.12"
 
 form-data@~2.3.2:
   version "2.3.3"
@@ -5960,6 +5977,13 @@ hash-wasm@^4.9.0:
   resolved "https://registry.npmjs.org/hash-wasm/-/hash-wasm-4.9.0.tgz"
   integrity sha512-7SW7ejyfnRxuOc7ptQHSf4LDoZaWOivfzqw+5rpcQku0nHfmicPKE51ra9BiRLAmT8+gGLestr1XroUkqdjL6w==
 
+hast-util-embedded@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/hast-util-embedded/-/hast-util-embedded-2.0.0.tgz#877f4261044854743fc2621f728930ca61c8376f"
+  integrity sha512-vEr54rDu2CheBM4nLkWbW8Rycf8HhkA/KsrDnlyKnvBTyhyO+vAG6twHnfUbiRGo56YeUBNCI4HFfHg3Wu+tig==
+  dependencies:
+    hast-util-is-element "^2.0.0"
+
 hast-util-from-parse5@^7.0.0:
   version "7.1.0"
   resolved "https://registry.npmmirror.com/hast-util-from-parse5/-/hast-util-from-parse5-7.1.0.tgz#c129dd3a24dd8a867ab8a029ca47e27aa54864b7"
@@ -5974,6 +5998,39 @@ hast-util-from-parse5@^7.0.0:
     vfile-location "^4.0.0"
     web-namespaces "^2.0.0"
 
+hast-util-from-string@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/hast-util-from-string/-/hast-util-from-string-2.0.0.tgz#a04c2805d4511d47c0fdea7545985f272ee0f5c6"
+  integrity sha512-9JlBGWh+RXbT8PDrdwYZloN6poib8xg7Vq+LgN5TTqnaMDO0YqfX4EyZd3Myel6yIXlDsgysiRB1CTjH2K+1Dg==
+  dependencies:
+    "@types/hast" "^2.0.0"
+
+hast-util-has-property@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/hast-util-has-property/-/hast-util-has-property-2.0.0.tgz#c15cd6180f3e535540739fcc9787bcffb5708cae"
+  integrity sha512-4Qf++8o5v14us4Muv3HRj+Er6wTNGA/N9uCaZMty4JWvyFKLdhULrv4KE1b65AthsSO9TXSZnjuxS8ecIyhb0w==
+
+hast-util-is-conditional-comment@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/hast-util-is-conditional-comment/-/hast-util-is-conditional-comment-2.0.0.tgz#b1c915c17ced12635a87984e562d3688f90cdb93"
+  integrity sha512-U66gW8ZWQdxP4ZjTEZ3xZT72y6rIKJqV4At5QmC1ItBbQyZyVkuTp8QkQwhxsbkHdzpifiZdQWrDipc9ByqhRg==
+  dependencies:
+    "@types/hast" "^2.0.0"
+
+hast-util-is-css-link@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/hast-util-is-css-link/-/hast-util-is-css-link-2.0.0.tgz#5d7a26b0a21bc17d217bf4a832675b8355a52613"
+  integrity sha512-aHTdshwLQJHuwR1r2QOU6o2tL0ocsEr6zvT9s9tIVz+Ofc8KFzg136OfY8opAObfA5IvwHQqPSYWQCM8D9krpg==
+  dependencies:
+    "@types/hast" "^2.0.0"
+
+hast-util-is-css-style@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/hast-util-is-css-style/-/hast-util-is-css-style-2.0.0.tgz#483bcd741c8f4c993007d9d36746c9ecadd806fb"
+  integrity sha512-+erdmVISIlkhbH/lzD5C4PGR9Mcq5fcpOz0txqgQqiRzyb6KsnQqWBkQq1SghgFkAkiQ6TZmrxuqXUcjddw7kw==
+  dependencies:
+    "@types/hast" "^2.0.0"
+
 hast-util-is-element@^2.0.0:
   version "2.1.2"
   resolved "https://registry.npmjs.org/hast-util-is-element/-/hast-util-is-element-2.1.2.tgz"
@@ -5982,12 +6039,48 @@ hast-util-is-element@^2.0.0:
     "@types/hast" "^2.0.0"
     "@types/unist" "^2.0.0"
 
+hast-util-is-event-handler@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/hast-util-is-event-handler/-/hast-util-is-event-handler-2.0.0.tgz#16163237755c5a3a98cbd2ede4125e26d65e366f"
+  integrity sha512-iVB/akLRpcIfoVrjWpxUzbcXEKg3CXWYBzGQCtE9wkLPC79kx/dQTu0ObVRb4U7ZKAq/sxNLtaIGutIGGFfzcQ==
+
+hast-util-is-javascript@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/hast-util-is-javascript/-/hast-util-is-javascript-2.0.0.tgz#6ac1721a7844bc2465bec39de6a00235cbb96d72"
+  integrity sha512-1SvdBcow862S+dq1BWC04PkbfUSXk8Blzd6oo/zti8LYH0/fU+VSlsBIKjsCHHwgw4ajSatY2ok6QeJwmaYc0g==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    hast-util-has-property "^2.0.0"
+    hast-util-is-element "^2.0.0"
+
 hast-util-parse-selector@^3.0.0:
   version "3.1.0"
   resolved "https://registry.npmmirror.com/hast-util-parse-selector/-/hast-util-parse-selector-3.1.0.tgz#a519e27e8b61bd5a98fad494ed06131ce68d9c3f"
   integrity sha512-AyjlI2pTAZEOeu7GeBPZhROx0RHBnydkQIXlhnFzDi0qfXTmGUWoCYZtomHbrdrheV4VFUlPcfJ6LMF5T6sQzg==
   dependencies:
     "@types/hast" "^2.0.0"
+
+hast-util-select@^5.0.0:
+  version "5.0.2"
+  resolved "https://registry.npmmirror.com/hast-util-select/-/hast-util-select-5.0.2.tgz#8c603ebacf0f47e154c5fa2e5b7efc520813866b"
+  integrity sha512-QGN5o7N8gq1BhUX96ApLE8izOXlf+IPkOVGXcp9Dskdd3w0OqZrn6faPAmS0/oVogwJOd0lWFSYmBK75e+030g==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    "@types/unist" "^2.0.0"
+    bcp-47-match "^2.0.0"
+    comma-separated-tokens "^2.0.0"
+    css-selector-parser "^1.0.0"
+    direction "^2.0.0"
+    hast-util-has-property "^2.0.0"
+    hast-util-is-element "^2.0.0"
+    hast-util-to-string "^2.0.0"
+    hast-util-whitespace "^2.0.0"
+    not "^0.1.0"
+    nth-check "^2.0.0"
+    property-information "^6.0.0"
+    space-separated-tokens "^2.0.0"
+    unist-util-visit "^4.0.0"
+    zwitch "^2.0.0"
 
 hast-util-to-estree@^2.0.0:
   version "2.0.2"
@@ -6024,6 +6117,13 @@ hast-util-to-html@^8.0.0:
     space-separated-tokens "^2.0.0"
     stringify-entities "^4.0.2"
     unist-util-is "^5.0.0"
+
+hast-util-to-string@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/hast-util-to-string/-/hast-util-to-string-2.0.0.tgz#b008b0a4ea472bf34dd390b7eea1018726ae152a"
+  integrity sha512-02AQ3vLhuH3FisaMM+i/9sm4OXGSq1UhOOCpTLLQtHdL3tZt7qil69r8M8iDkZYyC0HCFylcYoP+8IO7ddta1A==
+  dependencies:
+    "@types/hast" "^2.0.0"
 
 hast-util-to-text@^3.1.0:
   version "3.1.1"
@@ -6074,6 +6174,16 @@ hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.1, hoist-non-react-
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
   dependencies:
     react-is "^16.7.0"
+
+html-enumerated-attributes@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmmirror.com/html-enumerated-attributes/-/html-enumerated-attributes-0.1.0.tgz#945bcce9d54bc08db7da03ce2d4f8b386ab6cae9"
+  integrity sha512-Zd89WC8JnzDV2WYZxJJMHj3IYEoGzOW3LHh32aT6RRabJJihsTqVR5NMw5AT78MIFzFBVlmpn/2H/mxOCgfjqw==
+
+html-url-attributes@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/html-url-attributes/-/html-url-attributes-2.0.0.tgz#f43d1a4f80334d087e655e89f1dd8960833bfc13"
+  integrity sha512-/7gfPjDXatJvC1qAbjsRwx0NtMSw3PuOqqnmhVgvdhwphK8e0xmh6+eOKHMQ5GW3IzaE6mxYgKloqQhC1/dwrA==
 
 html-void-elements@^2.0.0:
   version "2.0.1"
@@ -7809,7 +7919,12 @@ normalize-url@^4.1.0:
   resolved "https://registry.npmmirror.com/normalize-url/-/normalize-url-4.5.1.tgz#0dd90cf1288ee1d1313b87081c9a5932ee48518a"
   integrity sha512-9UZCFRHQdNrfTpGg8+1INIg93B6zE0aXMVFkw1WFwvO4SlZywU6aLg5Of0Ap/PgcbSw4LNxvMWXMeugwMCX0AA==
 
-nth-check@^2.0.1:
+not@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmmirror.com/not/-/not-0.1.0.tgz#c9691c1746c55dcfbe54cbd8bd4ff041bc2b519d"
+  integrity sha512-5PDmaAsVfnWUgTUbJ3ERwn7u79Z0dYxN9ErxCpVJJqe2RK0PJ3z+iFUxuqjwtlDDegXvtWoxD/3Fzxox7tFGWA==
+
+nth-check@^2.0.0, nth-check@^2.0.1:
   version "2.1.1"
   resolved "https://registry.npmmirror.com/nth-check/-/nth-check-2.1.1.tgz#c9eab428effce36cd6b92c924bdb000ef1f1ed1d"
   integrity sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==
@@ -8633,6 +8748,176 @@ rehype-katex@^6.0.2:
     unist-util-remove-position "^4.0.0"
     unist-util-visit "^4.0.0"
 
+rehype-minify-attribute-whitespace@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/rehype-minify-attribute-whitespace/-/rehype-minify-attribute-whitespace-3.0.0.tgz#d12853520d8b97e997a3e443bf2f41123213aab4"
+  integrity sha512-Isi+gPP71oHhY4SSwpmqoIvmlGuF5EQ0GCFroGKG9maKOU750Zi5rjf1+PA1B1Izhz8u79zQo17TV5cHJb07Ig==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    hast-util-has-property "^2.0.0"
+    hast-util-is-element "^2.0.0"
+    hast-util-is-event-handler "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-minify-css-style@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/rehype-minify-css-style/-/rehype-minify-css-style-3.0.0.tgz#0fbb078d06d75dc087c47c9886b36acacb14955c"
+  integrity sha512-7eZGjqUF8tyi3scMtJwEhHdTiCrc4fAVRIln6FZXBziK0iz3EYxzE30vLHQvF4tVw3ZZgzWGOMxexmrfw0e+gw==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    clean-css "^5.0.0"
+    hast-util-from-string "^2.0.0"
+    hast-util-is-css-style "^2.0.0"
+    hast-util-to-string "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-minify-enumerated-attribute@^4.0.0:
+  version "4.1.0"
+  resolved "https://registry.npmmirror.com/rehype-minify-enumerated-attribute/-/rehype-minify-enumerated-attribute-4.1.0.tgz#4ed5cb1a375c0e9ac0cc116bd9ca5a42ec6decf1"
+  integrity sha512-PKaPZadHjlx5GufizvOdBIeq4+I2a6rgdrBpNSg2BzREzvlnnHNICgITaff65v+raUkTN9Z3QDvqmq+dEKZn5Q==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    hast-util-has-property "^2.0.0"
+    hast-util-select "^5.0.0"
+    html-enumerated-attributes "^0.1.0"
+    property-information "^6.0.0"
+    space-separated-tokens "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-minify-event-handler@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/rehype-minify-event-handler/-/rehype-minify-event-handler-3.0.0.tgz#d5d8b7c7da9049062b92edb5c990584c475c707f"
+  integrity sha512-ZrVmdhbGuie4xDKN/OfBWnUkkmwQthoPsd0uzPsNO1EAOACJJjSfDnjmkG7F7qWk2jF15pv+PUctCy1m5NtLnA==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    hast-util-has-property "^2.0.0"
+    hast-util-is-event-handler "^2.0.0"
+    uglify-js "^3.0.18"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-minify-javascript-script@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmmirror.com/rehype-minify-javascript-script/-/rehype-minify-javascript-script-4.0.0.tgz#54dd5c5f70d2a0fad8744b0c81efae62b155c4a2"
+  integrity sha512-iY4m9Jl9h9UcYuPKzRMJgMoj/uhagz6P0Jk3OiXE77hxNN1KU7h+7OcSvr/ylC1BBZh6NXWLrGjXO2w3B8ClVw==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    hast-util-from-string "^2.0.0"
+    hast-util-has-property "^2.0.0"
+    hast-util-is-javascript "^2.0.0"
+    hast-util-to-string "^2.0.0"
+    uglify-js "^3.0.18"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-minify-javascript-url@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmmirror.com/rehype-minify-javascript-url/-/rehype-minify-javascript-url-4.0.0.tgz#50728fde69908b08be0688f2d9029df736fc0954"
+  integrity sha512-hkBmI4bkCfIf6DCQYsaosDfkr76+ZEXKLoVsRMxXGNyek+EYE2a3eYYVYLs2tUpYZzdSyumC8xUCJvH7wSiPog==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    hast-util-has-property "^2.0.0"
+    hast-util-is-element "^2.0.0"
+    html-url-attributes "^2.0.0"
+    uglify-js "^3.0.18"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-minify-json-script@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/rehype-minify-json-script/-/rehype-minify-json-script-3.0.0.tgz#3f15001740fc98a561592e2752a69b2d2837e104"
+  integrity sha512-1Zv1ZJAYKW/9PPXSDS8LYiHOmgY7lY87m6xpvZqF1inO3bN/7FUS88oJwWlz+q5I2quWGvfWOUoMI0XyXTPsqg==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    hast-util-from-string "^2.0.0"
+    hast-util-is-element "^2.0.0"
+    hast-util-to-string "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-minify-language@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/rehype-minify-language/-/rehype-minify-language-2.0.0.tgz#399105f4cbfd89e9882372763ce5ff2532767142"
+  integrity sha512-sxw9/sTGqWkln4SYBJb8jZCSXGYiiK5U425LvXCMfKMK7unTCyoLZjKayn6rS6Ic8E1KnDonXDRoIywGq7REjQ==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    bcp-47-normalize "^2.0.0"
+    hast-util-has-property "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-minify-media-attribute@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/rehype-minify-media-attribute/-/rehype-minify-media-attribute-3.0.0.tgz#21bb060f1e6dae19361bb78df5213450ab975334"
+  integrity sha512-afsi1zXtsJYtGdWSG8xd61plKwLU9cySFtGwvI1Ti71+KUPeP4eIZuNRChJWM6iTt9NaQmjOrFqwatyCjYDqqg==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    clean-css "^5.0.0"
+    hast-util-is-element "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-minify-meta-color@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/rehype-minify-meta-color/-/rehype-minify-meta-color-3.0.0.tgz#ec9377345f36467c7fa286a7cd8e48d4ee3da8f8"
+  integrity sha512-qpPYfdPiV9E0AkesDDtKy3aStrPJkTSdcrfu1x0EgkH4ldn768xD1Fej7HItfzynCE5FSfCmQz2b1e+TsuH97w==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    clean-css "^5.0.0"
+    hast-util-has-property "^2.0.0"
+    hast-util-is-element "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-minify-meta-content@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/rehype-minify-meta-content/-/rehype-minify-meta-content-3.0.0.tgz#b4f2c3b38a1670cc9ad8ac86a10ab28daf836e42"
+  integrity sha512-m6fD/qcWzh8fCFa6TIMr+1jmAIaNU14MU0Ne1H1VnqqBnhLqV6QAToxtGN9Z62lpBJO6nfWKLo3bP3at4O8mlw==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    comma-separated-tokens "^2.0.0"
+    hast-util-has-property "^2.0.0"
+    hast-util-is-element "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-minify-style-attribute@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/rehype-minify-style-attribute/-/rehype-minify-style-attribute-3.0.0.tgz#3f9a70ac4ba7890a653cd6795c0d067bd0ea22dc"
+  integrity sha512-WqeQL8wOwGSazoDE1ncqWNucPCMRiw1jSjjcauihQD342NCtRCtxb9nRlP2c3I/Gnm+MS2A8iKZo+CS9jIRTpQ==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    clean-css "^5.0.0"
+    hast-util-has-property "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-minify-whitespace@^5.0.0:
+  version "5.0.1"
+  resolved "https://registry.npmmirror.com/rehype-minify-whitespace/-/rehype-minify-whitespace-5.0.1.tgz#79729a0146aa97a9d43e1eb4b5884974e2f37e77"
+  integrity sha512-PPp4lWJiBPlePI/dv1BeYktbwkfgXkrK59MUa+tYbMPgleod+4DvFK2PLU0O0O60/xuhHfiR9GUIUlXTU8sRIQ==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    hast-util-embedded "^2.0.0"
+    hast-util-is-element "^2.0.0"
+    hast-util-whitespace "^2.0.0"
+    unified "^10.0.0"
+    unist-util-is "^5.0.0"
+
+rehype-normalize-attribute-value-case@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/rehype-normalize-attribute-value-case/-/rehype-normalize-attribute-value-case-3.0.0.tgz#a77dd8db17a12d492d0d0a9891b4272e04802d1a"
+  integrity sha512-rFaP0UOfPkFMY3nIUHIcGghQHW5CbXCkm5fGzxViueIFEStdfJ7VYYtTzzYqSYjqtQBlMr3aj/+rq4ILdb5weQ==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    hast-util-has-property "^2.0.0"
+    hast-util-is-element "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
 rehype-parse@^8.0.0:
   version "8.0.4"
   resolved "https://registry.npmmirror.com/rehype-parse/-/rehype-parse-8.0.4.tgz#3d17c9ff16ddfef6bbcc8e6a25a99467b482d688"
@@ -8642,6 +8927,127 @@ rehype-parse@^8.0.0:
     hast-util-from-parse5 "^7.0.0"
     parse5 "^6.0.0"
     unified "^10.0.0"
+
+rehype-preset-minify@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.npmmirror.com/rehype-preset-minify/-/rehype-preset-minify-6.0.0.tgz#1dc0ee0214a7475238182426b78c43761f333508"
+  integrity sha512-MV+iXsjru4MoQThRU3ipvhmH7RxFdPY+46menxWb6z/Ib4WvVuLljNS2GkumT/bvLScc4996UiTNHNroae18ww==
+  dependencies:
+    rehype-minify-attribute-whitespace "^3.0.0"
+    rehype-minify-css-style "^3.0.0"
+    rehype-minify-enumerated-attribute "^4.0.0"
+    rehype-minify-event-handler "^3.0.0"
+    rehype-minify-javascript-script "^4.0.0"
+    rehype-minify-javascript-url "^4.0.0"
+    rehype-minify-json-script "^3.0.0"
+    rehype-minify-language "^2.0.0"
+    rehype-minify-media-attribute "^3.0.0"
+    rehype-minify-meta-color "^3.0.0"
+    rehype-minify-meta-content "^3.0.0"
+    rehype-minify-style-attribute "^3.0.0"
+    rehype-minify-whitespace "^5.0.0"
+    rehype-normalize-attribute-value-case "^3.0.0"
+    rehype-remove-comments "^5.0.0"
+    rehype-remove-duplicate-attribute-values "^3.0.0"
+    rehype-remove-empty-attribute "^3.0.0"
+    rehype-remove-external-script-content "^3.0.0"
+    rehype-remove-meta-http-equiv "^3.0.0"
+    rehype-remove-script-type-javascript "^3.0.0"
+    rehype-remove-style-type-css "^3.0.0"
+    rehype-sort-attribute-values "^4.0.0"
+    rehype-sort-attributes "^4.0.0"
+
+rehype-remove-comments@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmmirror.com/rehype-remove-comments/-/rehype-remove-comments-5.0.0.tgz#88b4faba10f217d4ab68b36eb958b386630d5672"
+  integrity sha512-sfiVT+u1in19sxo9vv/SDQVbHE2mADScNrpeVsUxBFl14zOMZnfPb6l4hR+lXqe10G13UFVqv5pt8zDbCR4JYQ==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    hast-util-is-conditional-comment "^2.0.0"
+    unified "^10.0.0"
+    unist-util-filter "^4.0.0"
+
+rehype-remove-duplicate-attribute-values@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/rehype-remove-duplicate-attribute-values/-/rehype-remove-duplicate-attribute-values-3.0.0.tgz#6014576b6be5e5aac346950445be14b408df7e69"
+  integrity sha512-Rhux3YNBZ7Ozgovxo4zABbbIKS6x2jdCLQQI32Zlw3fIAuVASjnDOg2bdQI1jcR5nvQlltviI7qTnGCzOgw3wQ==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    hast-util-is-element "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-remove-empty-attribute@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/rehype-remove-empty-attribute/-/rehype-remove-empty-attribute-3.0.0.tgz#0f94bdd69645e42d2a79a20efcfdf02e074d63db"
+  integrity sha512-mhHsmepUAR8n5OgwAWf+RXrzs6wxnYNEuDIQBl26euwU7/UNQrVRNECiUxvekniuGy1LSnit0yncptiMMVOMwg==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    hast-util-is-element "^2.0.0"
+    hast-util-is-event-handler "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-remove-external-script-content@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/rehype-remove-external-script-content/-/rehype-remove-external-script-content-3.0.0.tgz#594111acdc1537688eed4ff10bbffeae62d4101e"
+  integrity sha512-NcDH2NYTr1N/0+WwId0dEVmQAQKQGehgwnNBejsZNxYBIqDa9n1JXArIAro+lnukfFqtxTxY2NRwl3gwwdKKsg==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    hast-util-has-property "^2.0.0"
+    hast-util-is-javascript "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-remove-meta-http-equiv@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/rehype-remove-meta-http-equiv/-/rehype-remove-meta-http-equiv-3.0.0.tgz#347abce04efc93d852fcfefa1582968c058075a0"
+  integrity sha512-AI4MZocx51norXPFVwtmELco3WqcB14xIWC2bHJud/7rCL5y1Ic2x8QYDp8Pp8tqGDfaF2QbbCYDkvUvDDSpXA==
+  dependencies:
+    hast-util-has-property "^2.0.0"
+    space-separated-tokens "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-remove-script-type-javascript@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/rehype-remove-script-type-javascript/-/rehype-remove-script-type-javascript-3.0.0.tgz#c75c86cb7940dd790f5a83e5030d51b3f74440fe"
+  integrity sha512-HTsKyryBYgBHSVhStEt1TN7SJYe2re/sfe92A3LUe7pV6x64Uzysicukjob9HbXO3+8qPH64xhQlDpcmMKbpBg==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    hast-util-is-javascript "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-remove-style-type-css@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmmirror.com/rehype-remove-style-type-css/-/rehype-remove-style-type-css-3.0.0.tgz#c9d3558af2ba4037930ce9f52c3565b7af911df4"
+  integrity sha512-M1DZIcc05I+tBIKjEr9j77470RHnbdFcknl/BtmfL8xnp2mhGilqDf6jeBon+zWODjdtYjOv8i22Yj9fFcYLAA==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    hast-util-is-css-link "^2.0.0"
+    hast-util-is-css-style "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-sort-attribute-values@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmmirror.com/rehype-sort-attribute-values/-/rehype-sort-attribute-values-4.0.0.tgz#6a1baaced2f984ebed9aa201145c85cbc1c76880"
+  integrity sha512-+Y3OWTbbxSIutbXMVY7+aWFmcRyEvdz6HkghXAyVPjee1Y8HUi+/vryBL1UdEI9VknVBiGvphXAf5n6MDNOXOA==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    hast-util-is-element "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-sort-attributes@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmmirror.com/rehype-sort-attributes/-/rehype-sort-attributes-4.0.0.tgz#b7766c864a370a07dd8ffa93b02c98322c20fe67"
+  integrity sha512-sCT58e12F+fJL8ZmvpEP2vAK7cpYffUAf0cMQjNfLIewWjMHMGo0Io+H8eztJoI1S9dvEm2XZT5zzchqe8gYJw==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
 
 rehype-stringify@^9.0.3:
   version "9.0.3"
@@ -9043,7 +9449,7 @@ source-map@^0.5.7:
   resolved "https://registry.npmjs.org/source-map/-/source-map-0.5.7.tgz"
   integrity sha1-igOdLRAh0i0eoUyA2OpGi6LvP8w=
 
-source-map@^0.6.0, source-map@^0.6.1:
+source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.0:
   version "0.6.1"
   resolved "https://registry.npmjs.org/source-map/-/source-map-0.6.1.tgz"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
@@ -9497,6 +9903,11 @@ typescript@^4.6.3:
   resolved "https://registry.npmmirror.com/typescript/-/typescript-4.7.3.tgz#8364b502d5257b540f9de4c40be84c98e23a129d"
   integrity sha512-WOkT3XYvrpXx4vMMqlD+8R8R37fZkjyLGlxavMc4iB8lrl8L0DeTcHbYgw/v0N/z9wAFsgBhcsF0ruoySS22mA==
 
+uglify-js@^3.0.18:
+  version "3.16.1"
+  resolved "https://registry.npmmirror.com/uglify-js/-/uglify-js-3.16.1.tgz#0e7ec928b3d0b1e1d952bce634c384fd56377317"
+  integrity sha512-X5BGTIDH8U6IQ1TIRP62YC36k+ULAa1d59BxlWvPUJ1NkW5L3FwcGfEzuVvGmhJFBu0YJ5Ge25tmRISqCmLiRQ==
+
 unbox-primitive@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmmirror.com/unbox-primitive/-/unbox-primitive-1.0.2.tgz"
@@ -9571,6 +9982,15 @@ unist-builder@^3.0.0:
   integrity sha512-GFxmfEAa0vi9i5sd0R2kcrI9ks0r82NasRq5QHh2ysGngrc6GiqD5CDf1FjPenY4vApmFASBIIlk/jj5J5YbmQ==
   dependencies:
     "@types/unist" "^2.0.0"
+
+unist-util-filter@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmmirror.com/unist-util-filter/-/unist-util-filter-4.0.0.tgz#59bc7960bb2cfd34cc086301090540bdb5580a86"
+  integrity sha512-H4iTOv2p+n83xjhx7eGFA3zSx7Xcv3Iv9lNQRpXiR8dmm9LtslhyjVlQrZLbkk4jwUrJgc8PPGkOOrfhb76s4Q==
+  dependencies:
+    "@types/unist" "^2.0.0"
+    unist-util-is "^5.0.0"
+    unist-util-visit-parents "^5.0.0"
 
 unist-util-find-after@^4.0.0:
   version "4.0.0"

@@ -1,0 +1,281 @@
+---
+title: React中关于setState同步与异步问题的详细剖析
+authors: ['mutongxiao']
+tags: ['React', 'setState']
+categories: ['React']
+date: '2022-6-26'
+description: 关于在React中更新state状态是同步还是异步的问题剖析
+---
+
+在 React 的类式组件中，我们可以使用`setState`方法更新`state`状态。但**有些时候**使用`setState`之后，得不到最新的数据。同样的情况，在函数式组件中我们也可能会遇到。那么就有了这样一个问题，在 React 更新 state 状态是同步的异步的？
+
+## Import
+
+```js
+import { Component } from 'react';
+```
+
+## 问题举例
+
+先看一下,下面的这段类组件代码会打印什么：
+
+```jsx
+class Dong extends Component {
+  constructor() {
+    super();
+    this.state = {
+      count: 0,
+    };
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        count: 1,
+      });
+      console.log(this.state.count);
+      this.setState({
+        count: 2,
+      });
+      console.log(this.state.count);
+    });
+  }
+  render() {
+    console.log('render:', this.state.count);
+    return <div>count值为：{this.state.count}</div>;
+  }
+}
+```
+
+组件挂载后，在`setTimeout`里修改了两次`state`并打印了 state 的值。如果是异步的，那在 setTimeout 里面打印的时候 count 还没修改，依然是 0，所以打印两次 0。
+
+然后初始化渲染一次，componentDidMount 里触发 setState 后再渲染一次，应该 render 两次，对应的 count 分别为 0 和 2。按照异步的方式来分析，确实应该是这样的。
+
+执行一下,看一下结果：
+![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/95b2be5ac06843f383b4704767e877a9~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+会发现 setTimeout 里面两次打印分别是 1 和 2，也就是说 setState 同步修改了 state，然后每次都触发了渲染，所以一共 render 3 次，分别是 0、1、2。
+
+那这么说 setState 是同步的？那在看下这段代码会打印什么？
+
+```jsx
+class Dong extends Component {
+  constructor() {
+    super();
+    this.state = {
+      count: 0,
+    };
+  }
+  componentDidMount() {
+    this.setState({
+      count: 1,
+    });
+    console.log(this.state.count);
+    this.setState({
+      count: 2,
+    });
+    console.log(this.state.count);
+    this.setState({
+      count: 3,
+    });
+    console.log(this.state.count);
+  }
+  render() {
+    console.log('render:', this.state.count);
+    return <div>count值为：{this.state.count}</div>;
+  }
+}
+```
+
+上面的代码，我们移除了定时器，改为上面我们认为的同步猜测写法。如果 setState 是同步的，那执行完就会修改 state，
+所以在 componentDidMount 里应该分别打印 1、2、3，然后触发三次 render，加上最开始的一次，一共四次，
+render 分别打印 0、1、2、3。
+
+我们来执行一下，看一下结果：
+![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ec421af25c1541a5b099e6ce916b67bf~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+componentDidMount 里面三次打印都是 0，这说明 setState 是异步的。而且三次 setState 只触发了一次 render，
+加上最开始的 render，一共两次，render 里打印 0、3。
+
+what? 怎么又是异步的了？
+
+而且不止 class 组件的 setState 是这样，换成 function 组件的 useState 也是一样的,
+比如修改三次 state，只会 render 一次：
+
+![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fb37eae07b994f399a11c9159dbff8de~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+而在 setTimeout 里，每次修改 state 也都会 render：
+
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c966952be14747beb521164712301cf4~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+所以问题就出来了，什么情况下 setState 是同步的，什么情况下是异步的呢？
+这要从源码找答案了，我们来读一下 setState 的源码，理一下 React 渲染的流程。
+
+## React 渲染流程
+
+react 通过 jsx 来描述界面，jsx 可以通过 babel 等编译器编译成 render function，然后执行后产生 vdom：
+
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/693d4c78c6b34a0a88fb557f4c9b0e51~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+这个 vdom 也不是直接渲染的，而是会先转化为 fiber，之后再渲染。
+
+因为 vdom 里每个节点只记录了子节点（children），没有记录兄弟节点，所以必须一次性渲染完，不能打断。
+
+而转成 fiber 的链表结构就会记录父节点（return）、子节点（child）、兄弟节点（sibling），就变成了可打断的。
+
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4f9219fceeab4b45877da7708b346ac0~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+这里的 vdom 是 React Element 对象：
+
+![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6e47ca3091c04c0a825b7ddf7436a79d~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+转化为 fiber 之后是 FiberNode 的对象：
+
+![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/151419088df540adb8d4cf2e76c6c840~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+从 vdom 转换成 fiber 的过程就叫做 reconcile，转换过程中会顺便创建对应的 dom 元素，然后全部转换完后
+一次性 commit 到 dom。
+
+这个过程不是一次性的，是通过 scheduler 调度执行的，那也就可以分批次进行，也就是可打断的含义。
+这就是 React 的 fiber 架构下的渲染流程。
+
+理论说完了，我们来对应到源码看一下（这里看的是 v17 的源码）：
+
+react 把 **schedule** 和 **reconcile** 叫做 **render** 阶段，这个阶段就是把 vdom 转为 fiber。
+（schedule 只是让 reconcile 可以分多次执行，可以打断，但做的事情是不变的，所以 schedule
+也是 render 阶段的一部分）
+
+之后把 fiber 更新到 dom 的过程就叫做 commit 阶段，对应到源码里就是这样的：
+
+![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9d074331ad41495db49209712d14ee9c~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+这个 performSyncWorkOnRoot 就是渲染的入口，就像之前所说的，会先执行 render 阶段，
+把 vdom 转成 fbier，然后再执行 commit，更新到 dom。
+
+render 阶段会执行一个调度的 loop：
+
+![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/906c0132379e4fa990ad91a098297fdf~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+这个 loop 就是不断地处理一个个 fiber 的 reconcile：
+
+![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/be03fd7578804933a6d17900f74a6e2e~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+每个节点都有 beginWork 和 completeWork 两个阶段，因为要做 vdom 转 fiber，而 vdom 是一个树形结构，
+需要递归处理：
+
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/df4894c3a2414649bd0e82d355e2a7ff~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+具体不同节点的 reconcile 逻辑不同：
+
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c4cbd51f07e2422284df81d768b725ae~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+比如函数组件会被调用，拿到 render 出的 vdom 继续进行 reconcile：
+
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d0cf758f9cb9483088ce3f7e5601e608~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+比如 class 组件会创建实例，调用 render 方法，拿到 vdom，然后再继续 renconcileChildren。
+
+![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8c820a3c17cf4247a97ef00d2023a70b~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+总之，vdom 转 fiber 是一个递归进行的过程，之后再进行 commit 阶段。
+整个渲染流程的入口就是 performSyncWorkOnRoot 函数。渲染的流程讲完了，
+接下来就是 setState 怎么触发渲染的流程了。
+
+## setState 的流程
+
+我们知道了渲染的入口就是 performSyncWorkOnRoot 函数，那 setState 修改完状态，触发一下这个函数不就行了？
+
+确实是这样的。setState 会调用 dispathAction，创建一个 update 对象放到 fiber 节点的 updateQueue 上，
+然后调度渲染：
+
+![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fe8f4834a8254ce090a6832b054c1f0a~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+调度更新自然就是调度上面说的那个 performSyncWorkOnRoot 函数：
+
+react 会先从触发 update 的 fiber 往上找到根 fiber 节点，然后再调用 performSyncWorkOnRoot
+的函数进行渲染：
+
+![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8728c2916d694c24b9ba3517a971bb7b~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+这就是 setState 之后触发重新渲染的实现。
+
+而 setState 是同步还是异步，也就是在这一段控制的。我们看到判断条件里有个 excutionContext，
+这个是用来标识当前环境的，比如是批量还是非批量，是否执行过 render 阶段、commit 阶段。
+
+其实在 ReactDOM.render 执行的时候会先调用 unbatchUpdates 函数：
+
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8b3f06eeac7a42db999e6af95f454a6c~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+这个函数会在 excutionContext 中设置一个 unbatach 的 flag：
+
+![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/217531d34165433b80609a3b49227e70~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+这样在 update 的时候，就会立刻执行 performSyncWorkOnRoot 来渲染。因为首次渲染的时候是马上就要渲染的，
+没必要调度。
+
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/03c6f9ae338a4c218c4551e3b4c25c78~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+之后走到 commit 阶段会设置一个 commit 的 flag：
+
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bdc160c643c7452eb93d0b53a54c4151~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+然后再次 setState 就不会走到 unbatch 的分支了。
+
+那为什么 setTimeout 里面的 setState 会同步执行呢？
+
+因为直接从 setTimeout 执行的异步代码是没有设置 excutionContext 的，那就会走到 NoContext 的分支，
+会立刻渲染。（这里的 flush 最终会调用 performSyncWorkOnRoot 函数来渲染）：
+
+![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/04e3247c048548f3a45ec26b8882e975~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+**所谓的异步流程，即在没有 excutionContext 的批量执行下**，其实 setState 并没有直接更新 this.state 的值，
+只是往 this 对应的 fiber 的 updateQueue 链表里面添加了一条 pending 的 update，然后在下一个
+scheduler 调度后(基于 messageChannel 的一个宏任务)执行 performUnitOfWork => beginWork => updateClassComponent => processUpdateQueue => getStateFromUpdate => 计算出新的 state，
+然后放到 this 上面，此时 this.state.count 才等于最新的值，之后就是执行 shouldUpdate 函数，判断
+是否需要更新渲染，(这里就说明了为什么 shouldComponentUpdate 这个函数可以在更新之前拿到最新的 state 值),
+然后进行 diff 算法, 所以我们调用了 setState 之后同步的去取 this.state, 是获取不到最新的 state 的值的。
+简单的来说，this.setState(\{ a: "xxx" \})并不等于 this.state.a = "xxxx"。
+
+有什么办法能让 setTimeout 里执行的函数也有 excutionContext 呢？
+
+其实 react17 暴露了 batchUpdates 的 api，用它包裹下，里面的 setState 就会批量执行了：
+
+![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/598e6e2970c84e2d9c9d9dd06df01882~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+它的源码其实就是设置了下 excutionContext：
+
+![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/014301ef290e42c6825140752e7f5a53~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+这样等 setState 全部执行完之后再 flush，调用 peformSyncWorkOnRoot 渲染，效果就是批量的 setState 了。
+
+其实按理来说 setState 不能叫异步，还是在同一个调用栈执行的，只不过顺序不同而已。只能叫批量还是非批量。
+在 react17 中是这么处理的，如果是 react18，使用 createRoot 的 api 的话，就不会有这种问题了，就算是 setTimeout 里的代码也能批量执行，
+
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/459125fd5cdf4d9ebaf95e4031f5d0c4~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+而且为了兼容 react17 这种情况，还做了特殊处理，当没有开启并发模式，也就是还是用 ReactDOM.render 的 api 时，
+没有指定 excutionContext 还会立刻渲染：
+
+![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/521c2eeaa62243148b83abc946f575f0~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?)
+
+等 react 18 普及以后，所有的 setState 都是批量的了，就不会再有批量还是非批量的问题。
+
+## 总结
+
+- 虽然我们讨论的是 setState 的同步异步，但这个不是 setTimeout、Promise 那种异步，
+  只是指 setState 之后是否 state 马上变了，是否马上 render。
+
+- 我们梳理了下 React 的渲染流程，包括 render 阶段、commit 阶段，render 阶段是从 vdom 转 fiber，
+  包含 schedule 和 reconcile，commit 阶段是把 fiber 更新到 dom。渲染流程的入口是 performSyncWorkOnRoot
+  函数。
+
+- setState 会创建 update 对象挂到 fiber 对象上，然后调度 performSyncWorkOnRoot 重新渲染。
+
+- 在 react17 中，setState 是批量执行的，因为执行前会设置 executionContext。
+  但如果在 setTimeout、事件监听器等函数里，就不会设置 executionContext 了，这
+  时候 setState 不会批量执行，也表现出我们说的同步执行了。可以在外面包一层 batchUpdates 函数，
+  手动设置下 excutionContext 来切换成异步批量执行。
+
+- 在 react18 里面，如果用 createRoot 的 api，就不会有这种问题了。setState 是同步还是异步这个问题，
+  等 react18 普及以后就不会再有了，因为所有的 setState 都是异步批量执行了。
+
+> 引用链接 https://juejin.cn/post/7108362046369955847
