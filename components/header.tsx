@@ -36,6 +36,9 @@ import {
   EditIcon,
   RepeatIcon,
 } from '@chakra-ui/icons';
+import { useEffect, useRef, useState } from 'react';
+import { useViewportScroll } from 'framer-motion';
+
 import { mainNavLinks } from '@/components/sidebar/blog-sidebar';
 
 interface INavItem {
@@ -237,7 +240,6 @@ const DesktopSubNav = ({ label, href, subLabel }: INavItem) => {
 
 const DesktopNav = () => {
   const linkColor = useColorModeValue('gray.600', 'gray.200');
-  // const linkHoverColor = useColorModeValue('gray.800', 'white');
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
   return (
@@ -254,7 +256,6 @@ const DesktopNav = () => {
                 color={linkColor}
                 _hover={{
                   textDecoration: 'none',
-                  //color: linkHoverColor,
                   color: 'teal.400',
                 }}
               >
@@ -290,13 +291,27 @@ export default function Header(props: HTMLChakraProps<'header'>) {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onToggle } = useDisclosure();
 
+  const [y, setY] = useState(0);
+  const ref = useRef<HTMLHeadingElement>();
+  const { height = 0 } = ref.current?.getBoundingClientRect() ?? {};
+  const { scrollY } = useViewportScroll();
+  useEffect(() => {
+    return scrollY.onChange(() => setY(scrollY.get()));
+  }, [scrollY]);
+
   return (
     <chakra.header
+      ref={ref}
       bg="white"
       _dark={{ bg: 'gray.800' }}
+      width="full"
+      pos="fixed"
+      top="0"
       left="0"
       right="0"
-      width="full"
+      zIndex="9"
+      shadow={y > height ? 'sm' : undefined}
+      transition="box-shadow 0.2s, background-color 0.2s"
       {...props}
     >
       <chakra.div height="4.5rem" mx="auto" maxW={maxW} maxWidth={maxWidth}>
