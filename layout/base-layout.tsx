@@ -24,6 +24,7 @@ const BaseLayout = ({ header, main, footer }: Props) => {
       gridTemplateRows={'auto 1fr auto'}
       minH="100vh"
       gap="1"
+      maxW="100vw"
     >
       <GridItem
         area={'header'}
