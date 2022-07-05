@@ -116,7 +116,7 @@ export const PostsListPage: FC<PostsListProps> = ({
       </Box>
       <VStack
         divider={<StackDivider borderColor={dividerColor} />}
-        spacing={{ base: '2', md: '4' }}
+        spacing={{ base: '3', md: '5' }}
         align="stretch"
       >
         {!initialDisplayPosts.length && NotMore}

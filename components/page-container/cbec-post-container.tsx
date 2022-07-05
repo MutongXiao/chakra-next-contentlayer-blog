@@ -9,8 +9,10 @@ import {
   Link,
   Button,
   Flex,
+  useColorModeValue,
+  Progress,
 } from '@chakra-ui/react';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { CoreContent } from 'utils/contentlayer';
@@ -40,10 +42,67 @@ export default function CbecPostContainer({
 }: Props) {
   const { date, title, tags, description } = content;
   const { push } = useRouter();
+  const bg = useColorModeValue('white', 'gray.800');
+  const progressViewBoxRef = useRef<HTMLDivElement>();
+  const [progressValue, setProgressValue] = useState(0);
+  const [showProgress, setShowProgress] = useState(false);
+
+  function hasScrollbar() {
+    return (
+      document.body.scrollHeight >
+      (window.innerHeight || document.documentElement.clientHeight)
+    );
+  }
+
+  useEffect(() => {
+    setShowProgress(hasScrollbar());
+
+    function handleSrcoll() {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const { height } = progressViewBoxRef.current.getBoundingClientRect();
+
+      const maxScroollTop = height - vh;
+      if (window.scrollY > maxScroollTop) {
+        setProgressValue(100);
+        return;
+      }
+
+      const value = Math.abs((window.scrollY / maxScroollTop) * 100);
+      setProgressValue(value);
+    }
+
+    function handleResize() {
+      setShowProgress(hasScrollbar());
+      handleSrcoll();
+    }
+
+    window.addEventListener('scroll', handleSrcoll);
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('scroll', handleSrcoll);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <>
       <SEO title={title} description={description} />
+      <Box
+        pos="fixed"
+        zIndex="2"
+        left="0"
+        right="0"
+        h="0.35rem"
+        bg={bg}
+        mt="-1"
+        textAlign="end"
+        display={showProgress ? 'block' : 'none'}
+      >
+        <Progress colorScheme="green" size="xs" value={progressValue} />
+      </Box>
       <Container
+        ref={progressViewBoxRef}
         as="article"
         maxW="5xl"
         w="100vw"
@@ -78,7 +137,7 @@ export default function CbecPostContainer({
               <Box w="full">
                 <Box my="4">
                   <Text>DATE</Text>
-                  <Box as="time" color="teal" dateTime={date}>
+                  <Box as="time" color="teal" dateTime={date} my="1">
                     {new Date(date).toLocaleDateString(
                       'en-US',
                       postDateTemplate,
@@ -88,7 +147,7 @@ export default function CbecPostContainer({
                 {tags && (
                   <Box w="full">
                     <Text>TAGS</Text>
-                    <HStack>
+                    <HStack my="1">
                       {tags.map(tag => (
                         <Tag key={tag} variant="outline" colorScheme="teal">
                           {tag}
@@ -102,7 +161,7 @@ export default function CbecPostContainer({
                 <VStack spacing={5} w="full">
                   {prev && (
                     <Box w="full">
-                      <Text>PREVIOUS ARTICLE</Text>
+                      <Text my="1">PREVIOUS ARTICLE</Text>
                       <NextLink href={`/cbec-note/${prev.slug}`} passHref>
                         <Link
                           w="full"

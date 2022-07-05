@@ -75,7 +75,7 @@ export default function CbecNotesContainer({
                       <LinkOverlay>{title}</LinkOverlay>
                     </NextLink>
                   </Heading>
-                  <HStack>
+                  <HStack my="2">
                     {tags.map(tag => (
                       <Tag
                         key={tag}

@@ -16,7 +16,7 @@ TCP 是面向字节流的协议，就是没有界限的一串数据，本没有�
 如果一次请求发送的数据量比较大，超过了缓冲区大小，TCP 就会将其拆分为多次发送，这就是拆包。
 
 下图演示了粘包、拆包的过程，client 分别发送了两个数据包 D1 和 D2 给 server，server 端一次读取到字节数是不确定的，因此可能可能存在以下几种情况：
-![](https://ask.qcloudimg.com/http-save/4069756/qj8zbj9cgm.jpeg?imageView2/2/w/1620)
+
 ![](https://pic1.zhimg.com/80/v2-9072eb69d4ec6d74d95f4f633df87f10_720w.jpg)
 
 关于这几种情况说明如下：

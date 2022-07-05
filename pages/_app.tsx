@@ -9,7 +9,6 @@ import BaseLayout from 'layout/base-layout';
 
 import theme from 'theme';
 import Head from 'next/head';
-import Script from 'next/script';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -39,8 +38,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           />
         )} */}
       </Head>
-      {/* 页面加载进度条脚本 */}
-      <Script src="/js/pace.min.js" strategy="beforeInteractive" />
       {/* 站点数据分析脚本，同上的脚本引入 <Analytics /> */}
       <ChakraProvider theme={theme}>
         <BaseLayout
