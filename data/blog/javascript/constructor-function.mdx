@@ -1,0 +1,241 @@
+---
+title: JavaScript 构造函数由浅入深理解
+authors: ['mutongxiao']
+tags: ['JavaScript', '构造函数']
+categories: ['JavaScript']
+date: '2022-5-19'
+description: JavaScript构造函数的理解。
+---
+
+## 1.从工厂函数说起
+
+**什么是工厂函数?**
+
+工厂函数就是专门用于创建对象的函数, 我们就称之为工厂函数
+
+一般我们会像下面这样，直接通过大花括号的形象创建一个对象
+
+```js
+let obj = {
+  name: 'lnj',
+  age: 33,
+  say: function () {
+    console.log('hello world');
+  },
+};
+let obj = {
+  name: 'zs',
+  age: 44,
+  say: function () {
+    console.log('hello world');
+  },
+};
+```
+
+有时候我们可能需要一个特定结构的对象，这个对象结构在很多时候我们可能会复用，可以考虑工厂函数模式，像这样
+
+```js
+function createPerson(myName, myAge) {
+  let obj = new Object();
+  obj.name = myName;
+  obj.age = myAge;
+  obj.say = function () {
+    console.log('hello world');
+  };
+  return obj;
+}
+let obj1 = createPerson('lnj', 34);
+let obj2 = createPerson('zs', 44);
+console.log(obj1);
+console.log(obj2);
+```
+
+[![jrxah6.png](https://s1.ax1x.com/2022/07/10/jrxah6.png)](https://s1.ax1x.com/2022/07/10/jrxah6.png)
+
+new Object() 与 {} 不同之处在于，通过 new Object()出来的对象，并不是一个空对象，它会包含一个 Prototype 属性，该属性会包含很多对象内置的属性方法。
+
+## 2.什么是构造函数
+
+构造函数和工厂函数一样, 都是专门用于创建对象的，构造函数本质上是工厂函数的简写
+
+## 3.构造函数的实现及工厂函数的区别
+
+1. 构造函数的函数名称首字母必须大写
+2. 构造函数只能够通过 new 来调用
+
+先看下面的实现示例：
+
+```js
+function Person(myName, myAge) {
+  // let obj = new Object();  // 系统自动添加的
+  // let this = obj; // 系统自动添加的
+  this.name = myName;
+  this.age = myAge;
+  this.say = function () {
+    // 方法中的this谁调用就是谁, 所以当前是obj1调用, 所以当前的this就是obj1
+    // console.log(this.name, this.age);
+    console.log('hello world');
+  };
+  // return this; // 系统自动添加的
+}
+```
+
+当我们 **new Person("lnj", 34)** 系统做了什么事情?
+
+1. 会在构造函数中自动创建一个对象 new Object();
+2. 会自动将刚才创建的对象赋值给 this
+3. 会在构造函数的最后自动添加 return this;
+
+```js
+let obj1 = new Person('lnj', 34);
+let obj2 = new Person('zs', 44);
+console.log(obj1);
+console.log(obj2);
+// 由于两个对象中的say方法的实现都是一样的, 但是保存到了不同的存储空间中
+// 所以有性能问题
+// 通过三个等号来判断两个函数名称, 表示判断两个函数是否都存储在同一块内存中
+console.log(obj1.say === obj2.say); // false
+```
+
+看下打印输出：
+[![jrxw9K.png](https://s1.ax1x.com/2022/07/10/jrxw9K.png)](https://s1.ax1x.com/2022/07/10/jrxw9K.png)
+
+可以看到输出的对象中有一个 constructor 属性。由于两个对象中的 say 方法的实现都是一样的, 但是保存到了不同的存储空间中，所以有性能问题。
+
+## 4.构造函数优化
+
+我们上面提到，对于 say 方法, 每个对象都会保存一份会存在性能问题，浪费存储空间。那么可以考虑将它提取共用，不用每次 new 都创建一份。
+
+```js
+function mySay() {
+  console.log('hello world');
+}
+function Person(myName, myAge) {
+  // let obj = new Object();  // 系统自动添加的
+  // let this = obj; // 系统自动添加的
+  this.name = myName;
+  this.age = myAge;
+  this.say = mySay;
+  // return this; // 系统自动添加的
+}
+let obj1 = new Person('lnj', 34);
+let obj2 = new Person('zs', 44);
+console.log(obj1.say === obj2.say); // true
+```
+
+上面的输出 obj1.say === obj2.say 为 true, 似乎解决了问题，但当前这种方式解决之后也存在弊端
+
+1. 阅读性降低了
+2. 污染了全局的命名空间
+
+我们在考虑将 say 放在一个对象中管理，避免上述问题
+
+```js
+// function mySay() {
+//     console.log("hello world");
+// }
+let fns = {
+  mySay: function () {
+    console.log('hello world');
+  },
+};
+function Person(myName, myAge) {
+  // let obj = new Object();  // 系统自动添加的
+  // let this = obj; // 系统自动添加的
+  this.name = myName;
+  this.age = myAge;
+  this.say = fns.mySay;
+  // return this; // 系统自动添加的
+}
+let obj1 = new Person('lnj', 34);
+let obj2 = new Person('zs', 44);
+console.log(obj1.say === obj2.say); // true
+/*
+let fns = {
+    test: function () {
+        console.log("test");
+    }
+}
+// 由于test函数都是属于同一个对象, 所以返回true
+console.log(fns.test === fns.test); // true
+*/
+```
+
+由于 say 函数都是属于同一个对象, obj1.say === obj2.say 指向的都是同一个对象的空间地址，所以返回 true。
+
+然而，这种方式似乎和我们使用中的不太一样，这种方式看起来也怪怪的。
+
+我们考虑给 Person 构造行数添加一个属性 prototype 来保存我们要共用的 say, 看下面的代码
+
+```js
+// let fns = {
+//     mySay: function () {
+//         console.log("hello world");
+//     }
+// }
+function Person(myName, myAge) {
+  // let obj = new Object();  // 系统自动添加的
+  // let this = obj; // 系统自动添加的
+  this.name = myName;
+  this.age = myAge;
+  // this.say = fns.mySay;
+  // return this; // 系统自动添加的
+}
+Person.prototype = {
+  say: function () {
+    console.log('hello world');
+  },
+};
+let obj1 = new Person('lnj', 34);
+obj1.say();
+let obj2 = new Person('zs', 44);
+obj2.say();
+console.log(obj1.say === obj2.say); // true
+console.log(Person.prototype);
+```
+
+输出结果：
+[![jsSpz8.png](https://s1.ax1x.com/2022/07/10/jsSpz8.png)](https://s1.ax1x.com/2022/07/10/jsSpz8.png)
+
+Person 构造函数本质也是一个对象，所以通过 prototype 属性保存公用的方法，也就是我们说的原型对象的方法，当 new Person()后，我们能通过 obj1.say() 访问到 prototype 中的 say 方法。其实 prototype 是构造函数内部的一个属性，这是 JavaScript 内部已经帮我们处理了的，也就是我们说的原型链这块上。
+
+## 5.prototype 特点
+
+1.1 存储在 prototype 中的方法可以被对应构造函数创建出来的所有对象共享
+1.2 prototype 中除了可以存储方法以外, 还可以存储属性
+1.3 prototype 如果出现了和构造函数中同名的属性或者方法, 对象在访问的时候, 访问到的是构造函中的数据
+
+看下面的代码, 加深上面的理解
+
+```js
+function Person(myName, myAge) {
+  this.name = myName;
+  this.age = myAge;
+  this.currentType = '构造函数中的type';
+  this.say = function () {
+    console.log('构造函数中的say');
+  };
+}
+Person.prototype = {
+  currentType: '人',
+  say: function () {
+    console.log('prototype中的say');
+  },
+};
+let obj1 = new Person('lnj', 34);
+obj1.say();
+console.log(obj1.currentType);
+let obj2 = new Person('zs', 44);
+obj2.say();
+console.log(obj2.currentType);
+```
+
+输出结果：
+[![jsSmWV.png](https://s1.ax1x.com/2022/07/10/jsSmWV.png)](https://s1.ax1x.com/2022/07/10/jsSmWV.png)
+
+可以看到，实例对象是先读取构造函数 this 上的属性和方法，而不是 prototype 上的
+
+**prototype 应用场景**
+
+prototype 中一般情况下用于存储所有对象都相同的一些属性以及方法
+如果是对象特有的属性或者方法, 我们会存储到构造函数中
