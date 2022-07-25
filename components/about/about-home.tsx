@@ -353,7 +353,7 @@ function AboutHome() {
                   </li>
                   <li className={css.navigationItem}>
                     <a href="./Grade/index.html" className={css.blogButton}>
-                      成绩
+                      日志
                     </a>
                   </li>
                   <li className={css.navigationItem}>
