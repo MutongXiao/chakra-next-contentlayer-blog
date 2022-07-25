@@ -17,7 +17,7 @@ class Document extends NextDocument {
       <Html lang="zh">
         <Head>
           {/* 页面加载进度条样式 */}
-          <link rel="stylesheet" href="/css/pace-theme-default.min.css"></link>
+          {/* <link rel="stylesheet" href="/css/pace-theme-default.min.css"></link> */}
           {/* 页面加载进度条脚本 */}
           <script
             defer

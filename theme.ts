@@ -25,6 +25,9 @@ const customTheme = extendTheme({
           fontStyle: 'normal !important',
         },
       },
+      '*:focus': {
+        outline: 'none',
+      },
       'body::-webkit-scrollbar': {
         width: '14px',
       },
