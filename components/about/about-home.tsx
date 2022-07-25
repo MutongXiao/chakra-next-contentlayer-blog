@@ -219,6 +219,7 @@ function AboutHome() {
             pos="relative"
           >
             <Box
+              className={css.profilepic}
               sx={{
                 '.avatar-box:hover &': {
                   transform: 'rotate3d(0, 1, 0, -180deg)',

@@ -6,9 +6,8 @@ import ToTop from '@/components/ToTop';
 
 import theme from 'theme';
 import Head from 'next/head';
-/* Root stylesheet */
+/* pace 进度条样式 */
 import 'public/css/pace-theme-default.min.css';
-import 'public/css/youziku.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

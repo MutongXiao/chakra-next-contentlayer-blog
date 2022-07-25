@@ -34,6 +34,22 @@
   transform: translate3d(0, 0, 0);
 }
 
+.profilepic {
+  -webkit-box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5),
+    0px 2px 20px 3px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5),
+    0px 2px 20px 3px rgba(0, 0, 0, 0.25);
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  background: #88acdb;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  text-align: center;
+}
+
 .coverNavigation {
   margin-top: 42px;
   text-align: center;
