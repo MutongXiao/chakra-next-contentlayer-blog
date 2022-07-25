@@ -78,12 +78,35 @@ export const $ = {
   toggleClass,
 };
 
+const motto = [
+  'Bad Times Make A Good Man.',
+  'There Is No Royal Road To Learning.',
+  'Doubt Is The Key To Knowledge.',
+  'Sow Nothing, Reap Nothing.',
+  'Life Is Real, Life Is Earnest.',
+  'Life Is But A Hard And Tortuous Journey.',
+  'Sharp Tools Make Good Work.',
+  'Nurture Passes Nature.',
+  'All Rivers Run Into The Sea.',
+  'Home Is Where The Heart Is.',
+  'Never Say Die.',
+  'Cease To Struggle And You Cease To Live.',
+];
+
+function randomNum(min: number, max: number) {
+  const range = max - min;
+  const rand = Math.random();
+  const num = min + Math.round(rand * range);
+  return num;
+}
+
 function AboutHome() {
   const panelRef = useRef<HTMLDivElement>();
   const [descData, setDescData] = useState({
     hitokoto: '如何得与凉风约，不共尘沙一并来!',
     from: '中牟道中',
   });
+  const mottoText = motto[randomNum(0, motto.length - 1)];
 
   const [showCloseIcon, setShowCloseIcon] = useState(false);
   const navigationWrapperRef = createRef<HTMLDivElement>();
@@ -309,13 +332,13 @@ function AboutHome() {
           'WenQuanYi Micro Hei', sans-serif"
             fontSize="1.2em"
             fontWeight="thin"
-            letterSpacing="3px"
+            letterSpacing="2px"
             color="#cccccc"
             sx={{
               fontSmooth: 'antialiased',
             }}
           >
-            Fortune Accompanies Life
+            {mottoText}
           </Text>
           <hr
             className={css.iUp}
@@ -343,7 +366,7 @@ function AboutHome() {
                       href="./Personal profile/index.html"
                       className={css.blogButton}
                     >
-                      自序
+                      简历
                     </a>
                   </li>
                   <li className={css.navigationItem}>
@@ -353,7 +376,7 @@ function AboutHome() {
                   </li>
                   <li className={css.navigationItem}>
                     <a href="./Grade/index.html" className={css.blogButton}>
-                      日志
+                      空间
                     </a>
                   </li>
                   <li className={css.navigationItem}>
