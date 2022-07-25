@@ -10,8 +10,9 @@ import {
 } from '@chakra-ui/react';
 import { FaGithub } from 'react-icons/fa';
 import SEO from '@/components/seo';
+import BaseLayout from 'layout/base-layout';
 
-const Home: NextPage = () => {
+const Home = () => {
   return (
     <>
       <SEO
@@ -105,4 +106,8 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+const HomePage: NextPage = () => {
+  return <BaseLayout main={<Home />} />;
+};
+
+export default HomePage;

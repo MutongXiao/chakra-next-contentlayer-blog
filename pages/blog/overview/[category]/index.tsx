@@ -21,6 +21,7 @@ import Search from '@/components/search/omni-search';
 import BlogContainer from '@/components/page-container/blog-container';
 import PostItem from '@/components/post-item';
 import Pagination from '@choc-ui/paginator';
+import BaseLayout from 'layout/base-layout';
 import {
   CoreContent,
   sortedBlogPost,
@@ -189,10 +190,12 @@ export default function PostsPage({
   contianerTitle,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <PostsListPage
-      pageContainerTitle={contianerTitle}
-      initialDisplayPosts={initialDisplayPosts}
-      pagination={pagination}
-    />
+    <BaseLayout>
+      <PostsListPage
+        pageContainerTitle={contianerTitle}
+        initialDisplayPosts={initialDisplayPosts}
+        pagination={pagination}
+      />
+    </BaseLayout>
   );
 }

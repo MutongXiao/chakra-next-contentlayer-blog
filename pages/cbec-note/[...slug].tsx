@@ -1,7 +1,7 @@
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import CbecPostContainer from '@/components/page-container/cbec-post-container';
 import { MDXComponents } from '@/components/mdx-components';
-
+import BaseLayout from 'layout/base-layout';
 import { coreContent } from 'utils/contentlayer';
 import { allCbecNotes } from 'contentlayer/generated';
 import { GetStaticPaths, InferGetStaticPropsType } from 'next/types';
@@ -15,9 +15,11 @@ export default function CbecPostDetail({
   const Component = useMDXComponent(post.body.code);
   const mainContent = coreContent(post);
   return (
-    <CbecPostContainer content={mainContent} prev={prevPost} next={nextPost}>
-      <Component components={MDXComponents} />
-    </CbecPostContainer>
+    <BaseLayout>
+      <CbecPostContainer content={mainContent} prev={prevPost} next={nextPost}>
+        <Component components={MDXComponents} />
+      </CbecPostContainer>
+    </BaseLayout>
   );
 }
 

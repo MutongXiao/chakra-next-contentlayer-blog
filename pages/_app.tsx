@@ -2,9 +2,6 @@ import type { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
 import FontFace from '@/components/font-face';
 import ToTop from '@/components/ToTop';
-import Header from '@/components/header';
-import Footer from '@/components/footer';
-import BaseLayout from 'layout/base-layout';
 // import Analytics from '@/components/site-analytics'
 
 import theme from 'theme';
@@ -40,11 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       {/* 站点数据分析脚本，同上的脚本引入 <Analytics /> */}
       <ChakraProvider theme={theme}>
-        <BaseLayout
-          header={<Header />}
-          main={<Component {...pageProps} />}
-          footer={<Footer />}
-        />
+        <Component {...pageProps} />
         <ToTop />
       </ChakraProvider>
       <FontFace />

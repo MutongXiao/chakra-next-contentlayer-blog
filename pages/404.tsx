@@ -3,9 +3,10 @@ import NextLink from 'next/link';
 import * as React from 'react';
 import { FaHome } from 'react-icons/fa';
 import SEO from 'components/seo';
+import BaseLayout from 'layout/base-layout';
 import { t } from 'utils/i18n';
 
-const NotFoundPage = () => {
+const Main = () => {
   return (
     <>
       <SEO
@@ -35,6 +36,10 @@ const NotFoundPage = () => {
       </VStack>
     </>
   );
+};
+
+const NotFoundPage = () => {
+  return <BaseLayout main={<Main />} />;
 };
 
 export default NotFoundPage;

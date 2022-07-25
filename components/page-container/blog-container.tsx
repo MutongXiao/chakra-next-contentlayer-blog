@@ -16,6 +16,7 @@ import TableOfContent from '@/components/table-of-content';
 import BlogTags from '@/components/post-tags';
 import Sidebar from '@/components/sidebar/blog-sidebar';
 import Comments from '@/components/comments';
+import ReadingIndicator from '@/components/reading-indicator';
 import { convertBackticksToInlineCode } from 'utils/convert-backticks-to-inline-code';
 
 function useHeadingFocusOnRouteChange() {
@@ -58,7 +59,6 @@ function BlogPageContainer(props: BlogContainerProps) {
   const { frontmatter, children, pagination } = props;
   useHeadingFocusOnRouteChange();
 
-  if (!frontmatter) return <></>;
   const isPostDetail = frontmatter.tags && frontmatter.slug;
   const {
     title,
@@ -69,14 +69,26 @@ function BlogPageContainer(props: BlogContainerProps) {
     headings = [],
   } = frontmatter;
 
+  const progressViewTargetRef = React.useRef<HTMLDivElement>();
+
+  if (!frontmatter) return <></>;
+
   return (
     <>
       <SEO title={title} description={description} />
+      {isPostDetail && (
+        <ReadingIndicator progressViewTargetRef={progressViewTargetRef} />
+      )}
       <Box w="100vw" maxW="8xl" mx="auto">
         <Box display={{ md: 'flex' }}>
           <Sidebar />
           <Box flex="1" minW="0" mb={{ base: '8', md: '12' }}>
-            <Box id="content" mx="auto" minH="76vh">
+            <Box
+              id="content"
+              mx="auto"
+              minH="76vh"
+              ref={isPostDetail ? progressViewTargetRef : null}
+            >
               <Flex>
                 <Box
                   minW="0"

@@ -1,4 +1,4 @@
-import { chakra, HTMLChakraProps, useDimensions } from '@chakra-ui/react';
+import { Code, HTMLChakraProps, useDimensions } from '@chakra-ui/react';
 import React, { useRef } from 'react';
 
 export const InlineCode = (props: HTMLChakraProps<'code'>) => {
@@ -15,13 +15,12 @@ export const InlineCode = (props: HTMLChakraProps<'code'>) => {
     dimensions && dimensions?.borderBox.width > MIN_CONTENT_WIDTH;
 
   return (
-    <chakra.code
+    <Code
       apply="mdx.code"
-      color={'purple.500'}
+      ref={codeRef}
       _dark={{
         color: 'purple.200',
       }}
-      ref={codeRef}
       whiteSpace={shouldWrap ? undefined : 'nowrap'}
       {...props}
     />

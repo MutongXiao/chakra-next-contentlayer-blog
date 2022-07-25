@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import BlogContainer from '@/components/page-container/blog-container';
 import BlogPagination from '@/components/pagination/blog-pagination';
 import { MDXComponents } from '@/components/mdx-components';
+import BaseLayout from 'layout/base-layout';
 import { allBlogs } from 'contentlayer/generated';
 import { sortedBlogPost, coreContent } from 'utils/contentlayer';
 
@@ -35,17 +36,19 @@ export default function PostDetail({
 
   useHeadingFocusOnRouteChange();
   return (
-    <BlogContainer
-      frontmatter={post.frontMatter}
-      pagination={
-        <BlogPagination
-          next={nextPost?.frontMatter}
-          previous={prevPost?.frontMatter}
-        />
-      }
-    >
-      <Component content={mainContent} components={MDXComponents} />
-    </BlogContainer>
+    <BaseLayout>
+      <BlogContainer
+        frontmatter={post.frontMatter}
+        pagination={
+          <BlogPagination
+            next={nextPost?.frontMatter}
+            previous={prevPost?.frontMatter}
+          />
+        }
+      >
+        <Component content={mainContent} components={MDXComponents} />
+      </BlogContainer>
+    </BaseLayout>
   );
 }
 

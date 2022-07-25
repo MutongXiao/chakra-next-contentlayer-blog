@@ -1,4 +1,5 @@
 import CbecListContainer from '@/components/page-container/cbec-list-container';
+import BaseLayout from 'layout/base-layout';
 import { allCbecNotes } from 'contentlayer/generated';
 import { GetStaticPaths, InferGetStaticPropsType } from 'next/types';
 import { allCoreContent } from 'utils/contentlayer';
@@ -45,10 +46,12 @@ export default function PostPage({
   pagination,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <CbecListContainer
-      title="我的跨境笔记"
-      initialDisplayPosts={initialDisplayPosts}
-      pagination={pagination}
-    />
+    <BaseLayout>
+      <CbecListContainer
+        title="我的跨境笔记"
+        initialDisplayPosts={initialDisplayPosts}
+        pagination={pagination}
+      />
+    </BaseLayout>
   );
 }

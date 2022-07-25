@@ -5,6 +5,7 @@ import type {
 } from 'next';
 
 import { mainNavLinks } from '@/components/sidebar/blog-sidebar';
+import BaseLayout from 'layout/base-layout';
 import { allCoreContent } from 'utils/contentlayer';
 import {
   PostsListPage,
@@ -72,10 +73,12 @@ export default function PostsPage({
   contianerTitle,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <PostsListPage
-      pageContainerTitle={contianerTitle}
-      initialDisplayPosts={initialDisplayPosts}
-      pagination={pagination}
-    />
+    <BaseLayout>
+      <PostsListPage
+        pageContainerTitle={contianerTitle}
+        initialDisplayPosts={initialDisplayPosts}
+        pagination={pagination}
+      />
+    </BaseLayout>
   );
 }

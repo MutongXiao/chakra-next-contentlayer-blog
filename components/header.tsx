@@ -76,7 +76,7 @@ const DeskTopNavItems: INavItem[] = [
   },
   {
     label: '关于',
-    href: '/',
+    href: '/about',
   },
 ];
 
@@ -107,7 +107,7 @@ const MobilNavItems: INavItem[] = [
   },
   {
     label: '关于',
-    href: '/',
+    href: '/about',
   },
 ];
 
@@ -340,6 +340,9 @@ export default function Header(props: HTMLChakraProps<'header'>) {
             <NextLink href="/" passHref>
               <Link
                 colorScheme="teal"
+                _focus={{
+                  outline: 'none',
+                }}
                 _hover={{
                   textDecoration: 'none',
                   color: 'teal',
@@ -386,7 +389,11 @@ export default function Header(props: HTMLChakraProps<'header'>) {
                   <MenuItem
                     icon={<RepeatIcon />}
                     onClick={() => {
-                      location.href = 'https://abcjs123.vip/service/discuss';
+                      //location.href = 'https://abcjs123.vip/service/discuss';
+                      window.open(
+                        'https://abcjs123.vip/service/discuss',
+                        '_blank',
+                      );
                     }}
                   >
                     评论管理
@@ -395,7 +402,8 @@ export default function Header(props: HTMLChakraProps<'header'>) {
                   <MenuItem
                     icon={<EditIcon />}
                     onClick={() => {
-                      location.href = 'https://wiki.abcjs123.vip';
+                      window.open('https://wiki.abcjs123.vip', '_blank');
+                      //location.href = 'https://wiki.abcjs123.vip';
                     }}
                   >
                     My WiKi

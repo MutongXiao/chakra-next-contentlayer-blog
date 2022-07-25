@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, chakra, Flex, VStack, Heading } from '@chakra-ui/react';
 import NextLink from 'next/link';
+import BaseLayout from 'layout/base-layout';
 
 interface CardProps {
   title: string;
@@ -205,54 +206,56 @@ export default function UtilsRescoursPage() {
     },
   ];
   return (
-    <Box mb="10">
-      {siteData.map(item => {
-        return (
-          <VStack
-            key={item.siteGroup}
-            maxW="8xl"
-            mx="auto"
-            px={{ base: '5', md: '10' }}
-            my={{ base: '5', md: '10' }}
-            spacing="4"
-          >
-            <Heading
-              size={{ base: 'md', md: 'lg' }}
-              w="full"
-              overflow="hidden"
-              textAlign="start"
-              borderBottom="1px"
-              borderColor="gray.400"
+    <BaseLayout>
+      <Box mb="10">
+        {siteData.map(item => {
+          return (
+            <VStack
+              key={item.siteGroup}
+              maxW="8xl"
+              mx="auto"
+              px={{ base: '5', md: '10' }}
+              my={{ base: '5', md: '10' }}
+              spacing="4"
             >
-              {item.siteGroup}
-            </Heading>
-            <Flex justify="start" pb="3" w="full" flexWrap="wrap">
-              {item.siteMap.map(data => (
-                <Box
-                  key={data.siteUrl}
-                  width={[
-                    '100%', // 0-30em
-                    '100%', // 30em-48em
-                    '50%', // 48em-62em
-                    '50%',
-                    '33.33%',
-                  ]}
-                  pr={{ base: '0', md: '10' }}
-                  mt="5"
-                  boxSizing="border-box"
-                >
-                  <Card
-                    title={data.title}
-                    siteUrl={data.siteUrl}
-                    desc={data.desc}
-                    imgUrl={data.imgUrl}
-                  />
-                </Box>
-              ))}
-            </Flex>
-          </VStack>
-        );
-      })}
-    </Box>
+              <Heading
+                size={{ base: 'md', md: 'lg' }}
+                w="full"
+                overflow="hidden"
+                textAlign="start"
+                borderBottom="1px"
+                borderColor="gray.400"
+              >
+                {item.siteGroup}
+              </Heading>
+              <Flex justify="start" pb="3" w="full" flexWrap="wrap">
+                {item.siteMap.map(data => (
+                  <Box
+                    key={data.siteUrl}
+                    width={[
+                      '100%', // 0-30em
+                      '100%', // 30em-48em
+                      '50%', // 48em-62em
+                      '50%',
+                      '33.33%',
+                    ]}
+                    pr={{ base: '0', md: '10' }}
+                    mt="5"
+                    boxSizing="border-box"
+                  >
+                    <Card
+                      title={data.title}
+                      siteUrl={data.siteUrl}
+                      desc={data.desc}
+                      imgUrl={data.imgUrl}
+                    />
+                  </Box>
+                ))}
+              </Flex>
+            </VStack>
+          );
+        })}
+      </Box>
+    </BaseLayout>
   );
 }
