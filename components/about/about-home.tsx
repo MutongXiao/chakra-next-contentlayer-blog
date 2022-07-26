@@ -1,82 +1,13 @@
 import { Box, Text, Container, VStack, Heading, Link } from '@chakra-ui/react';
 import Image from 'next/image';
-import { createRef, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { HamburgerIcon, ChevronUpIcon, Icon } from '@chakra-ui/icons';
 import { AiOutlineMail, AiFillGithub } from 'react-icons/ai';
 import { FaBlog } from 'react-icons/fa';
 
 import css from './about-home.module.css';
 import wb_me_avatar from 'public/img/wb_me_avatar.png';
-
-function stripAndCollapse(value: string) {
-  const rnothtmlwhite = /[^\x20\t\r\n\f]+/g;
-  const tokens = value.match(rnothtmlwhite) || [];
-  return tokens.join(' ');
-}
-
-function hasClass(el: HTMLElement, cls: string) {
-  const className = ' ' + cls.trim() + ' ';
-  const cur = ' ' + stripAndCollapse(el.className) + ' ';
-  if (cur.indexOf(className) > -1) {
-    return true;
-  }
-  return false;
-}
-
-function addClass(el: HTMLElement, cls: string) {
-  const classes = cls.trim().split(' ');
-  let cur = ' ' + stripAndCollapse(el.className) + ' ';
-  if (classes.length) {
-    let j = 0,
-      clazz = '';
-    while ((clazz = classes[j++])) {
-      if (cur.indexOf(' ' + clazz + ' ') < 0) {
-        cur += clazz + ' ';
-      }
-    }
-
-    if (el.className.trim() !== cur.trim()) {
-      el.className = cur;
-    }
-  }
-}
-
-function removeClass(el: HTMLElement, cls: string) {
-  const classes = cls.trim().split(' ');
-  let cur = ' ' + stripAndCollapse(el.className) + ' ';
-  if (classes.length) {
-    let j = 0,
-      clazz: string = null;
-
-    while ((clazz = classes[j++])) {
-      // 移除 *all* 匹配项
-      while (cur.indexOf(' ' + clazz + ' ') > -1) {
-        cur = cur.replace(' ' + clazz + ' ', ' ');
-      }
-    }
-
-    if (el.className.trim() !== cur.trim()) {
-      el.className = cur;
-    }
-  }
-}
-
-function toggleClass(el: HTMLElement, cls: string) {
-  cls.split(' ').forEach(itemCls => {
-    if (hasClass(el, itemCls)) {
-      removeClass(el, itemCls);
-    } else {
-      addClass(el, itemCls);
-    }
-  });
-}
-
-export const $ = {
-  hasClass,
-  addClass,
-  removeClass,
-  toggleClass,
-};
+import { $, randomNum } from 'utils/tools';
 
 const motto = [
   'Bad Times Make A Good Man.',
@@ -93,23 +24,23 @@ const motto = [
   'Cease To Struggle And You Cease To Live.',
 ];
 
-function randomNum(min: number, max: number) {
-  const range = max - min;
-  const rand = Math.random();
-  const num = min + Math.round(rand * range);
-  return num;
-}
-
 function AboutHome() {
   const panelRef = useRef<HTMLDivElement>();
   const [descData, setDescData] = useState({
     hitokoto: '如何得与凉风约，不共尘沙一并来!',
     from: '中牟道中',
   });
-  const mottoText = motto[randomNum(0, motto.length - 1)];
+  const [mottoText, setMottoText] = useState(motto[3]);
+
+  // SSR Server render 水合数据时会报错， 迷惑中
+  // const mottoText = useMemo(() => {
+  //   const index = randomNum(0, motto.length - 1);
+  //   console.log('memo index', index);
+  //   return motto[index];
+  // }, []);
 
   const [showCloseIcon, setShowCloseIcon] = useState(false);
-  const navigationWrapperRef = createRef<HTMLDivElement>();
+  const navigationWrapperRef = useRef<HTMLDivElement>();
 
   function mobileIconClickShow() {
     const navigationWrapperEl = navigationWrapperRef.current;
@@ -121,20 +52,21 @@ function AboutHome() {
     ) {
       const onAnimationend = () => {
         const toggleClassStr = `${css.visible} ${css.animated} ${css.bounceOutUp}`;
-        toggleClass(navigationWrapperEl, toggleClassStr);
+        $.toggleClass(navigationWrapperEl, toggleClassStr);
         navigationWrapperEl.removeEventListener('animationend', onAnimationend);
       };
       navigationWrapperEl.addEventListener('animationend', onAnimationend);
 
       const toggleClassStr = `${css.animated} ${css.bounceInDown} ${css.animated} ${css.bounceOutUp}`;
-      toggleClass(navigationWrapperEl, toggleClassStr);
+      $.toggleClass(navigationWrapperEl, toggleClassStr);
     } else {
       const toggleClassStr = `${css.visible} ${css.animated} ${css.bounceInDown}`;
-      toggleClass(navigationWrapperEl, toggleClassStr);
+      $.toggleClass(navigationWrapperEl, toggleClassStr);
     }
   }
 
   useEffect(() => {
+    setMottoText(motto[randomNum(0, motto.length - 1)]);
     // 获取一言数据
     fetch('https://v1.hitokoto.cn')
       .then(function (res) {
@@ -270,6 +202,7 @@ function AboutHome() {
                 src={wb_me_avatar}
                 alt="hwcong"
                 layout="fill"
+                priority
               />
             </Box>
             <Box
