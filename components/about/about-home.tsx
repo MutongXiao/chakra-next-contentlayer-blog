@@ -32,7 +32,7 @@ function AboutHome() {
   });
   const [mottoText, setMottoText] = useState(motto[3]);
 
-  // SSR Server render 水合数据时会报错， 迷惑中
+  // SSR Server render 在水合数据时会报错， 迷惑中
   // const mottoText = useMemo(() => {
   //   const index = randomNum(0, motto.length - 1);
   //   console.log('memo index', index);
@@ -149,7 +149,7 @@ function AboutHome() {
           as={showCloseIcon ? ChevronUpIcon : HamburgerIcon}
           fontSize={showCloseIcon ? '4xl' : '2xl'}
           color="white"
-          mt="2px"
+          mt="1px"
           onClick={e => {
             e.preventDefault();
             setShowCloseIcon(!showCloseIcon);
@@ -267,6 +267,7 @@ function AboutHome() {
             fontWeight="thin"
             letterSpacing="2px"
             color="#cccccc"
+            textAlign="center"
             sx={{
               fontSmooth: 'antialiased',
             }}
@@ -296,24 +297,24 @@ function AboutHome() {
                 <ul className={css.navigation}>
                   <li className={css.navigationItem}>
                     <a
-                      href="./Personal profile/index.html"
+                      href="/Personal profile/index.html"
                       className={css.blogButton}
                     >
                       简历
                     </a>
                   </li>
                   <li className={css.navigationItem}>
-                    <a href="./Hobby/index.html" className={css.blogButton}>
+                    <a href="/Hobby/index.html" className={css.blogButton}>
                       爱好
                     </a>
                   </li>
                   <li className={css.navigationItem}>
-                    <a href="./Grade/index.html" className={css.blogButton}>
+                    <a href="/Space/index.html" className={css.blogButton}>
                       空间
                     </a>
                   </li>
                   <li className={css.navigationItem}>
-                    <a href="./Collect/index.html" className={css.blogButton}>
+                    <a href="/Collect/index.html" className={css.blogButton}>
                       收藏
                     </a>
                   </li>
@@ -328,20 +329,25 @@ function AboutHome() {
                       href="https://github.com/mutongxiao"
                       title="GitHub"
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                     >
                       <Icon as={AiFillGithub} fontSize="x-large" />
                       <span className={css.label}>github</span>
                     </a>
                   </li>
                   <li className={css.navigationItem}>
-                    <a href="/" title="博客" target="_blank">
+                    <a href="/" title="博客">
                       <Icon as={FaBlog} fontSize="x-large" />
                       <span className={css.label}>博客</span>
                     </a>
                   </li>
                   <li className={css.navigationItem}>
-                    <a href="mailto:mutongxiao@hotmial.com" title="Email">
+                    <a
+                      href="mailto:mutongxiao@hotmial.com"
+                      title="Email"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
                       <Icon as={AiOutlineMail} fontSize="x-large" />
                       <span className={css.label}>email</span>
                     </a>

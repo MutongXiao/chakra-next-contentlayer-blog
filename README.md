@@ -11,9 +11,29 @@ yarn install
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
 ```
 
+Run the production server
+
+```bash
+yarn build
+```
+
+It will auto general search meta data at `configs/search-meta.json` for algolia search on building
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Function module
+
+- The site search function is implemented using [algolia](https://www.algolia.com/doc/guides/building-search-ui/getting-started/react/)
+
+- About the comment plugin is my modified development based on [Discuss](https://github.com/discussjs/discuss)
+
+- ......
+
+Thanks All !!
+
+## Other
+
+This is a web blog website that I made as an amateur during the learning process, some website modules have not been implemented. Maybe I will add some modules that I am interested in from time to time on the website. Right, it's up to me if I have the time, but I'll do it! -\_-
