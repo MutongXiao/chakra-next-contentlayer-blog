@@ -1,6 +1,23 @@
-import { Box, Text, Container, VStack, Heading, Link } from '@chakra-ui/react';
+import {
+  Box,
+  Text,
+  Container,
+  VStack,
+  Heading,
+  Link,
+  useDisclosure,
+  Modal,
+  ModalContent,
+  ModalOverlay,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+} from '@chakra-ui/react';
+import NextLink from 'next/link';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 import { HamburgerIcon, ChevronUpIcon, Icon } from '@chakra-ui/icons';
 import { AiOutlineMail, AiFillGithub } from 'react-icons/ai';
 import { FaBlog } from 'react-icons/fa';
@@ -8,6 +25,9 @@ import { FaBlog } from 'react-icons/fa';
 import css from './about-home.module.css';
 import wb_me_avatar from 'public/img/wb_me_avatar.png';
 import { $, randomNum } from 'utils/tools';
+import AccessCodeForm from '@/components/about/access-code-form';
+
+// import {fullScreenAnimation} from 'utils/tools'
 
 const motto = [
   'Bad Times Make A Good Man.',
@@ -24,18 +44,46 @@ const motto = [
   'Cease To Struggle And You Cease To Live.',
 ];
 
+function AccessFormModal(props: { isOpen: boolean; onClose: () => void }) {
+  const { isOpen = false, onClose } = props;
+  const router = useRouter();
+  const onSucceedCallback = () => {
+    router.replace('/about/profile');
+  };
+
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} size="sm">
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>访问Wcong_H的简历</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody pb={6}>
+          <AccessCodeForm callback={onSucceedCallback} />
+        </ModalBody>
+      </ModalContent>
+    </Modal>
+  );
+}
+
 function AboutHome() {
+  const router = useRouter();
   const panelRef = useRef<HTMLDivElement>();
+  const profilepicRef = useRef<HTMLDivElement>();
+  // const bgcanvasRef = useRef<HTMLCanvasElement>();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { data: session } = useSession();
+  const [needAccessCode, setNeedAccessCode] = useState(true);
+
   const [descData, setDescData] = useState({
     hitokoto: '如何得与凉风约，不共尘沙一并来!',
     from: '中牟道中',
   });
   const [mottoText, setMottoText] = useState(motto[3]);
 
-  // SSR Server render 在水合数据时会报错， 迷惑中
+  // SSR 在水合数据时会报错， 迷惑中
   // const mottoText = useMemo(() => {
   //   const index = randomNum(0, motto.length - 1);
-  //   console.log('memo index', index);
   //   return motto[index];
   // }, []);
 
@@ -66,6 +114,10 @@ function AboutHome() {
   }
 
   useEffect(() => {
+    setNeedAccessCode(!session);
+  }, [session]);
+
+  useEffect(() => {
     setMottoText(motto[randomNum(0, motto.length - 1)]);
     // 获取一言数据
     fetch('https://v1.hitokoto.cn')
@@ -82,10 +134,10 @@ function AboutHome() {
         return err;
       });
 
+    // 背景一：加载图片背景
     const getBgUrl = 'https://realwds-api.vercel.app/bing?count=8';
     let imgUrls = JSON.parse(sessionStorage.getItem('imgUrls')) as string[];
     let index = parseInt(sessionStorage.getItem('imgIndex'));
-
     if (imgUrls === null) {
       imgUrls = [];
       index = 0;
@@ -106,6 +158,9 @@ function AboutHome() {
           panelRef.current.style.backgroundSize = 'cover';
           sessionStorage.setItem('imgUrls', JSON.stringify(imgUrls));
           sessionStorage.setItem('imgIndex', index.toString());
+        })
+        .catch(err => {
+          return err;
         });
     } else {
       if (index == 7) index = 0;
@@ -118,9 +173,15 @@ function AboutHome() {
       sessionStorage.setItem('imgIndex', index.toString());
     }
 
-    // 加载页面入场动画类
+    // 背景2：加载动画背景
+    // const { startAnimation, stopAnimation } = fullScreenAnimation(
+    //   bgcanvasRef.current,
+    // );
+    // startAnimation();
+
+    // 页面内容的入场动画类
     const iUpElements = document.querySelectorAll(`.${css.iUp}`);
-    let t = 0;
+    let t = 60;
     const d = 150;
     iUpElements.forEach(el => {
       setTimeout(() => {
@@ -128,6 +189,11 @@ function AboutHome() {
       }, t);
       t += d;
     });
+
+    // 页面卸载时，结束页面canvas动画
+    // return () => {
+    //   stopAnimation();
+    // };
   }, []);
 
   return (
@@ -169,11 +235,14 @@ function AboutHome() {
       >
         <VStack pos="relative" zIndex={800}>
           <Box
-            className={'avatar-box ' + css.iUp}
+            className={`avatar-box ${css.iUp}`}
             cursor="pointer"
             pos="relative"
+            w="32"
+            h="32"
           >
             <Box
+              ref={profilepicRef}
               className={css.profilepic}
               sx={{
                 '.avatar-box:hover &': {
@@ -184,9 +253,8 @@ function AboutHome() {
               zIndex={11}
               transformOrigin="0% 50%"
               transition="all 0.5s ease-in-out"
-              borderRadius="50%"
-              w="32"
-              h="32"
+              w="full"
+              h="full"
               _before={{
                 position: 'absolute',
                 display: 'block',
@@ -197,13 +265,7 @@ function AboutHome() {
                 transition: 'all 0.35s ease-in-out',
               }}
             >
-              <Image
-                style={{ borderRadius: '50%' }}
-                src={wb_me_avatar}
-                alt="hwcong"
-                layout="fill"
-                priority
-              />
+              <Image src={wb_me_avatar} alt="hwcong" layout="fill" priority />
             </Box>
             <Box
               pos="absolute"
@@ -232,16 +294,23 @@ function AboutHome() {
                 bgColor="#333333"
               >
                 <Heading
-                  color="white"
+                  color="gray.300"
                   pos="relative"
                   fontSize="18px"
                   lineHeight="44px"
                   textShadow="0 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.3)"
+                  _hover={{
+                    textShadow:
+                      '0 0 1px #0ebeff, 0 0 2px #0ebeff, 0 0 4px #0ebeff',
+                  }}
+                  onClick={() => {
+                    needAccessCode ? onOpen() : router.push('/about/profile');
+                  }}
                 >
                   Hwcong
                 </Heading>
                 <Text color="#bbb" fontStyle="italic" fontSize="10px">
-                  2022 · 幸运
+                  {new Date().getFullYear()} · 幸运
                 </Text>
               </Box>
             </Box>
@@ -297,8 +366,12 @@ function AboutHome() {
                 <ul className={css.navigation}>
                   <li className={css.navigationItem}>
                     <a
-                      href="/Personal profile/index.html"
                       className={css.blogButton}
+                      onClick={() => {
+                        needAccessCode
+                          ? onOpen()
+                          : router.push('/about/profile');
+                      }}
                     >
                       简历
                     </a>
@@ -309,12 +382,12 @@ function AboutHome() {
                     </a>
                   </li>
                   <li className={css.navigationItem}>
-                    <a href="/Space/index.html" className={css.blogButton}>
+                    <a href="/space/index.html" className={css.blogButton}>
                       空间
                     </a>
                   </li>
                   <li className={css.navigationItem}>
-                    <a href="/Collect/index.html" className={css.blogButton}>
+                    <a href="/collect/index.html" className={css.blogButton}>
                       收藏
                     </a>
                   </li>
@@ -336,10 +409,12 @@ function AboutHome() {
                     </a>
                   </li>
                   <li className={css.navigationItem}>
-                    <a href="/" title="博客">
-                      <Icon as={FaBlog} fontSize="x-large" />
-                      <span className={css.label}>博客</span>
-                    </a>
+                    <NextLink href="/" passHref>
+                      <a title="博客">
+                        <Icon as={FaBlog} fontSize="x-large" />
+                        <span className={css.label}>博客</span>
+                      </a>
+                    </NextLink>
                   </li>
                   <li className={css.navigationItem}>
                     <a
@@ -363,10 +438,12 @@ function AboutHome() {
         >
           <p className={css.power}>
             © 2022 Powered By
-            <Link href="/" target="_blank" color="#4e97d8">
-              {' '}
-              Hwcong{' '}
-            </Link>
+            <NextLink href="/" passHref>
+              <Link target="_blank" color="#4e97d8">
+                {' '}
+                Hwcong{' '}
+              </Link>
+            </NextLink>
           </p>
         </Box>
       </Box>
@@ -382,6 +459,21 @@ function AboutHome() {
         h="full"
         opacity={0.55}
       />
+      <AccessFormModal isOpen={isOpen} onClose={onClose} />
+      {/* <canvas
+        ref={bgcanvasRef}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: '100vh',
+          width: '100vw',
+        }}
+      >
+        Canvas not supported.
+      </canvas> */}
     </Container>
   );
 }

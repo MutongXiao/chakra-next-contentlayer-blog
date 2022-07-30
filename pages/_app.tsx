@@ -1,5 +1,7 @@
 import type { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
+import { SessionProvider } from 'next-auth/react';
+
 import FontFace from '@/components/font-face';
 import ToTop from '@/components/ToTop';
 // import Analytics from '@/components/site-analytics'
@@ -39,7 +41,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       {/* 站点数据分析脚本，同上的脚本引入 <Analytics /> */}
       <ChakraProvider theme={theme}>
-        <Component {...pageProps} />
+        <SessionProvider session={pageProps.session} refetchInterval={0}>
+          <Component {...pageProps} />
+        </SessionProvider>
         <ToTop />
       </ChakraProvider>
       <FontFace />

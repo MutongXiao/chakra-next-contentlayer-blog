@@ -50,6 +50,19 @@
   text-align: center;
 }
 
+.up .profilepic {
+  animation: boderRadius-f 0.5s ease-in-out 0.1s forwards;
+}
+
+@keyframes boderRadius-f {
+  0% {
+    border-radius: 0%;
+  }
+  100% {
+    border-radius: 50%;
+  }
+}
+
 .coverNavigation {
   margin-top: 42px;
   text-align: center;
