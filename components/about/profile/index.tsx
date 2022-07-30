@@ -83,14 +83,19 @@ function Profile() {
         <Box as="section" id="skills" bg="#00bebd">
           <div className={css.wrap}>
             <h2 className={css.title}>
-              `<Icon as={UnlockIcon} mr="3" />
+              <Icon as={UnlockIcon} mr="3" />
               掌握的技能
             </h2>
             <div className={`${css.row} ${css.scrollable}`}>
               <div
                 className={`${css.col_s_6} ${css.col_m_4} ${css.center_fixed}`}
               >
-                <Icon as={FaReact} className={css.skills_icon} fontSize="8xl" />
+                <Icon
+                  as={FaReact}
+                  className={css.skills_icon}
+                  fontSize="8xl"
+                  color="black"
+                />
                 <div className={css.skills_title}>
                   <h3>React</h3>
                   <p>熟悉 HTML5 网站的架构和开发</p>
@@ -99,7 +104,12 @@ function Profile() {
               <div
                 className={`${css.col_s_6} ${css.col_m_4} ${css.center_fixed}`}
               >
-                <Icon as={FaVuejs} className={css.skills_icon} fontSize="8xl" />
+                <Icon
+                  as={FaVuejs}
+                  className={css.skills_icon}
+                  fontSize="8xl"
+                  color="black"
+                />
                 <div className={css.skills_title}>
                   <h3>Vue</h3>
                   <p>熟悉 HTML5 网站的架构和开发</p>
@@ -112,6 +122,7 @@ function Profile() {
                   as={SiWebpack}
                   className={css.skills_icon}
                   fontSize="8xl"
+                  color="black"
                 />
                 <div className={css.skills_title}>
                   <h3>webpack</h3>
@@ -125,6 +136,7 @@ function Profile() {
                   as={FaCss3Alt}
                   className={css.skills_icon}
                   fontSize="8xl"
+                  color="black"
                 />
                 <div className={css.skills_title}>
                   <h3>CSS3</h3>
@@ -138,6 +150,7 @@ function Profile() {
                   as={DiJavascript}
                   className={css.skills_icon}
                   fontSize="8xl"
+                  color="black"
                 />
                 <div className={css.skills_title}>
                   <h3>JavaScript</h3>
@@ -151,6 +164,7 @@ function Profile() {
                   as={FaNodeJs}
                   className={css.skills_icon}
                   fontSize="8xl"
+                  color="black"
                 />
                 <div className={css.skills_title}>
                   <h3>NodeJS</h3>
@@ -191,13 +205,13 @@ function Profile() {
             <div className={css.row}>
               <div className={css.col_m_8}>
                 <ul className={css.timeline}>
-                  <li>2018.09：步入大学 </li>
-                  <li>2018.12: 进入ACM实验室 </li>
-                  <li>2019.05: 参加CCPC竞赛 </li>
-                  <li>2019.08: 参加湖南省ACM竞赛 </li>
-                  <li>2019.11: 进入Maker-lot实验室</li>
-                  <li>2019.12: 建立首个个人博客 </li>
-                  <li>---</li>
+                  <li>2018.09：步入哈弗大学 </li>
+                  <li>2018.12: 进入诺贝尔实验室 </li>
+                  <li>2019.05: 进入图灵实验室 </li>
+                  <li>2019.08: 获计算机图灵奖 </li>
+                  <li>2019.11: 获诺贝尔计算机奖</li>
+                  <li>2020.12: 保送卡内基梅隆大学计算机硕博连读 </li>
+                  <li>2022.--: 以上纯属我的白日梦</li>
                 </ul>
               </div>
               <div className={`${css.col_m_4} ${css.center_fixed}`}>
@@ -209,9 +223,11 @@ function Profile() {
         <footer className={css.footer}>
           <p>
             © {new Date().getFullYear()} By{' '}
-            <a href="/" title="Wcong_H的博客" target="_blank">
-              Wcong_H
-            </a>
+            <NextLink href="/" passHref>
+              <a title="Wcong_H的博客" target="_blank">
+                Wcong_H
+              </a>
+            </NextLink>
             .
           </p>
         </footer>
