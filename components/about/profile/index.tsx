@@ -92,7 +92,7 @@ function Profile() {
               >
                 <Icon as={FaReact} className={css.skills_icon} fontSize="8xl" />
                 <div className={css.skills_title}>
-                  <h3>HTML 5</h3>
+                  <h3>React</h3>
                   <p>熟悉 HTML5 网站的架构和开发</p>
                 </div>
               </div>
@@ -101,7 +101,7 @@ function Profile() {
               >
                 <Icon as={FaVuejs} className={css.skills_icon} fontSize="8xl" />
                 <div className={css.skills_title}>
-                  <h3>HTML 5</h3>
+                  <h3>Vue</h3>
                   <p>熟悉 HTML5 网站的架构和开发</p>
                 </div>
               </div>
@@ -114,7 +114,7 @@ function Profile() {
                   fontSize="8xl"
                 />
                 <div className={css.skills_title}>
-                  <h3>HTML 5</h3>
+                  <h3>webpack</h3>
                   <p>熟悉 HTML5 网站的架构和开发</p>
                 </div>
               </div>
@@ -153,7 +153,7 @@ function Profile() {
                   fontSize="8xl"
                 />
                 <div className={css.skills_title}>
-                  <h3>JavaScript</h3>
+                  <h3>NodeJS</h3>
                   <p>能使用 JS 制作简单的程序、交互与特效</p>
                 </div>
               </div>
