@@ -47,14 +47,19 @@ function Profile() {
                 <p>性别：男</p>
                 <p>年龄：18</p>
                 <p>英文名：Wcong_H</p>
-                <p>学历：本科</p>
+                <p>学历：博士后</p>
               </div>
               <div className={css.col_l_4}>
                 <p>QQ：1243166374</p>
                 <p>
                   GitHub：
-                  <a href="https://github.com/mutongxiao" className={css.link}>
-                    Wcong_H
+                  <a
+                    href="https://github.com/mutongxiao"
+                    rel="noreferrer"
+                    className={css.link}
+                    target="_blank"
+                  >
+                    mutongxiao
                   </a>
                 </p>
                 <p>

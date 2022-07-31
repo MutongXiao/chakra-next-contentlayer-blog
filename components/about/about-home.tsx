@@ -6,12 +6,6 @@ import {
   Heading,
   Link,
   useDisclosure,
-  Modal,
-  ModalContent,
-  ModalOverlay,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import Image from 'next/image';
@@ -25,7 +19,7 @@ import { FaBlog } from 'react-icons/fa';
 import css from './about-home.module.css';
 import wb_me_avatar from 'public/img/wb_me_avatar.png';
 import { $, randomNum } from 'utils/tools';
-import AccessCodeForm from '@/components/about/access-code-form';
+import AccessFormModal from '@/components/about/access-code-form';
 
 // import {fullScreenAnimation} from 'utils/tools'
 
@@ -44,26 +38,26 @@ const motto = [
   'Cease To Struggle And You Cease To Live.',
 ];
 
-function AccessFormModal(props: { isOpen: boolean; onClose: () => void }) {
-  const { isOpen = false, onClose } = props;
-  const router = useRouter();
-  const onSucceedCallback = () => {
-    router.replace('/about/profile');
-  };
+// function AccessFormModal(props: { isOpen: boolean; onClose: () => void }) {
+//   const { isOpen = false, onClose } = props;
+//   const router = useRouter();
+//   const onSucceedCallback = () => {
+//     router.replace('/about/profile');
+//   };
 
-  return (
-    <Modal isOpen={isOpen} onClose={onClose} size="sm">
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>访问Wcong_H的简历</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody pb={6}>
-          <AccessCodeForm callback={onSucceedCallback} />
-        </ModalBody>
-      </ModalContent>
-    </Modal>
-  );
-}
+//   return (
+//     <Modal isOpen={isOpen} onClose={onClose} size="sm">
+//       <ModalOverlay />
+//       <ModalContent>
+//         <ModalHeader>访问Wcong_H的简历</ModalHeader>
+//         <ModalCloseButton />
+//         <ModalBody pb={6}>
+//           <AccessCodeForm callback={onSucceedCallback} />
+//         </ModalBody>
+//       </ModalContent>
+//     </Modal>
+//   );
+// }
 
 function AboutHome() {
   const router = useRouter();

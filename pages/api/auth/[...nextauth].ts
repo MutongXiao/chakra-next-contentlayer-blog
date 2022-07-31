@@ -32,7 +32,7 @@ export const authOptions: NextAuthOptions = {
         // Add logic here to look up the user from the credentials supplied
         if (!credentials || !credentials.accessCode) return null;
         // example: verify code is valid
-        const plaintextCode = 'admin';
+        const plaintextCode = process.env.ACCESS_CODE;
         const hasAccessCode = await hashPassword(plaintextCode);
         const isValid = await verifyPassword(
           credentials.accessCode,

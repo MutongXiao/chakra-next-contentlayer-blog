@@ -6,10 +6,10 @@ import Profile from '@/components/about/profile';
 
 function AccessDenied() {
   return (
-    <VStack>
+    <VStack pt="16">
       <Icon as={WarningTwoIcon} color="red.500" fontSize="9xl" />
       <Heading color="red">Access Denied</Heading>
-      <Text color="red" fontSize="lg">
+      <Text color="red" fontSize="lg" textAlign="center">
         you must be got accsss code in to view this page!
       </Text>
       <Button
