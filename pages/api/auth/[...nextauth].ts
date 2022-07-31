@@ -31,24 +31,29 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         // Add logic here to look up the user from the credentials supplied
         if (!credentials || !credentials.accessCode) return null;
-        // example: verify code is valid
-        const plaintextCode = process.env.ACCESS_CODE;
-        const hasAccessCode = await hashPassword(plaintextCode);
-        const isValid = await verifyPassword(
-          credentials.accessCode,
-          hasAccessCode,
-        );
-
-        if (isValid && process.env.ACCESS_CODE !== '') {
-          // the ACCESS_CODE is only used once
-          process.env.ACCESS_CODE = '';
-          // Any object returned will be saved in `user` property of the JWT
-          return {
+        try {
+          // example to verify code is valid
+          const plaintextCode = process.env.ACCESS_CODE;
+          const hasAccessCode = await hashPassword(plaintextCode);
+          // if verifyPassword no pass will may be thorw error, so to try catch it
+          const isValid = await verifyPassword(
+            credentials.accessCode,
             hasAccessCode,
-          };
-        } else {
-          // If you return null then an error will be displayed advising the user to check their details.
-          // return null;
+          );
+
+          if (isValid && process.env.ACCESS_CODE !== '') {
+            // the ACCESS_CODE is only used once
+            process.env.ACCESS_CODE = '';
+            // Any object returned will be saved in `user` property of the JWT
+            return {
+              hasAccessCode,
+            };
+          } else {
+            // If you return null then an error will be displayed advising the user to check their details.
+            // return null;
+            throw new Error('Access Code Error!');
+          }
+        } catch (error) {
           throw new Error('Access Code Error!');
         }
       },
