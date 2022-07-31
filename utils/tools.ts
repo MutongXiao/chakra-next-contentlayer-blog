@@ -77,6 +77,15 @@ export function randomNum(min: number, max: number) {
   return num;
 }
 
+// 随机字符串
+export function randomString(strlen = 6) {
+  const t = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+  const a = t.length;
+  let n = '';
+  for (let i = 0; i < strlen; i++) n += t.charAt(Math.floor(Math.random() * a));
+  return n;
+}
+
 // 背景动画工具行数
 /**
  * 绘制首页背景动画

@@ -39,7 +39,9 @@ export const authOptions: NextAuthOptions = {
           hasAccessCode,
         );
 
-        if (isValid) {
+        if (isValid && process.env.ACCESS_CODE !== '') {
+          // the ACCESS_CODE is only used once
+          process.env.ACCESS_CODE = '';
           // Any object returned will be saved in `user` property of the JWT
           return {
             hasAccessCode,
