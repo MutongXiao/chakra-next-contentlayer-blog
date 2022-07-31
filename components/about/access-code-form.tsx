@@ -137,9 +137,8 @@ function AccessCodeForm(props: FormProps) {
               </Flex>
             </VStack>
           )}
-          <Flex justifyContent="space-between" alignItems="end">
+          <Flex mt={5} justifyContent="space-between" alignItems="end">
             <Button
-              mt={4}
               colorScheme="teal"
               isLoading={props.isSubmitting}
               type="submit"
