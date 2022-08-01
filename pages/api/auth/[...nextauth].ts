@@ -34,15 +34,16 @@ export const authOptions: NextAuthOptions = {
         try {
           // example to verify code is valid
           const plaintextCode = process.env.ACCESS_CODE;
+          // that may be throw error, because the process.env.ACCESS_CODE may be '' value,
+          // so to try catch it
           const hasAccessCode = await hashPassword(plaintextCode);
-          // if verifyPassword no pass will may be thorw error, so to try catch it
           const isValid = await verifyPassword(
             credentials.accessCode,
             hasAccessCode,
           );
 
           if (isValid && process.env.ACCESS_CODE !== '') {
-            // the ACCESS_CODE is only used once
+            // the ACCESS_CODE is only used once, then set it as ''
             process.env.ACCESS_CODE = '';
             // Any object returned will be saved in `user` property of the JWT
             return {

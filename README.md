@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) blog project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). site designed with chakra ui.Generate static pages via a [contentlayer](https://www.contentlayer.dev/) that supports mdx.
+This is a [Next.js](https://nextjs.org/) blog project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). site ui component designed with chakra ui.Generate static pages via [contentlayer.js](https://www.contentlayer.dev/) that supports mdx.
 
 [线上预览](https://chakra-next-contentlayer-blog.vercel.app/)
 
@@ -28,7 +28,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - The site search function is implemented using [algolia](https://www.algolia.com/doc/guides/building-search-ui/getting-started/react/)
 
-- About the comment plugin is my modified development based on [Discuss](https://github.com/discussjs/discuss)
+- The comment function is implemented using [Discuss](https://github.com/discussjs/discuss) with
+  some modifications I have made
+
+- The access code authorization function is implemented using [Next-Auth](https://next-auth.js.org/).
+  And the implementation in the project is to use two environment variables process.env.ACCESS_CODE and process.env.ADMIN_PASSWORD for request parameter verification
 
 - ......
 
