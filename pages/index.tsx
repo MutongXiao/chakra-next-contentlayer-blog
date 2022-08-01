@@ -56,11 +56,11 @@ const Home = () => {
             我的博客网站.
           </Heading>
           <Text color={'gray.500'} maxW={'3xl'}>
-            此博客网站借鉴了chakra文档，采用chakra
+            此博客网站借鉴chakra文档，复用了其页面组件能力，采用chakra
             ui进行设计，使用服务端渲染（SSR）Next框架开发，
             相比客户端渲染，更利于SEO优化。通过contentlayer生成静态文档内容，支持MDX文档格式，
-            相比md格式扩展了更多文档功能，这点在组件文档应用上体现最为明显。此项目部署在vercel平台上，
-            一键部署，简单快捷，个人完全免费使用。
+            相比md格式扩展了更多文档功能，这点在组件文档应用上体现最为明显。此项目服务部署在vercel平台上，
+            一键部署，简单快捷，vercel对于个人完全免费使用。
           </Text>
           <Stack spacing={6} direction={'row'}>
             <Button
