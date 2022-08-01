@@ -24,6 +24,10 @@ It will auto general search meta data at `configs/search-meta.json` for algolia 
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## How to quickly deploy a project in Vercel, you can refer to:
+
+[bilibili video](https://www.bilibili.com/video/BV1TV4y1j76t?share_source=copy_web&vd_source=a9339f4798c3797132386b56c98928b7)
+
 ## Function module
 
 - The site search function is implemented using [algolia](https://www.algolia.com/doc/guides/building-search-ui/getting-started/react/)
