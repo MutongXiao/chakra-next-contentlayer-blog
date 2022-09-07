@@ -21,14 +21,14 @@ import css from './index.module.css';
 function Profile() {
   const skillsContainerRef = useRef<HTMLDivElement>();
   useEffect(() => {
+    const skillsContainerDom = skillsContainerRef.current;
     const fn = (ev: WheelEvent) => {
       ev.preventDefault();
-      skillsContainerRef.current.scrollLeft += ev.deltaY;
+      skillsContainerDom.scrollLeft += ev.deltaY;
     };
-    skillsContainerRef.current.addEventListener('wheel', fn);
+    skillsContainerDom.addEventListener('wheel', fn);
     return () => {
-      skillsContainerRef.current.removeEventListener('wheel', fn);
-      skillsContainerRef.current = null;
+      skillsContainerDom.removeEventListener('wheel', fn);
     };
   }, []);
   return (
