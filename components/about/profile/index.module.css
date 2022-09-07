@@ -1,28 +1,3 @@
-/* - 滚动条 */
-.scrollable::-webkit-scrollbar {
-  display: none;
-  width: 10px;
-  height: 10px;
-}
-
-.scrollable::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 5px;
-}
-
-.scrollable::-webkit-scrollbar-track:hover {
-  border-radius: 5px;
-  background: rgba(0, 0, 0, 0.05);
-}
-
-.scrollable:hover::-webkit-scrollbar {
-  display: block;
-}
-
-.scrollable:hover {
-  cursor: pointer;
-}
-
 .link {
   color: teal;
 }
@@ -130,6 +105,7 @@
 }
 
 .wrap {
+  position: relative;
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
@@ -142,7 +118,7 @@
   align-items: center;
   font-weight: bolder;
   font-size: 1.5em;
-  margin-bottom: 1em;
+  margin-bottom: 1.3em;
 }
 
 /* - 技能 */
@@ -156,14 +132,11 @@
   background: #fff;
   border-radius: 100%;
   box-shadow: 0 5px rgba(0, 0, 0, 0.3);
-}
-.skills_icon:hover i {
-  transform: rotate(1turn);
-}
-.skills_icon i {
-  font-size: 50px;
   line-height: 100px;
   transition: transform 0.5s;
+}
+.skills_icon:hover {
+  transform: rotate(1turn);
 }
 .skills_title h3 {
   font-weight: bolder;
@@ -171,6 +144,80 @@
 .skills_title {
   margin-top: 1.5em;
   text-align: center;
+}
+
+/* - 滚动条 */
+.scrollable::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 5px;
+}
+
+.scrollable::-webkit-scrollbar-track:hover {
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.scrollable:hover {
+  cursor: pointer;
+}
+
+.external {
+  height: 200px;
+  box-sizing: border-box;
+  /* background-color: #00bebd; */
+  overflow: hidden;
+  cursor: pointer;
+}
+/* hide scrollbar */
+.horizontal_scroll_wrapper::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
+}
+.horizontal_scroll_wrapper::-webkit-scrollbar-button {
+  width: 1px;
+  height: 1px;
+}
+.horizontal_scroll_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vh;
+  transform: rotate(-90deg) translate3d(0, -100vh, 0);
+  transform-origin: right top;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0;
+  height: 100vw;
+  perspective: 1px;
+  transform-style: preserve-3d;
+  padding-bottom: 25rem;
+}
+@media screen and (max-width: 900px) {
+  .horizontal_scroll_wrapper {
+    padding-bottom: 0rem;
+  }
+  .external {
+    height: 225px;
+  }
+}
+.img_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 45vh;
+  transform-origin: 50% 50%;
+  transform: rotate(90deg);
+  /* transform: rotate(90deg) translateZ(0.1px) scale(0.9) translateX(0px)
+    translateY(-3vh); */
+  transform: rotate(90deg) translateZ(-0.2px) scale(1.1) translateX(-50%)
+    translateY(-40vh);
+  transition: 1s;
 }
 
 /* - 作品 */
@@ -198,9 +245,11 @@
   position: relative;
   margin-bottom: 1.5em;
 }
+
 .timeline li:hover:before {
   transform: scale(1.2, 1.2);
 }
+
 .timeline li:before {
   content: '';
   left: -2.3em;

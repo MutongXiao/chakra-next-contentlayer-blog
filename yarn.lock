@@ -6228,6 +6228,11 @@ hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.1, hoist-non-react-
   dependencies:
     react-is "^16.7.0"
 
+howler@^2.1.3:
+  version "2.2.3"
+  resolved "https://registry.npmmirror.com/howler/-/howler-2.2.3.tgz#a2eff9b08b586798e7a2ee17a602a90df28715da"
+  integrity sha512-QM0FFkw0LRX1PR8pNzJVAY25JhIWvbKMBFM4gqk+QdV+kPXOhleWGCB6AiAF/goGjIHK2e/nIElplvjQwhr0jg==
+
 html-enumerated-attributes@^0.1.0:
   version "0.1.0"
   resolved "https://registry.npmmirror.com/html-enumerated-attributes/-/html-enumerated-attributes-0.1.0.tgz#945bcce9d54bc08db7da03ce2d4f8b386ab6cae9"
@@ -10342,6 +10347,13 @@ use-sidecar@^1.1.2:
   dependencies:
     detect-node-es "^1.1.0"
     tslib "^2.0.0"
+
+use-sound@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.npmmirror.com/use-sound/-/use-sound-4.0.1.tgz#8c8de4badd16902db7762fd9418a4283b9bf7b3e"
+  integrity sha512-hykJ86kNcu6y/FzlSHcQxhjSGMslZx2WlfLpZNoPbvueakv4OF3xPxEtGV2YmculrIaH0tPp9LtG4jgy17xMWg==
+  dependencies:
+    howler "^2.1.3"
 
 util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   version "1.0.2"

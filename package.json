@@ -71,6 +71,7 @@
     "sharp": "^0.30.7",
     "shelljs": "^0.8.5",
     "superjson": "^1.8.1",
+    "use-sound": "^4.0.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

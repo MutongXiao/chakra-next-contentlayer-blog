@@ -1,22 +1,23 @@
+import { CalendarIcon } from '@chakra-ui/icons';
 import {
   Box,
   Center,
   Flex,
   List,
-  Text,
   ListItem,
   ListProps,
+  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 import { ReactElement, ReactNode } from 'react';
-import { FaReact, FaVuejs, FaCss3Alt, FaNodeJs } from 'react-icons/fa';
 import { DiJavascript } from 'react-icons/di';
-import { SiWebpack } from 'react-icons/si';
+import { FaCss3Alt, FaNodeJs, FaReact, FaVuejs } from 'react-icons/fa';
 import { FiPenTool } from 'react-icons/fi';
-import { CalendarIcon } from '@chakra-ui/icons';
+import { SiWebpack } from 'react-icons/si';
+import useSound from 'use-sound';
 import { getPostsCategoriesGroup } from 'utils/contentlayer';
 
 type MainNavLinkProps = {
@@ -27,7 +28,8 @@ type MainNavLinkProps = {
 };
 
 export const isMainNavLinkActive = (href: string, path: string) => {
-  const [_, blog, category] = path.split('/');
+  // const [_, blog, category] = path.split('/');
+  const [blog, category] = path.split('/').slice(1);
   const isMain = path.includes('overview')
     ? path.includes(href)
     : href.includes(`${blog}/overview/${category}`);
@@ -139,10 +141,22 @@ export const mainNavLinks = [
 ];
 
 export const MainNavLinkGroup = (props: ListProps) => {
+  const [playHover] = useSound('/sounds/plunger-immediate.mp3', {
+    volume: 0.1,
+  });
   return (
     <List spacing="4" styleType="none" {...props}>
       {mainNavLinks.map(item => (
-        <ListItem key={item.label}>
+        <ListItem
+          key={item.label}
+          onMouseEnter={() => {
+            playHover();
+          }}
+          padding="1"
+          _hover={{
+            bgColor: 'teal.50',
+          }}
+        >
           <MainNavLink icon={item.icon} href={item.href} label={item.label}>
             <Flex flex="1" justify="space-between">
               <Text>{item.label}</Text>

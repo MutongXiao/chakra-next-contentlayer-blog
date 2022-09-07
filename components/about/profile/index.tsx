@@ -1,15 +1,36 @@
-import { Box, Icon } from '@chakra-ui/react';
+import { CalendarIcon, StarIcon, UnlockIcon, ViewIcon } from '@chakra-ui/icons';
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+  Icon,
+} from '@chakra-ui/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
-import { StarIcon, ViewIcon, CalendarIcon, UnlockIcon } from '@chakra-ui/icons';
-import { FaReact, FaVuejs, FaCss3Alt, FaNodeJs } from 'react-icons/fa';
 import { DiJavascript } from 'react-icons/di';
+import { FaCss3Alt, FaNodeJs, FaReact, FaVuejs } from 'react-icons/fa';
 import { SiWebpack } from 'react-icons/si';
 
-import css from './index.module.css';
 import me_picture from 'public/img/wb_me_avatar.png';
+import { useEffect, useRef } from 'react';
+import css from './index.module.css';
 
 function Profile() {
+  const skillsContainerRef = useRef<HTMLDivElement>();
+  useEffect(() => {
+    const fn = (ev: WheelEvent) => {
+      ev.preventDefault();
+      skillsContainerRef.current.scrollLeft += ev.deltaY;
+    };
+    skillsContainerRef.current.addEventListener('wheel', fn);
+    return () => {
+      skillsContainerRef.current.removeEventListener('wheel', fn);
+      skillsContainerRef.current = null;
+    };
+  }, []);
   return (
     <>
       <aside className={css.sidebar}>
@@ -45,7 +66,7 @@ function Profile() {
               <div className={css.col_l_4}>
                 <p>姓名：Wcong_H</p>
                 <p>性别：男</p>
-                <p>年龄：18</p>
+                <p>年龄：forever 18 age</p>
                 <p>英文名：Wcong_H</p>
                 <p>学历：博士后</p>
               </div>
@@ -79,7 +100,7 @@ function Profile() {
               </div>
               <div className={css.col_l_4}>
                 <p>
-                  我是一个热爱钻研计算机技术的少年，从小开始对计算机有极大的兴趣。作为计算机专业的学生，我热爱我的专业并为其投入巨大的热情和精力。希望大家能和我一同热爱计算机！
+                  我是一个热爱钻研计算机技术的二逼少年，我热爱计算机、热爱编程。作为计算机专业的学生，我热爱我的专业并为其投入巨大的热情和精力。希望大家能和我一同热爱计算机！
                 </p>
               </div>
             </div>
@@ -91,7 +112,10 @@ function Profile() {
               <Icon as={UnlockIcon} mr="3" />
               掌握的技能
             </h2>
-            <div className={`${css.row} ${css.scrollable}`}>
+            <div
+              ref={skillsContainerRef}
+              className={`${css.row} ${css.scrollable}`}
+            >
               <div
                 className={`${css.col_s_6} ${css.col_m_4} ${css.center_fixed}`}
               >
@@ -179,6 +203,90 @@ function Profile() {
             </div>
           </div>
         </Box>
+        <Box as="section" bg="#00bebd">
+          <div className={css.wrap}>
+            <h2 className={css.title}>
+              <Icon as={UnlockIcon} mr="3" />
+              掌握的技能(css 实现横向滚动)
+            </h2>
+            <div className={css.external}>
+              <div className={css.horizontal_scroll_wrapper}>
+                <div className={css.img_wrapper}>
+                  <Icon
+                    as={FaReact}
+                    className={css.skills_icon}
+                    fontSize="8xl"
+                    color="black"
+                  />
+                  <div className={css.skills_title}>
+                    <h3>React</h3>
+                    <p>熟悉 HTML5 网站的架构和开发</p>
+                  </div>
+                </div>
+                <div className={css.img_wrapper}>
+                  <Icon
+                    as={FaReact}
+                    className={css.skills_icon}
+                    fontSize="8xl"
+                    color="black"
+                  />
+                  <div className={css.skills_title}>
+                    <h3>React</h3>
+                    <p>熟悉 HTML5 网站的架构和开发</p>
+                  </div>
+                </div>
+                <div className={css.img_wrapper}>
+                  <Icon
+                    as={FaReact}
+                    className={css.skills_icon}
+                    fontSize="8xl"
+                    color="black"
+                  />
+                  <div className={css.skills_title}>
+                    <h3>React</h3>
+                    <p>熟悉 HTML5 网站的架构和开发</p>
+                  </div>
+                </div>
+                <div className={css.img_wrapper}>
+                  <Icon
+                    as={FaReact}
+                    className={css.skills_icon}
+                    fontSize="8xl"
+                    color="black"
+                  />
+                  <div className={css.skills_title}>
+                    <h3>React</h3>
+                    <p>熟悉 HTML5 网站的架构和开发</p>
+                  </div>
+                </div>
+                <div className={css.img_wrapper}>
+                  <Icon
+                    as={FaReact}
+                    className={css.skills_icon}
+                    fontSize="8xl"
+                    color="black"
+                  />
+                  <div className={css.skills_title}>
+                    <h3>React</h3>
+                    <p>熟悉 HTML5 网站的架构和开发</p>
+                  </div>
+                </div>
+                <div className={css.img_wrapper}>
+                  <Icon
+                    as={FaReact}
+                    className={css.skills_icon}
+                    fontSize="8xl"
+                    color="black"
+                  />
+                  <div className={css.skills_title}>
+                    <h3>React</h3>
+                    <p>熟悉 HTML5 网站的架构和开发</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Box>
         <section id="works">
           <div className={css.wrap}>
             <h2 className={css.title}>
@@ -209,15 +317,147 @@ function Profile() {
             </h2>
             <div className={css.row}>
               <div className={css.col_m_8}>
-                <ul className={css.timeline}>
-                  <li>2018.09：步入哈弗大学 </li>
-                  <li>2018.12: 进入诺贝尔实验室 </li>
-                  <li>2019.05: 进入图灵实验室 </li>
-                  <li>2019.08: 获计算机图灵奖 </li>
-                  <li>2019.11: 获诺贝尔计算机奖</li>
-                  <li>2020.12: 保送卡内基梅隆大学计算机硕博连读 </li>
-                  <li>2022.--: 以上纯属我的白日梦</li>
-                </ul>
+                <Accordion allowToggle>
+                  <ul className={css.timeline}>
+                    <li>
+                      <AccordionItem>
+                        <h2>
+                          <AccordionButton pt="0">
+                            <Box flex="1" textAlign="left">
+                              2018.09：步入哈弗大学
+                            </Box>
+                            <AccordionIcon />
+                          </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip
+                          ex ea commodo consequat.
+                        </AccordionPanel>
+                      </AccordionItem>
+                    </li>
+                    <li>
+                      <AccordionItem>
+                        <h2>
+                          <AccordionButton pt="0">
+                            <Box flex="1" textAlign="left">
+                              2018.12: 加入诺贝尔计算机实验室
+                            </Box>
+                            <AccordionIcon />
+                          </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip
+                          ex ea commodo consequat.
+                        </AccordionPanel>
+                      </AccordionItem>
+                    </li>
+                    <li>
+                      <AccordionItem>
+                        <h2>
+                          <AccordionButton pt="0">
+                            <Box flex="1" textAlign="left">
+                              2019.05: 进入图灵实验室
+                            </Box>
+                            <AccordionIcon />
+                          </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip
+                          ex ea commodo consequat.
+                        </AccordionPanel>
+                      </AccordionItem>
+                    </li>
+                    <li>
+                      <AccordionItem>
+                        <h2>
+                          <AccordionButton pt="0">
+                            <Box flex="1" textAlign="left">
+                              2019.08: 获计算机图灵奖
+                            </Box>
+                            <AccordionIcon />
+                          </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip
+                          ex ea commodo consequat.
+                        </AccordionPanel>
+                      </AccordionItem>
+                    </li>
+                    <li>
+                      <AccordionItem>
+                        <h2>
+                          <AccordionButton pt="0">
+                            <Box flex="1" textAlign="left">
+                              2019.11: 获诺贝尔计算机奖
+                            </Box>
+                            <AccordionIcon />
+                          </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip
+                          ex ea commodo consequat.
+                        </AccordionPanel>
+                      </AccordionItem>
+                    </li>
+                    <li>
+                      <AccordionItem>
+                        <h2>
+                          <AccordionButton pt="0">
+                            <Box flex="1" textAlign="left">
+                              2020.12: 保送卡内基梅隆大学计算机硕博连读
+                            </Box>
+                            <AccordionIcon />
+                          </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip
+                          ex ea commodo consequat.
+                        </AccordionPanel>
+                      </AccordionItem>
+                    </li>
+                    <li>
+                      <AccordionItem>
+                        <h2>
+                          <AccordionButton pt="0">
+                            <Box flex="1" textAlign="left">
+                              2021.12: 麻省理工人工智能学院博士后候选人
+                            </Box>
+                            <AccordionIcon />
+                          </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip
+                          ex ea commodo consequat.
+                        </AccordionPanel>
+                      </AccordionItem>
+                    </li>
+                    <li>&nbsp;&nbsp; 2022.--: 感谢聆听我的吹牛故事</li>
+                  </ul>
+                </Accordion>
+                {/* <ul className={css.timeline}>
+                  <li>&nbsp;&nbsp; 2022.--: 梦里走一回，一切皆传奇</li>
+                </ul> */}
               </div>
               <div className={`${css.col_m_4} ${css.center_fixed}`}>
                 <img src="/img/profile/story.png" alt="story" />

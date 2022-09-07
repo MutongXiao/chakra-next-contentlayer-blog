@@ -1,25 +1,25 @@
+import { ChevronUpIcon, HamburgerIcon, Icon } from '@chakra-ui/icons';
 import {
   Box,
-  Text,
   Container,
-  VStack,
   Heading,
   Link,
+  Text,
   useDisclosure,
+  VStack,
 } from '@chakra-ui/react';
-import NextLink from 'next/link';
-import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
-import { HamburgerIcon, ChevronUpIcon, Icon } from '@chakra-ui/icons';
-import { AiOutlineMail, AiFillGithub } from 'react-icons/ai';
+import Image from 'next/image';
+import NextLink from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect, useRef, useState } from 'react';
+import { AiFillGithub, AiOutlineMail } from 'react-icons/ai';
 import { FaBlog } from 'react-icons/fa';
 
-import css from './about-home.module.css';
+import AccessFormModal from '@/components/about/access-code-form';
 import wb_me_avatar from 'public/img/wb_me_avatar.png';
 import { $, randomNum } from 'utils/tools';
-import AccessFormModal from '@/components/about/access-code-form';
+import css from './about-home.module.css';
 
 // import {fullScreenAnimation} from 'utils/tools'
 
@@ -129,40 +129,32 @@ function AboutHome() {
       });
 
     // 背景一：加载图片背景
-    const getBgUrl = 'https://realwds-api.vercel.app/bing?count=8';
+    // const getBgUrl = 'https://realwds-api.vercel.app/bing?count=8';
     let imgUrls = JSON.parse(sessionStorage.getItem('imgUrls')) as string[];
-    let index = parseInt(sessionStorage.getItem('imgIndex'));
-    if (imgUrls === null) {
-      imgUrls = [];
-      index = 0;
-      fetch(getBgUrl)
+    if (!imgUrls || imgUrls.length === 0) {
+      fetch('/api/getBgImg?rand=true')
         .then(res => {
           return res.json();
         })
         .then(result => {
-          const images = result.data.images;
-          for (let i = 0; i < images.length; i++) {
-            const item = images[i];
-            imgUrls.push(item.url);
-          }
-          const imgUrl = imgUrls[index];
-          const url = 'https://www.bing.com' + imgUrl;
+          imgUrls = result.data as string[];
+          const imgUrl = imgUrls[0];
           panelRef.current.style.background =
-            "url('" + url + "') center center no-repeat #666";
+            "url('" + imgUrl + "') center center no-repeat #666";
           panelRef.current.style.backgroundSize = 'cover';
           sessionStorage.setItem('imgUrls', JSON.stringify(imgUrls));
-          sessionStorage.setItem('imgIndex', index.toString());
+          sessionStorage.setItem('imgIndex', '0');
         })
         .catch(err => {
           return err;
         });
     } else {
+      let index = parseInt(sessionStorage.getItem('imgIndex'));
       if (index == 7) index = 0;
       else index++;
       const imgUrl = imgUrls[index];
-      const url = 'https://www.bing.com' + imgUrl;
       panelRef.current.style.background =
-        "url('" + url + "') center center no-repeat #666";
+        "url('" + imgUrl + "') center center no-repeat #666";
       panelRef.current.style.backgroundSize = 'cover';
       sessionStorage.setItem('imgIndex', index.toString());
     }
